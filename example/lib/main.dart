@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'YlKits',
       theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
-          primaryColor: YlColors.branding2),
+          primaryColor: YlColors.white),
       routes: defineRoutes(),
       home: HomeView(),
     );

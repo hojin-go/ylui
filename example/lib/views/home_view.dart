@@ -6,7 +6,8 @@ class HomeView extends StatelessWidget {
   final cellData = [
     {'title': 'YlColor', 'route': '/color'},
     {'title': 'YlTextStyle', 'route': '/font'},
-    {'title': 'YlCheckBox', 'route': '/checkbox'}
+    {'title': 'YlCheckBox', 'route': '/checkbox'},
+    {'title': 'YlConfirm', 'route': '/confirm'},
   ];
 
   @override

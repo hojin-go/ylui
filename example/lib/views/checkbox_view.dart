@@ -3,14 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_ylkit/flutter_ylkit.dart';
 
-class CheckboxView extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => _CheckboxState();
-}
-
-class _CheckboxState extends State<CheckboxView> {
-  var checkState = false;
-
+class CheckboxView extends StatelessWidget {
   final data = [
     _CheckboxTile(
       size: 20,
@@ -48,7 +41,10 @@ class _CheckboxState extends State<CheckboxView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: YlBackButton(),
+        leading: YlBackButton(
+          color: YlColors.alertRed,
+          icon: Icons.arrow_back,
+        ),
         title: Text('YlCheckbox'),
       ),
       body: ListView.separated(
