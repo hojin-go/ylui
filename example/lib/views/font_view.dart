@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ylkit/flutter_ylkit.dart';
 
 class FontTileData {
   final String title;
@@ -12,19 +13,18 @@ class FontView extends StatelessWidget {
 
   _makeFontData(BuildContext context) {
     data = [
-      FontTileData('H1', Theme.of(context).textTheme.headline1),
-      FontTileData('H2', Theme.of(context).textTheme.headline2),
-      FontTileData('H3', Theme.of(context).textTheme.headline3),
-      FontTileData('H4', Theme.of(context).textTheme.headline4),
-      FontTileData('H5', Theme.of(context).textTheme.headline5),
-      FontTileData('H6', Theme.of(context).textTheme.headline6),
-      FontTileData('Subtitle1', Theme.of(context).textTheme.subtitle1),
-      FontTileData('Subtitle2', Theme.of(context).textTheme.subtitle2),
-      FontTileData('BodyText1', Theme.of(context).textTheme.bodyText1),
-      FontTileData('BodyText2', Theme.of(context).textTheme.bodyText2),
-      FontTileData('Button', Theme.of(context).textTheme.button),
-      FontTileData('Caption', Theme.of(context).textTheme.caption),
-      FontTileData('Overline', Theme.of(context).textTheme.overline),
+      FontTileData('Header1', YlTextStyles.header1),
+      FontTileData('Header2', YlTextStyles.header2),
+      FontTileData('Header3', YlTextStyles.header3),
+      FontTileData('Header4', YlTextStyles.header4),
+      FontTileData('Subheader1', YlTextStyles.subHeader1),
+      FontTileData('Subheader2', YlTextStyles.subHeader2),
+      FontTileData('Subheader3', YlTextStyles.subHeader3),
+      FontTileData('Body1', YlTextStyles.body1),
+      FontTileData('Body2', YlTextStyles.body2),
+      FontTileData('Body3', YlTextStyles.body3),
+      FontTileData('Body4', YlTextStyles.body4),
+      FontTileData('Caption', YlTextStyles.caption),
     ];
   }
 
@@ -35,17 +35,17 @@ class FontView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Font'),
+        title: Text('YlTextStyle'),
       ),
-      body: ListView.builder(
+      body: ListView.separated(
         itemCount: data.length,
+        separatorBuilder: (context, index) => Divider(),
         itemBuilder: (context, index) => ListTile(
           title: Text(
             data[index].title,
             style: data[index].style,
           ),
-          subtitle: Text(
-              'fontsize: ${data[index].style.fontSize}, fontweight: ${data[index].style.fontWeight}'),
+          subtitle: Text(data[index].style.toString()),
         ),
       ),
     );

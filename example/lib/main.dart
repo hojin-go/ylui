@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ylkit/flutter_ylkit.dart';
 
 import 'views/color_view.dart';
-import 'views/color_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,6 +40,11 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeView extends StatelessWidget {
+  final cellData = [
+    {'title': 'YlColor', 'route': '/color'},
+    {'title': 'YlTextStyle', 'route': '/font'}
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,18 +52,15 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         title: Text('YlKit'),
       ),
-      body: ListView(
-        children: [
-          ListTile(
-            title: Text('YlColor'),
-            onTap: () => Navigator.of(context).pushNamed('/color'),
-          ),
-          ListTile(
-            title: Text('Font'),
-            onTap: () => Navigator.of(context).pushNamed('/font'),
-          )
-        ],
-      ),
+      body: ListView.separated(
+          itemBuilder: (context, index) => ListTile(
+                title: Text(cellData[index]['title']),
+                trailing: Icon(Icons.chevron_right),
+                onTap: () =>
+                    Navigator.of(context).pushNamed(cellData[index]['route']),
+              ),
+          separatorBuilder: (context, index) => Divider(),
+          itemCount: cellData.length),
     );
   }
 }

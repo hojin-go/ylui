@@ -7,27 +7,49 @@ class YlColors {
   YlColors._();
 
   /// 主题色，名称取自 figma
-  static const brandColor = Color(0xFF00BF57);
+  static const branding1 = Color.fromRGBO(0, 191, 87, 1);
+
   /// 辅助主题色
-  static const secondaryBrandColor = Color(0xFF009845);
+  static const branding2 = Color.fromRGBO(0, 152, 69, 1);
 
   static const white = Color(0xFFFFFFFF);
+
   /// 黑色，名称取自 Colors.black
   static const black = Color(0xFF000000);
-  static const black90 = Color(0xE6000000);
-  static const black70 = Color(0xB2000000);
-  static const black50 = Color(0x7F000000);
-  static const black30 = Color(0x4F000000);
+  static const black90 = Color.fromRGBO(0, 0, 0, 0.9);
+  static const black70 = Color.fromRGBO(0, 0, 0, 0.7);
+  static const black50 = Color.fromRGBO(0, 0, 0, 0.5);
+  static const black30 = Color.fromRGBO(0, 0, 0, 0.3);
+  static const black10 = Color.fromRGBO(0, 0, 0, 0.1);
+
+  /// 透明色
+  static const transparent = Color(0x00000000);
 
   /// 灰色
-  static const grey1 = Color(0xFFE6E8EB);
-  static const grey2 = Color(0xFFEFF0F2);
-  static const grey3 = Color(0xFFF5F6F8);
-  static const grey4 = Color(0xFFFAFAFB);
+  /// 分割线
+  static const grey1 = Color.fromRGBO(230, 232, 235, 1);
+
+  /// 可点击、线框
+  static const grey2 = Color.fromRGBO(239, 240, 242, 1);
+
+  /// 灰块分割
+  static const grey3 = Color.fromRGBO(245, 246, 248, 1);
+
+  /// 底色
+  static const grey4 = Color.fromRGBO(250, 250, 251, 1);
 
   /// 分割线颜色, 命名取自 CupertinoColors.separator
-  static const separator = Color(0xFFFAFAFA);
+  static const separator = grey1;
 
   /// 提醒色，命名取自 CupertinoColors.destructiveRed
-  static const destructiveRed = Color(0xFFFA243C);
+  static const alertRed = Color.fromRGBO(250, 36, 60, 1);
+
+  /// 警告色，橙色，浅色
+  static const orangeLight = Color.fromRGBO(255, 169, 2, 1);
+
+  /// 警告色，橙色，深色
+  static const orangeDark = Color.fromRGBO(255, 149, 0, 1);
+
+  /// 瓴里蓝色
+  static const lanehubBlue = Color.fromRGBO(60, 88, 242, 1);
 }
