@@ -9,7 +9,7 @@ class ColorTileData {
 }
 
 class ColorView extends StatelessWidget {
-  var data = [
+  final data = [
     ColorTileData(YlColors.branding1, 'Brand Color'),
     ColorTileData(YlColors.branding2, 'Secondary Brand Color'),
     ColorTileData(YlColors.alertRed, 'Destructive Red'),
