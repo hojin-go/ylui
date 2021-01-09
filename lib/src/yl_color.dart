@@ -29,7 +29,7 @@ class YlColors {
   /// 分割线
   static const grey1 = Color.fromRGBO(230, 232, 235, 1);
 
-  /// 可点击、线框
+  /// 暗示可点击、线框
   static const grey2 = Color.fromRGBO(239, 240, 242, 1);
 
   /// 灰块分割
