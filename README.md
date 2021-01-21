@@ -25,4 +25,18 @@ samples, guidance on mobile development, and a full API reference.
 - [ ] yl_empty_page  
 - [ ] 骨架图中的元素抽象  
 - [ ] 下拉刷新，上拉加载  
-- [ ] Toast 抽象  
+- [ ] Toast 抽象 
+
+## CHANGELOG
+
+### v0.1
+
+1. YlColors
+2. YlTextStyles
+3. YlCheckbox
+
+## 贡献
+
+联系 [lihaozhen@lanehub.cn](mailto:lihaozhen@lanehub.cn)，成为开发者
+
+
