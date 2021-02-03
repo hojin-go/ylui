@@ -1,10 +1,6 @@
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../flutter_ylkit.dart';
-import '../../../flutter_ylkit.dart';
 import '../../../flutter_ylkit.dart';
 
 class YlPopover extends StatelessWidget {
@@ -13,18 +9,27 @@ class YlPopover extends StatelessWidget {
 
   const YlPopover({Key key, this.body, this.header}) : super(key: key);
 
-  YlPopover.close({Key key, this.body, VoidCallback onClosed})
+  YlPopover.close(
+      {Key key,
+      Widget title,
+      this.body,
+      Widget closeWidget,
+      VoidCallback onClosed})
       : this.header = Container(
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              if (title != null)
+                Padding(padding: EdgeInsets.only(left: 20), child: title),
               Spacer(),
               CupertinoButton(
-                padding: EdgeInsets.only(top: 20, right: 20),
-                child: Icon(
-                  CupertinoIcons.xmark,
-                  size: 24,
-                  color: YlColors.black,
-                ),
+                child: closeWidget ??
+                    Icon(
+                      CupertinoIcons.xmark,
+                      size: 24,
+                      color: YlColors.black,
+                    ),
                 onPressed: onClosed,
               )
             ],

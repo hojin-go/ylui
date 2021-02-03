@@ -1,7 +1,6 @@
 library flutter_ylkit;
 
 export 'src/widgets/popover/yl_popover.dart';
-export 'src/widgets/popover/yl_popover_confirm.dart';
 export 'src/widgets/yl_back_button.dart';
 export 'src/widgets/yl_button.dart';
 export 'src/widgets/yl_card.dart';
