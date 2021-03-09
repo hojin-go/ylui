@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_ylkit/flutter_ylkit.dart';
+import 'package:flutter_ylui/flutter_ylui.dart';
 
 class CheckboxView extends StatelessWidget {
   final data = [

@@ -1,7 +1,7 @@
 import 'package:example/route.dart';
 import 'package:example/views/home_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ylkit/flutter_ylkit.dart';
+import 'package:flutter_ylui/flutter_ylui.dart';
 
 void main() {
   runApp(MyApp());
