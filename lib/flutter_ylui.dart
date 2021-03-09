@@ -1,4 +1,4 @@
-library flutter_ylkit;
+library flutter_ylui;
 
 export 'src/widgets/popover/yl_popover.dart';
 export 'src/widgets/yl_back_button.dart';

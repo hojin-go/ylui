@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_ylkit/flutter_ylkit.dart';
+import 'package:flutter_ylui/flutter_ylui.dart';
 
 class YlCheckbox extends StatefulWidget {
   final ValueChanged<bool> onChanged;
