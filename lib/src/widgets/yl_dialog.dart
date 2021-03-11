@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ylui/flutter_ylui.dart';
-import 'package:flutter_yuanling_app/talent/views/talent_launch/components/yl_tap_effect.dart';
+
+import '../../flutter_ylui.dart';
 
 class YlDialogAction {
   final String title;
