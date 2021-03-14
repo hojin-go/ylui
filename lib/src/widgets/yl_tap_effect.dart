@@ -10,7 +10,7 @@ class YlTapEffect extends StatefulWidget {
 
   const YlTapEffect(
       {Key key,
-      this.backgroundColor = YlColors.white,
+      this.backgroundColor = YlColors.black,
       this.child,
       this.onTap,
       this.radius})

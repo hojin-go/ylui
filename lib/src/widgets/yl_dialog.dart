@@ -7,8 +7,9 @@ class YlDialogAction {
   final String title;
   final VoidCallback action;
   final bool highlight;
+  final bool alert;
 
-  YlDialogAction({this.title, this.action, this.highlight = false});
+  YlDialogAction(this.alert, {this.title, this.action, this.highlight = false});
 }
 
 class _YlDialogDivider extends StatelessWidget {
@@ -48,7 +49,7 @@ class YlDialog extends StatelessWidget {
               action.title,
               style: YlTextStyles.body1.copyWith(
                   color:
-                      action.highlight ? YlColors.branding1 : YlColors.black70),
+                      action.highlight ? YlColors.branding1 : (action.alert ? YlColors.alertRed : YlColors.black70)),
             ),
           ),
         ),
