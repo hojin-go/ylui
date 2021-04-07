@@ -1,3 +1,4 @@
+import 'package:example/views/button_view.dart';
 import 'package:example/views/checkbox_view.dart';
 import 'package:example/views/color_view.dart';
 import 'package:example/views/confirm_view.dart';
@@ -10,6 +11,7 @@ defineRoutes() {
     '/font': (context) => FontView(),
     '/checkbox': (_) => CheckboxView(),
     '/confirm': (_) => ConfirmView(),
-    '/popover': (_) => PopoverView()
+    '/popover': (_) => PopoverView(),
+    '/button': (_) => ButtonView()
   };
 }
