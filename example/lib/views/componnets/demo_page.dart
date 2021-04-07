@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_ylui/flutter_ylui.dart';
-
 class DemoPage extends StatelessWidget {
   final Widget child;
   final String title;
@@ -10,7 +8,6 @@ class DemoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: YlColors.grey4,
       navigationBar: CupertinoNavigationBar(
         brightness: Brightness.light,
         middle: Text(title),

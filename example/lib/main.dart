@@ -1,5 +1,6 @@
 import 'package:example/route.dart';
 import 'package:example/views/home_view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
@@ -11,12 +12,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return CupertinoApp(
       title: 'YlKits',
-      theme: ThemeData(
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          primaryColor: YlColors.white),
-      routes: defineRoutes(),
+      theme: CupertinoThemeData(
+          brightness: Brightness.light,
+          scaffoldBackgroundColor: YlColors.grey2),
+      routes: routesMap,
       home: HomeView(),
     );
   }

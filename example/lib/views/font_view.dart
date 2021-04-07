@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
+import 'componnets/demo_page.dart';
+
 class FontTileData {
   final String title;
   final TextStyle style;
@@ -26,22 +28,26 @@ class FontView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('YlTextStyle'),
-      ),
-      body: ListView.separated(
-        itemCount: data.length,
-        separatorBuilder: (context, index) => Divider(),
-        itemBuilder: (context, index) => ListTile(
-          title: Text(
-            data[index].title,
-            style: data[index].style,
-          ),
-          subtitle: Text(data[index].style.toString()),
-        ),
-      ),
+    var widgets = <Widget>[];
+    data.forEach((element) {
+      widgets.add(
+        Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Text(element.title, style: element.style,),
+            )
+          ],
+        )
+      );
+    });
+
+    return DemoPage(
+      title: 'YlTextStyles',
+      child: SingleChildScrollView(child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: widgets,
+        ),)
     );
   }
 }

@@ -1,25 +1,18 @@
+import 'package:example/route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
+import 'componnets/demo_page.dart';
+
 class HomeView extends StatelessWidget {
-  final cellData = [
-    {'title': 'YlColor', 'route': '/color'},
-    {'title': 'YlTextStyle', 'route': '/font'},
-    {'title': 'YlCheckBox', 'route': '/checkbox'},
-    {'title': 'YlConfirm', 'route': '/confirm'},
-    {'title': 'YlPopover', 'route': '/popover'},
-    {'title': 'YlButton', 'route': '/button'}
-  ];
+  final cellData = defineRouteObjects();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: YlColors.grey4,
-      appBar: AppBar(
-        title: Text('YlKit'),
-      ),
-      body: GridView.builder(
+    return DemoPage(
+      title: 'YLUI',
+      child:  GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisSpacing: 1,
             mainAxisSpacing: 1,
@@ -34,8 +27,8 @@ class HomeView extends StatelessWidget {
                 color: YlColors.white,
                 width: double.infinity,
                 height: double.infinity,
-                child: Text(item['title'])),
-            onTap: () => Navigator.pushNamed(context, item['route']),
+                child: Text(item.description)),
+            onTap: () => Navigator.pushNamed(context, item.route),
           );
         },
       ),

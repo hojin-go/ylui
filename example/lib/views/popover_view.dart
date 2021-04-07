@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_ylui/flutter_ylui.dart';
 
+import 'componnets/demo_page.dart';
+
 class PopoverView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        middle: Text('YlPopover'),
-      ),
+    return DemoPage(
+      title: 'YlPopover',
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -21,11 +21,11 @@ class PopoverView extends StatelessWidget {
                 semanticsDismissible: false,
                 builder: (context) => Container(
                     child: YlPopover(
-                      body: Container(
-                        height: 320,
-                        color: YlColors.grey3,
-                      ),
-                    )),
+                  body: Container(
+                    height: 320,
+                    color: YlColors.grey3,
+                  ),
+                )),
               ),
             ),
             SizedBox(

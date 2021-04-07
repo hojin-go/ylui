@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
+import 'componnets/demo_page.dart';
+
 class CheckboxView extends StatelessWidget {
   final data = [
     _CheckboxTile(
@@ -39,15 +41,9 @@ class CheckboxView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: YlBackButton(
-          color: YlColors.alertRed,
-          icon: Icons.arrow_back,
-        ),
-        title: Text('YlCheckbox'),
-      ),
-      body: ListView.separated(
+    return DemoPage(
+      title: 'YlCheckbox',
+      child: ListView.separated(
           itemBuilder: (context, index) => data[index],
           separatorBuilder: (context, index) => Divider(),
           itemCount: data.length),

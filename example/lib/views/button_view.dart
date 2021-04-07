@@ -1,6 +1,7 @@
-import 'package:example/views/demo_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
+
+import 'componnets/demo_page.dart';
 
 class ButtonView extends StatelessWidget {
   @override
@@ -17,7 +18,7 @@ class ButtonView extends StatelessWidget {
             ..._wrapButton(YlButtonType.subPrimary, title: 'Sub Primary'),
             ..._wrapButton(YlButtonType.subSecondary, title: 'Sub Secondary'),
             ..._wrapButton(YlButtonType.alert, title: 'Alert'),
-            ..._wrapButton(YlButtonType.plain, title: 'Plaint'),
+            ..._wrapButton(YlButtonType.plain, title: 'Plain'),
           ],
         ),
       ),
