@@ -10,5 +10,6 @@ export 'src/widgets/yl_tap_detector.dart';
 export 'src/widgets/yl_tap_effect.dart';
 export 'src/widgets/yl_dot.dart';
 export 'src/widgets/yl_dialog.dart';
+export 'src/widgets/yl_toast.dart';
 export 'src/yl_color.dart';
 export 'src/yl_text_style.dart';

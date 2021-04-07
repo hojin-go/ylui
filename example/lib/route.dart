@@ -3,6 +3,7 @@ import 'package:example/views/checkbox_view.dart';
 import 'package:example/views/color_view.dart';
 import 'package:example/views/confirm_view.dart';
 import 'package:example/views/font_view.dart';
+import 'package:example/views/yl_toast_demo.dart';
 import 'package:flutter/material.dart';
 import 'views/popover_view.dart';
 
@@ -21,7 +22,8 @@ List<RouteObject> defineRouteObjects() {
     RouteObject('/checkbox', 'YlCheckbox', (context) => CheckboxView()),
     RouteObject('/confirm', 'YlConfirm', (context) => ConfirmView()),
     RouteObject('/popover', 'YlPopover', (context) => PopoverView()),
-    RouteObject('/button', 'YlButton', (context) => ButtonView())
+    RouteObject('/button', 'YlButton', (context) => ButtonView()),
+    RouteObject('/toast', 'YlToast', (context) => YlToastDemoPage())
   ];
 }
 

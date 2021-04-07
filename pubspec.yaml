@@ -11,6 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  bot_toast: ^3.0.5
 
 dev_dependencies:
   flutter_test:
