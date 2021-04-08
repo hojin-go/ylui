@@ -8,6 +8,7 @@ export 'src/widgets/yl_checkbox.dart';
 export 'src/widgets/yl_confirm.dart';
 export 'src/widgets/yl_tap_detector.dart';
 export 'src/widgets/yl_tap_effect.dart';
+export 'src/widgets/yl_floating_bottom.dart';
 export 'src/widgets/yl_dot.dart';
 export 'src/widgets/yl_dialog.dart';
 export 'src/widgets/yl_toast.dart';

@@ -12,6 +12,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoPage(
       title: 'YLUI',
+      contentPadding: EdgeInsets.zero,
       child:  GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisSpacing: 1,
