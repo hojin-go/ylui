@@ -8,7 +8,6 @@ class YlToast {
 
   static void text(String content) {
     BotToast.showCustomText(
-        align: Alignment.center,
         wrapAnimation: (AnimationController controller, CancelFunc cancelFunc,
                 Widget child) =>
             FadeAnimation(
