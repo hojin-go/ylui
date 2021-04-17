@@ -5,14 +5,14 @@ author: yl_tech
 homepage: http://git.release.weiheinc.com/fe/flutter_ylui
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  bot_toast: ^3.0.5
   sliding_up_panel: ^1.0.2
+  bot_toast: ^4.0.1
 
 dev_dependencies:
   flutter_test:
@@ -23,7 +23,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
   # To add assets to your package, add an assets section, like this:
   assets:
     - lib/assets/x-mark.png

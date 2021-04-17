@@ -15,17 +15,17 @@ class YlToast {
   static const _defaultPadding =
       EdgeInsets.symmetric(horizontal: 16, vertical: 11);
 
-  static CancelFunc _textToastCancelFunc;
+  static CancelFunc? _textToastCancelFunc;
 
   static void text(String content,
-      {Duration duration, Color bgColor, Alignment alignment}) {
+      {Duration? duration, Color? bgColor, Alignment? alignment}) {
     _textToast(content,
         duration: duration, bgColor: bgColor, alignment: alignment);
   }
 
   static void loading({String content = '请求中', bool bLong = false}) {
     String message;
-    if (content == null || content.isEmpty) {
+    if (content.isEmpty) {
       message = '';
     } else {
       message = content;
@@ -55,7 +55,7 @@ class YlToast {
                       width: 4,
                     ),
                     Text(
-                      message ?? '',
+                      message,
                       style: YlTextStyles.body3
                           .copyWith(color: YlColors.white, height: 1.3),
                     )
@@ -84,13 +84,16 @@ class YlToast {
   }
 
   static _textToast(String content,
-      {Widget prefix, Duration duration, Color bgColor, Alignment alignment}) {
+      {Widget? prefix,
+      Duration? duration,
+      Color? bgColor,
+      Alignment? alignment}) {
     if (_textToastCancelFunc != null) {
-      _textToastCancelFunc();
+      _textToastCancelFunc!();
     }
 
     Widget widget = Text(
-      content ?? '',
+      content,
       maxLines: 1,
       textAlign: TextAlign.center,
       overflow: TextOverflow.ellipsis,
@@ -128,7 +131,7 @@ class YlToast {
             ));
   }
 
-  static void _iconToast(String content, {@required Widget icon}) {
+  static void _iconToast(String content, {required Widget icon}) {
     var fixedPrefix = Container(
       padding: EdgeInsets.only(bottom: 2),
       child: IconTheme(
@@ -140,10 +143,11 @@ class YlToast {
 
 //淡出淡入动画
 class FadeAnimation extends StatefulWidget {
-  final Widget child;
-  final AnimationController controller;
+  final Widget? child;
+  final AnimationController? controller;
 
-  const FadeAnimation({Key key, this.child, this.controller}) : super(key: key);
+  const FadeAnimation({Key? key, this.child, this.controller})
+      : super(key: key);
 
   @override
   FadeAnimationState createState() => FadeAnimationState();
@@ -152,13 +156,13 @@ class FadeAnimation extends StatefulWidget {
 class FadeAnimationState extends State<FadeAnimation>
     with SingleTickerProviderStateMixin {
   static final Tween<double> tweenOpacity = Tween<double>(begin: 0, end: 1);
-  Animation<double> animation;
-  Animation<double> animationOpacity;
+  late Animation<double> animation;
+  late Animation<double> animationOpacity;
 
   @override
   void initState() {
     animation =
-        CurvedAnimation(parent: widget.controller, curve: Curves.decelerate);
+        CurvedAnimation(parent: widget.controller!, curve: Curves.decelerate);
 
     animationOpacity = tweenOpacity.animate(animation);
 

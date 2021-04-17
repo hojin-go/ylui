@@ -2,13 +2,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
 class YlCard extends StatelessWidget {
-  final Widget child;
+  final Widget? child;
   final EdgeInsetsGeometry padding;
   final EdgeInsetsGeometry maigin;
   final Color backgroundColor;
 
   const YlCard(
-      {Key key,
+      {Key? key,
       this.child,
       this.padding = EdgeInsets.zero,
       this.maigin = const EdgeInsets.all(5),

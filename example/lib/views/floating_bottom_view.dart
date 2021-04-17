@@ -14,6 +14,7 @@ class FloatingBottomView extends StatelessWidget {
         children: [
           Expanded(child: Container()),
           YlFloatingBottom(
+            backgroundColor: YlColors.white,
             child: YlButton.fromType(
               size: YlButtonSize.max,
               type: YlButtonType.primary,

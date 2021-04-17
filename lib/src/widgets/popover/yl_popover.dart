@@ -4,20 +4,20 @@ import 'package:flutter/material.dart';
 import '../../../flutter_ylui.dart';
 
 class YlPopover extends StatelessWidget {
-  final Widget header;
-  final Widget body;
-  final Widget footer;
+  final Widget? header;
+  final Widget? body;
+  final Widget? footer;
 
-  const YlPopover({Key key, this.body, this.header, this.footer})
+  const YlPopover({Key? key, this.body, this.header, this.footer})
       : super(key: key);
 
   YlPopover.close(
-      {Key key,
-      Widget title,
+      {Key? key,
+      Widget? title,
       this.body,
       this.footer,
-      Widget closeWidget,
-      VoidCallback onClosed})
+      Widget? closeWidget,
+      VoidCallback? onClosed})
       : this.header = Container(
           height: 64,
           child: Row(
@@ -48,11 +48,11 @@ class YlPopover extends StatelessWidget {
         );
 
   YlPopover.confirm(
-      {Key key,
+      {Key? key,
       this.body,
       this.footer,
-      VoidCallback onCanceled,
-      VoidCallback onDone})
+      VoidCallback? onCanceled,
+      VoidCallback? onDone})
       : this.header = Container(
           child: Row(
             children: [
@@ -96,8 +96,8 @@ class YlPopover extends StatelessWidget {
                   Container(
                     height: 44,
                   ),
-              if (body != null) body,
-              if (footer != null) footer
+              if (body != null) body!,
+              if (footer != null) footer!
             ],
           ),
         ),
@@ -106,7 +106,7 @@ class YlPopover extends StatelessWidget {
   }
 }
 
-Future<T> showYlPopover<T>(BuildContext context, YlPopover child) {
+Future<T?> showYlPopover<T>(BuildContext context, YlPopover child) {
   return showCupertinoModalPopup<T>(
     context: context,
     builder: (context) => Dismissible(

@@ -52,16 +52,16 @@ class CheckboxView extends StatelessWidget {
 }
 
 class _CheckboxTile extends StatefulWidget {
-  final double size;
-  final Color color;
+  final double? size;
+  final Color? color;
   final IconData checked;
   final IconData unchecked;
   final String title;
   final bool enabled;
 
   const _CheckboxTile(
-      {Key key,
-      @required this.title,
+      {Key? key,
+      required this.title,
       this.size,
       this.color,
       this.checked = CupertinoIcons.checkmark_square_fill,
@@ -86,8 +86,8 @@ class __CheckboxTileState extends State<_CheckboxTile> {
           Text(widget.title),
           YlCheckbox(
             check: checked,
-            size: widget.size,
-            color: widget.color,
+            size: widget.size!,
+            color: widget.color!,
             checkedIcon: widget.checked,
             uncheckedIcon: widget.unchecked,
             onChanged: widget.enabled

@@ -113,7 +113,7 @@ extension YlButtonDataFromType on YlButtonType {
     }
   }
 
-  Color get borderColor {
+  Color? get borderColor {
     switch (this) {
       case YlButtonType.primary:
       case YlButtonType.subPrimary:
@@ -140,7 +140,7 @@ extension YlButtonDataFromType on YlButtonType {
     }
   }
 
-  Color get disableBorderColor {
+  Color? get disableBorderColor {
     switch (this) {
       case YlButtonType.alert:
       case YlButtonType.subSecondary:
@@ -159,23 +159,23 @@ extension YlButtonDataFromType on YlButtonType {
 typedef ButtonClickCallback = Future<void> Function();
 
 class YlButton extends StatefulWidget {
-  final VoidCallback onPressed;
-  final ButtonClickCallback onAsyncPressed;
-  final double width;
-  final double height;
-  final Widget child;
-  final Color background;
-  final BorderRadius radius;
-  final EdgeInsets padding;
-  final BorderSide border;
-  final Color pressedCoverColor;
-  final Color disableBackgroundColor;
-  final Color disableBorderColor;
-  final Color disableTextColor;
-  final TextStyle textStyle;
+  final VoidCallback? onPressed;
+  final ButtonClickCallback? onAsyncPressed;
+  final double? width;
+  final double? height;
+  final Widget? child;
+  final Color? background;
+  final BorderRadius? radius;
+  final EdgeInsets? padding;
+  final BorderSide? border;
+  final Color? pressedCoverColor;
+  final Color? disableBackgroundColor;
+  final Color? disableBorderColor;
+  final Color? disableTextColor;
+  final TextStyle? textStyle;
 
   const YlButton(
-      {Key key,
+      {Key? key,
       this.onPressed,
       this.width,
       this.height,
@@ -193,9 +193,9 @@ class YlButton extends StatefulWidget {
       : super(key: key);
 
   YlButton.text({
-    Key key,
-    @required String title,
-    @required YlButtonSize size,
+    Key? key,
+    required String title,
+    required YlButtonSize size,
     this.onPressed,
     this.onAsyncPressed,
     this.width,
@@ -216,17 +216,17 @@ class YlButton extends StatefulWidget {
         super(key: key);
 
   YlButton.fromType(
-      {@required YlButtonSize size,
-      @required YlButtonType type,
+      {required YlButtonSize size,
+      required YlButtonType type,
       this.onPressed,
       this.onAsyncPressed,
       this.width,
       this.child,
-      Color color,
-      Color borderColor,
-      Color textColor,
-      Color pressedCoverColor,
-      EdgeInsets padding})
+      Color? color,
+      Color? borderColor,
+      Color? textColor,
+      Color? pressedCoverColor,
+      EdgeInsets? padding})
       : this.background = color ?? type.background,
         this.disableBackgroundColor = type.disableBackgroundColor,
         this.height = size.height,
@@ -234,7 +234,7 @@ class YlButton extends StatefulWidget {
         this.textStyle =
             size.textStyle.copyWith(color: textColor ?? type.textColor),
         this.border = (borderColor ?? type.borderColor) != null
-            ? BorderSide(width: 1, color: borderColor ?? type.borderColor)
+            ? BorderSide(width: 1, color: borderColor ?? type.borderColor!)
             : null,
         this.pressedCoverColor = pressedCoverColor ?? type.pressedCoverColor,
         this.disableTextColor = type.disableTextColor,
@@ -250,7 +250,7 @@ class _YlButtonState extends State<YlButton> {
 
   @override
   Widget build(BuildContext context) {
-    Widget aWidget = widget.child;
+    Widget? aWidget = widget.child;
 
     if ((widget.width == null || widget.width == 0) &&
         (widget.height == null || widget.height == 0)) {
@@ -264,7 +264,7 @@ class _YlButtonState extends State<YlButton> {
     return _sizedButton(child: widget, padding: null);
   }
 
-  _sizedButton({Widget child, EdgeInsets padding}) {
+  _sizedButton({Widget? child, EdgeInsets? padding}) {
     bool enabled = widget.onPressed != null || widget.onAsyncPressed != null;
 
     var backgroundColor = widget.background ?? YlColors.branding1;
@@ -274,8 +274,8 @@ class _YlButtonState extends State<YlButton> {
     var border = widget.border == null
         ? null
         : Border.all(
-            color: enabled ? widget.border.color : disableBorderColor,
-            width: widget.border.width);
+            color: enabled ? widget.border!.color : disableBorderColor,
+            width: widget.border!.width);
 
     var textStyle =
         (widget.textStyle ?? YlTextStyles.subHeader3).copyWith(height: 1.3);
@@ -302,7 +302,7 @@ class _YlButtonState extends State<YlButton> {
               child: IconTheme(
                   data: IconThemeData(
                       color: textStyle.color, size: textStyle.fontSize),
-                  child: widget.child),
+                  child: widget.child!),
               style: textStyle,
             )),
           ),
@@ -310,12 +310,12 @@ class _YlButtonState extends State<YlButton> {
                   (widget.onAsyncPressed != null && isAsync == false))
               ? () async {
                   if (widget.onPressed != null) {
-                    widget.onPressed();
+                    widget.onPressed!();
                   } else if (widget.onAsyncPressed != null) {
                     setState(() {
                       isAsync = true;
                     });
-                    await widget.onAsyncPressed();
+                    await widget.onAsyncPressed!();
                     setState(() {
                       isAsync = false;
                     });

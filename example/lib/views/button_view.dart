@@ -25,7 +25,7 @@ class ButtonView extends StatelessWidget {
     );
   }
 
-  _wrapButton(YlButtonType type, {String title}) {
+  _wrapButton(YlButtonType type, {required String title}) {
     return [
       Text(
         title,

@@ -2,14 +2,14 @@ import 'package:example/views/componnets/code_viewer.dart';
 import 'package:flutter/cupertino.dart';
 
 class DemoPage extends StatelessWidget {
-  final Widget child;
-  final String title;
-  final EdgeInsets contentPadding;
-  final String sourceCodePath;
+  final Widget? child;
+  final String? title;
+  final EdgeInsets? contentPadding;
+  final String? sourceCodePath;
   final bool bottomSafe;
 
   const DemoPage(
-      {Key key,
+      {Key? key,
       this.title,
       this.child,
       this.contentPadding,
@@ -22,7 +22,7 @@ class DemoPage extends StatelessWidget {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         brightness: Brightness.light,
-        middle: Text(title),
+        middle: Text(title ?? ''),
         trailing: sourceCodePath != null
             ? CupertinoButton(
                 padding: EdgeInsets.zero,
@@ -33,7 +33,7 @@ class DemoPage extends StatelessWidget {
                     CupertinoPageRoute(
                       fullscreenDialog: true,
                       builder: (context) => CodeViewerPage(
-                        filePath: sourceCodePath,
+                        filePath: sourceCodePath!,
                       ),
                     )),
               )
