@@ -24,7 +24,7 @@ class YlToast {
                   borderRadius: BorderRadius.circular(25),
                   color: Color.fromRGBO(51, 51, 51, 0.8)),
               child: Text(
-                content ?? '',
+                content,
                 maxLines: 1,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
@@ -33,7 +33,7 @@ class YlToast {
             ));
   }
 
-  static void loading({String content, bool bLong = false}) {
+  static void loading({String? content, bool bLong = false}) {
     String message;
     if (content == null || content.isEmpty) {
       message = '';
@@ -63,7 +63,7 @@ class YlToast {
                       width: 4,
                     ),
                     Text(
-                      message ?? '',
+                      message,
                       style: YlTextStyles.body3.copyWith(color: YlColors.white, height: 1.3),
                     )
                   ],
@@ -90,7 +90,7 @@ class YlToast {
         ));
   }
 
-  static void _iconToast(String content, {@required Widget icon}) {
+  static void _iconToast(String content, {required Widget icon}) {
     BotToast.showCustomText(
         align: Alignment.center,
         wrapAnimation: (AnimationController controller, CancelFunc cancelFunc,
@@ -123,7 +123,7 @@ class YlToast {
                   Container(
                     // color: YlColors.lanehubBlue,
                     child: Text(
-                      content ?? '',
+                      content,
                       style: YlTextStyles.body3
                           .copyWith(color: YlColors.white, height: 1.3),
                     ),
@@ -136,10 +136,10 @@ class YlToast {
 
 //淡出淡入动画
 class FadeAnimation extends StatefulWidget {
-  final Widget child;
-  final AnimationController controller;
+  final Widget? child;
+  final AnimationController? controller;
 
-  const FadeAnimation({Key key, this.child, this.controller}) : super(key: key);
+  const FadeAnimation({Key? key, this.child, this.controller}) : super(key: key);
 
   @override
   FadeAnimationState createState() => FadeAnimationState();
@@ -148,13 +148,13 @@ class FadeAnimation extends StatefulWidget {
 class FadeAnimationState extends State<FadeAnimation>
     with SingleTickerProviderStateMixin {
   static final Tween<double> tweenOpacity = Tween<double>(begin: 0, end: 1);
-  Animation<double> animation;
-  Animation<double> animationOpacity;
+  late Animation<double> animation;
+  late Animation<double> animationOpacity;
 
   @override
   void initState() {
     animation =
-        CurvedAnimation(parent: widget.controller, curve: Curves.decelerate);
+        CurvedAnimation(parent: widget.controller!, curve: Curves.decelerate);
 
     animationOpacity = tweenOpacity.animate(animation);
 

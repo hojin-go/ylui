@@ -3,13 +3,13 @@ import 'package:flutter_ylui/flutter_ylui.dart';
 import 'package:flutter_ylui/src/widgets/yl_tap_detector.dart';
 
 class YlTapEffect extends StatefulWidget {
-  final Widget child;
-  final Color backgroundColor;
-  final BorderRadius radius;
-  final VoidCallback onTap;
+  final Widget? child;
+  final Color? backgroundColor;
+  final BorderRadius? radius;
+  final VoidCallback? onTap;
 
   const YlTapEffect(
-      {Key key,
+      {Key? key,
       this.backgroundColor = YlColors.black,
       this.child,
       this.onTap,
@@ -46,7 +46,7 @@ class _YlTapEffectState extends State<YlTapEffect> {
       },
       child: Stack(
         children: [
-          widget.child,
+          widget.child!,
           Visibility(
             visible: _tappingDown,
             child: Positioned(

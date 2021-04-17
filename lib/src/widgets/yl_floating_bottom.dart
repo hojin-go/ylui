@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
 class YlFloatingBottom extends StatelessWidget {
-  final EdgeInsets padding;
-  final Widget child;
-  final Color backgroundColor;
+  final EdgeInsets? padding;
+  final Widget? child;
+  final Color? backgroundColor;
 
-  const YlFloatingBottom({Key key, this.padding, this.child, this.backgroundColor}) : super(key: key);
+  const YlFloatingBottom({Key? key, this.padding, this.child, this.backgroundColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

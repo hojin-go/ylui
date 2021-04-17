@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 
 class YlDot extends StatelessWidget {
-  final Color color;
+  final Color? color;
   final double radius;
 
-  const YlDot({Key key, this.color, this.radius}) : super(key: key);
+  const YlDot({Key? key, this.color, this.radius = 10}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -5,13 +5,13 @@ author:
 homepage:
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  bot_toast: ^3.0.5
+  bot_toast: ^4.0.1
 
 dev_dependencies:
   flutter_test:

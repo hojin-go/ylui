@@ -6,10 +6,10 @@ import '../../flutter_ylui.dart';
 /// 弹窗按钮的设置
 class YlDialogAction {
   /// 按钮文字
-  final String title;
+  final String? title;
 
   /// 按钮点击事件
-  final VoidCallback action;
+  final VoidCallback? action;
 
   /// 是否高亮按钮，绿颜色
   final bool highlight;
@@ -23,15 +23,15 @@ class YlDialogAction {
 
 /// 按钮的分割线
 class _YlDialogDivider extends StatelessWidget {
-  final bool horizontal;
+  final bool? horizontal;
 
-  const _YlDialogDivider({Key key, this.horizontal}) : super(key: key);
+  const _YlDialogDivider({Key? key, this.horizontal}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
       color: YlColors.grey2,
-      width: horizontal ? double.infinity : 0.5,
-      height: horizontal ? 0.5 : 56,
+      width: horizontal! ? double.infinity : 0.5,
+      height: horizontal! ? 0.5 : 56,
     );
   }
 }
@@ -39,30 +39,30 @@ class _YlDialogDivider extends StatelessWidget {
 /// 自定义弹窗
 class YlDialog extends StatelessWidget {
   /// 弹窗标题
-  final String title;
+  final String? title;
 
   /// 弹窗描述信息，小字
-  final String content;
+  final String? content;
 
   /// 弹窗按钮事件，从左到右，从上到下，按钮过多的情况，可能会超出屏幕高度，暂不支持滚动
-  final List<YlDialogAction> actions;
+  final List<YlDialogAction>? actions;
 
-  const YlDialog({@required this.title, this.content, @required this.actions});
+  const YlDialog({required this.title, this.content, required this.actions});
 
   @override
   Widget build(BuildContext context) {
     List<Widget> actionWidgets = [];
 
-    var actionLength = actions.length;
+    var actionLength = actions!.length;
     for (int i = 0; i < actionLength; i++) {
-      var action = actions[i];
+      var action = actions![i];
       Widget actionWidget = YlTapEffect(
         onTap: action.action,
         child: Container(
           height: 56,
           child: Center(
             child: Text(
-              action.title,
+              action.title!,
               style: YlTextStyles.body1.copyWith(
                   color: action.highlight
                       ? YlColors.branding1
@@ -123,7 +123,7 @@ class YlDialog extends StatelessWidget {
                       top: 24,
                       left: 20,
                       right: 20,
-                      bottom: (content == null || content.isEmpty) ? 24 : 0),
+                      bottom: (content == null || content!.isEmpty) ? 24 : 0),
                   child: Text('$title',
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -132,7 +132,7 @@ class YlDialog extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                           decoration: TextDecoration.none)),
                 ),
-                visible: (title == null || title.isEmpty) ? false : true,
+                visible: (title == null || title!.isEmpty) ? false : true,
               ),
               Visibility(
                 child: Container(
@@ -146,7 +146,7 @@ class YlDialog extends StatelessWidget {
                           color: YlColors.black50,
                           fontWeight: FontWeight.w400)),
                 ),
-                visible: (content == null || title.isEmpty) ? false : true,
+                visible: (content == null || title!.isEmpty) ? false : true,
               ),
               Divider(
                 height: 0.5,
@@ -164,7 +164,7 @@ class YlDialog extends StatelessWidget {
 
 /// 快捷展示自定义弹窗的方法
 showYlDialog(BuildContext context,
-    {String title, String content, List<YlDialogAction> actions}) async {
+    {String? title, String? content, List<YlDialogAction>? actions}) async {
   await showCupertinoDialog(
     barrierDismissible: true,
     context: context,

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
 class YlCheckbox extends StatefulWidget {
-  final ValueChanged<bool> onChanged;
+  final ValueChanged<bool>? onChanged;
   final bool check;
   final Color color;
   final double size;
@@ -10,7 +10,7 @@ class YlCheckbox extends StatefulWidget {
   final IconData uncheckedIcon;
 
   const YlCheckbox(
-      {Key key,
+      {Key? key,
       this.onChanged,
       this.check = false,
       this.color = YlColors.branding2,
@@ -26,7 +26,7 @@ class YlCheckbox extends StatefulWidget {
 class _YlCheckboxState extends State<YlCheckbox> {
   bool isCheck;
 
-  _YlCheckboxState({this.isCheck});
+  _YlCheckboxState({this.isCheck = false});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class _YlCheckboxState extends State<YlCheckbox> {
                 setState(() {
                   isCheck = !isCheck;
                 });
-                widget.onChanged(isCheck);
+                widget.onChanged!(isCheck);
               }
             : null,
       ),

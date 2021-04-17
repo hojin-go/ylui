@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 class YlTapDetector extends StatelessWidget {
   final Widget child;
   final int count;
-  final VoidCallback onTap;
-  final VoidCallback onTapDown;
-  final VoidCallback onTapUp;
+  final VoidCallback? onTap;
+  final VoidCallback? onTapDown;
+  final VoidCallback? onTapUp;
 
   final int _tapDuration = 500;
 
   int _lastTapTime = 0;
-  int _tapCount;
+  int _tapCount = 0;
 
   YlTapDetector(
-      {Key key,
-      @required this.child,
+      {Key? key,
+      required this.child,
       this.count = 1,
       this.onTap,
       this.onTapDown,
@@ -37,22 +37,22 @@ class YlTapDetector extends StatelessWidget {
         _tapCount++;
 
         if (onTap != null && _tapCount == count) {
-          onTap();
+          onTap!();
         }
       },
       onTapDown: (_) {
         if (onTapDown != null) {
-          onTapDown();
+          onTapDown!();
         }
       },
       onTapCancel: () {
         if (onTapUp != null) {
-          onTapUp();
+          onTapUp!();
         }
       },
       onTapUp: (_) {
         if (onTapUp != null) {
-          onTapUp();
+          onTapUp!();
         }
       },
     );

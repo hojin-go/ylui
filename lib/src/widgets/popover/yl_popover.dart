@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import '../../../flutter_ylui.dart';
 
 class YlPopover extends StatelessWidget {
-  final Widget header;
-  final Widget body;
+  final Widget? header;
+  final Widget? body;
 
-  const YlPopover({Key key, this.body, this.header}) : super(key: key);
+  const YlPopover({Key? key, this.body, this.header}) : super(key: key);
 
   YlPopover.close(
-      {Key key,
-      Widget title,
+      {Key? key,
+      Widget? title,
       this.body,
-      Widget closeWidget,
-      VoidCallback onClosed})
+      Widget? closeWidget,
+      VoidCallback? onClosed})
       : this.header = Container(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -37,7 +37,7 @@ class YlPopover extends StatelessWidget {
         );
 
   YlPopover.confirm(
-      {Key key, this.body, VoidCallback onCanceled, VoidCallback onDone})
+      {Key? key, this.body, VoidCallback? onCanceled, VoidCallback? onDone})
       : this.header = Container(
           child: Row(
             children: [
@@ -80,7 +80,7 @@ class YlPopover extends StatelessWidget {
                   Container(
                     height: 44,
                   ),
-              if (body != null) body
+              if (body != null) body!
             ],
           ),
         ),

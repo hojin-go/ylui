@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
 class YlBackButton extends StatelessWidget {
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final Color color;
-  final IconData icon;
-  final EdgeInsets padding;
+  final IconData? icon;
+  final EdgeInsets? padding;
 
   const YlBackButton(
-      {Key key, this.onTap, this.color = YlColors.black90, this.icon, this.padding})
+      {Key? key, this.onTap, this.color = YlColors.black90, this.icon, this.padding})
       : super(key: key);
 
   @override
