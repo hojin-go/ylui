@@ -6,8 +6,16 @@ import 'package:flutter_ylui/flutter_ylui.dart';
 class YlToast {
   static const _defaultDuration = Duration(seconds: 2);
 
-  static void text(String content) {
-    BotToast.showCustomText(
+  static CancelFunc _textToastCancelFunc;
+
+  static void text(String content,
+      {Duration duration,
+      Color bgColor = const Color.fromRGBO(51, 51, 51, 0.8),
+      Alignment alignment = const Alignment(0, 0.8)}) {
+    if (_textToastCancelFunc != null) {
+      _textToastCancelFunc();
+    }
+    _textToastCancelFunc = BotToast.showCustomText(
         wrapAnimation: (AnimationController controller, CancelFunc cancelFunc,
                 Widget child) =>
             FadeAnimation(
@@ -15,24 +23,25 @@ class YlToast {
               child: child,
             ),
         wrapToastAnimation: null,
-        duration: _defaultDuration,
+        duration: duration ?? _defaultDuration,
+        align: alignment,
         toastBuilder: (_) => Container(
               constraints: BoxConstraints(minWidth: 128, maxWidth: 295),
               padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  color: Color.fromRGBO(51, 51, 51, 0.8)),
+                  borderRadius: BorderRadius.circular(25), color: bgColor),
               child: Text(
                 content,
                 maxLines: 1,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
-                style: YlTextStyles.body3.copyWith(color: YlColors.white, height: 1.3),
+                style: YlTextStyles.body3
+                    .copyWith(color: YlColors.white, height: 1.3),
               ),
             ));
   }
 
-  static void loading({String? content, bool bLong = false}) {
+  static void loading({String content = '请求中', bool bLong = false}) {
     String message;
     if (content == null || content.isEmpty) {
       message = '';
@@ -62,8 +71,9 @@ class YlToast {
                       width: 4,
                     ),
                     Text(
-                      message,
-                      style: YlTextStyles.body3.copyWith(color: YlColors.white, height: 1.3),
+                      message ?? '',
+                      style: YlTextStyles.body3
+                          .copyWith(color: YlColors.white, height: 1.3),
                     )
                   ],
                 ),
@@ -112,8 +122,7 @@ class YlToast {
                     // color: YlColors.alertRed,
                     padding: EdgeInsets.only(bottom: 2),
                     child: IconTheme(
-                        data:
-                            IconThemeData(color: YlColors.white, size: 20),
+                        data: IconThemeData(color: YlColors.white, size: 20),
                         child: icon),
                   ),
                   SizedBox(
@@ -138,7 +147,8 @@ class FadeAnimation extends StatefulWidget {
   final Widget? child;
   final AnimationController? controller;
 
-  const FadeAnimation({Key? key, this.child, this.controller}) : super(key: key);
+  const FadeAnimation({Key? key, this.child, this.controller})
+      : super(key: key);
 
   @override
   FadeAnimationState createState() => FadeAnimationState();
