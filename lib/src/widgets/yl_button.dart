@@ -192,14 +192,14 @@ class YlButton extends StatefulWidget {
       this.textStyle})
       : super(key: key);
 
-  YlButton.text(
-      {Key key,
-      @required String title,
-      @required YlButtonSize size,
-      this.onPressed,
-      this.onAsyncPressed,
-      this.width,})
-      : this.child = Text(
+  YlButton.text({
+    Key key,
+    @required String title,
+    @required YlButtonSize size,
+    this.onPressed,
+    this.onAsyncPressed,
+    this.width,
+  })  : this.child = Text(
           title,
         ),
         this.textStyle = size.textStyle,
@@ -209,7 +209,8 @@ class YlButton extends StatefulWidget {
         this.border = null,
         this.radius = size.radius,
         this.pressedCoverColor = YlButtonType.primary.pressedCoverColor,
-        this.disableBackgroundColor = YlButtonType.primary.disableBackgroundColor,
+        this.disableBackgroundColor =
+            YlButtonType.primary.disableBackgroundColor,
         this.disableBorderColor = null,
         this.disableTextColor = YlButtonType.primary.disableTextColor,
         super(key: key);
@@ -220,8 +221,10 @@ class YlButton extends StatefulWidget {
       this.onPressed,
       this.onAsyncPressed,
       this.width,
-      this.child})
-      : this.background = type.background,
+      this.child,
+      Color backgroundColor,
+      EdgeInsets padding})
+      : this.background = backgroundColor ?? type.background,
         this.disableBackgroundColor = type.disableBackgroundColor,
         this.height = size.height,
         this.radius = size.radius,
@@ -229,10 +232,12 @@ class YlButton extends StatefulWidget {
         this.border = type.borderColor != null
             ? BorderSide(width: 1, color: type.borderColor)
             : null,
-        this.pressedCoverColor = type.pressedCoverColor,
+        this.pressedCoverColor = backgroundColor != null
+            ? backgroundColor.withOpacity(0.1)
+            : type.pressedCoverColor,
         this.disableTextColor = type.disableTextColor,
         this.disableBorderColor = type.disableBorderColor,
-        this.padding = size.padding;
+        this.padding = padding ?? size.padding;
 
   @override
   _YlButtonState createState() => _YlButtonState();
