@@ -222,19 +222,21 @@ class YlButton extends StatefulWidget {
       this.onAsyncPressed,
       this.width,
       this.child,
-      Color backgroundColor,
+      Color color,
+      Color borderColor,
+      Color textColor,
+      Color pressedCoverColor,
       EdgeInsets padding})
-      : this.background = backgroundColor ?? type.background,
+      : this.background = color ?? type.background,
         this.disableBackgroundColor = type.disableBackgroundColor,
         this.height = size.height,
         this.radius = size.radius,
-        this.textStyle = size.textStyle.copyWith(color: type.textColor),
-        this.border = type.borderColor != null
-            ? BorderSide(width: 1, color: type.borderColor)
+        this.textStyle =
+            size.textStyle.copyWith(color: textColor ?? type.textColor),
+        this.border = (borderColor ?? type.borderColor) != null
+            ? BorderSide(width: 1, color: borderColor ?? type.borderColor)
             : null,
-        this.pressedCoverColor = backgroundColor != null
-            ? backgroundColor.withOpacity(0.1)
-            : type.pressedCoverColor,
+        this.pressedCoverColor = pressedCoverColor ?? type.pressedCoverColor,
         this.disableTextColor = type.disableTextColor,
         this.disableBorderColor = type.disableBorderColor,
         this.padding = padding ?? size.padding;
