@@ -6,14 +6,14 @@ import 'package:flutter_ylui/flutter_ylui.dart';
 class YlToast {
   static const _defaultDuration = Duration(seconds: 2);
 
-  static CancelFunc _textToastCancelFunc;
+  static CancelFunc? _textToastCancelFunc;
 
   static void text(String content,
-      {Duration duration,
+      {Duration? duration,
       Color bgColor = const Color.fromRGBO(51, 51, 51, 0.8),
       Alignment alignment = const Alignment(0, 0.8)}) {
     if (_textToastCancelFunc != null) {
-      _textToastCancelFunc();
+      _textToastCancelFunc!();
     }
     _textToastCancelFunc = BotToast.showCustomText(
         wrapAnimation: (AnimationController controller, CancelFunc cancelFunc,
@@ -43,7 +43,7 @@ class YlToast {
 
   static void loading({String content = '请求中', bool bLong = false}) {
     String message;
-    if (content == null || content.isEmpty) {
+    if (content.isEmpty) {
       message = '';
     } else {
       message = content;
@@ -71,7 +71,7 @@ class YlToast {
                       width: 4,
                     ),
                     Text(
-                      message ?? '',
+                      message,
                       style: YlTextStyles.body3
                           .copyWith(color: YlColors.white, height: 1.3),
                     )

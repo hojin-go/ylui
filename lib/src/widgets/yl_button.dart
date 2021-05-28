@@ -193,9 +193,9 @@ class YlButton extends StatefulWidget {
       : super(key: key);
 
   YlButton.text({
-    Key key,
-    @required String title,
-    @required YlButtonSize size,
+    required Key key,
+    required String title,
+    required YlButtonSize size,
     this.onPressed,
     this.onAsyncPressed,
     this.width,
@@ -222,11 +222,11 @@ class YlButton extends StatefulWidget {
       this.onAsyncPressed,
       this.width,
       this.child,
-      Color color,
-      Color borderColor,
-      Color textColor,
-      Color pressedCoverColor,
-      EdgeInsets padding})
+      Color? color,
+      Color? borderColor,
+      Color? textColor,
+      Color? pressedCoverColor,
+      EdgeInsets? padding})
       : this.background = color ?? type.background,
         this.disableBackgroundColor = type.disableBackgroundColor,
         this.height = size.height,
@@ -234,7 +234,9 @@ class YlButton extends StatefulWidget {
         this.textStyle =
             size.textStyle.copyWith(color: textColor ?? type.textColor),
         this.border = (borderColor ?? type.borderColor) != null
-            ? BorderSide(width: 1, color: borderColor ?? type.borderColor)
+            ? BorderSide(
+                width: 1,
+                color: borderColor ?? type.borderColor ?? YlColors.transparent)
             : null,
         this.pressedCoverColor = pressedCoverColor ?? type.pressedCoverColor,
         this.disableTextColor = type.disableTextColor,
