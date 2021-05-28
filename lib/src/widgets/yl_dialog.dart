@@ -36,6 +36,8 @@ class _YlDialogDivider extends StatelessWidget {
   }
 }
 
+const _defaultDialogWidth = 268.0;
+
 /// 自定义弹窗
 class YlDialog extends StatelessWidget {
   /// 弹窗标题
@@ -111,7 +113,7 @@ class YlDialog extends StatelessWidget {
     return Center(
       child: CupertinoPopupSurface(
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.72,
+          width: _defaultDialogWidth,
           color: CupertinoColors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
