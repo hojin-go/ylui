@@ -1,11 +1,18 @@
+import 'package:example/views/componnets/code_viewer.dart';
 import 'package:flutter/cupertino.dart';
 
 class DemoPage extends StatelessWidget {
   final Widget child;
   final String title;
   final EdgeInsets contentPadding;
+  final String sourceCodePath;
 
-  const DemoPage({Key key, this.title, this.child, this.contentPadding})
+  const DemoPage(
+      {Key key,
+      this.title,
+      this.child,
+      this.contentPadding,
+      this.sourceCodePath})
       : super(key: key);
 
   @override
@@ -14,6 +21,21 @@ class DemoPage extends StatelessWidget {
       navigationBar: CupertinoNavigationBar(
         brightness: Brightness.light,
         middle: Text(title),
+        trailing: sourceCodePath != null
+            ? CupertinoButton(
+                padding: EdgeInsets.zero,
+                minSize: 30,
+                child: Icon(CupertinoIcons.chevron_left_slash_chevron_right),
+                onPressed: () => Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                      fullscreenDialog: true,
+                      builder: (context) => CodeViewerPage(
+                        filePath: sourceCodePath,
+                      ),
+                    )),
+              )
+            : null,
       ),
       child: SafeArea(
           child: Padding(

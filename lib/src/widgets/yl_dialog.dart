@@ -36,7 +36,7 @@ class _YlDialogDivider extends StatelessWidget {
   }
 }
 
-const _defaultDialogWidth = 268.0;
+const _defaultDialogWidth = 300.0;
 
 /// 自定义弹窗
 class YlDialog extends StatelessWidget {
@@ -61,14 +61,16 @@ class YlDialog extends StatelessWidget {
       Widget actionWidget = YlTapEffect(
         onTap: action.action,
         child: Container(
-          height: 56,
+          height: 55,
           child: Center(
             child: Text(
               action.title,
-              style: YlTextStyles.body1.copyWith(
+              style: YlTextStyles.header4.copyWith(
+                  // 通常按钮文字为单行，重写他的高度，使其垂直居中
+                  height: 1.3,
                   color: action.highlight
-                      ? YlColors.branding1
-                      : (action.alert ? YlColors.alertRed : YlColors.black70)),
+                      ? YlColors.branding2
+                      : (action.alert ? YlColors.alertRed : YlColors.black90)),
             ),
           ),
         ),
@@ -110,6 +112,9 @@ class YlDialog extends StatelessWidget {
       );
     }
 
+    var hasTitle = title != null && title.isNotEmpty;
+    var hasContent = content != null && content.isNotEmpty;
+
     return Center(
       child: CupertinoPopupSurface(
         child: Container(
@@ -119,36 +124,33 @@ class YlDialog extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Visibility(
-                child: Container(
-                  margin: EdgeInsets.only(
-                      top: 24,
-                      left: 20,
-                      right: 20,
-                      bottom: (content == null || content.isEmpty) ? 24 : 0),
-                  child: Text('$title',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 17,
-                          color: YlColors.black90,
-                          fontWeight: FontWeight.w600,
-                          decoration: TextDecoration.none)),
+              Container(
+                constraints: BoxConstraints(minHeight: 104),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 32),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Visibility(
+                        child: Text('$title',
+                            textAlign: TextAlign.center,
+                            style: YlTextStyles.header4),
+                        visible: hasTitle),
+                    Visibility(
+                      child: SizedBox(
+                        height: 16,
+                      ),
+                      visible: hasContent,
+                    ),
+                    Visibility(
+                      child: Text('$content',
+                          textAlign: TextAlign.center,
+                          style: YlTextStyles.body1
+                              .copyWith(color: YlColors.black50)),
+                      visible: hasContent,
+                    ),
+                  ],
                 ),
-                visible: (title == null || title.isEmpty) ? false : true,
-              ),
-              Visibility(
-                child: Container(
-                  margin:
-                      EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 24),
-                  child: Text('$content',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          decoration: TextDecoration.none,
-                          fontSize: 15,
-                          color: YlColors.black50,
-                          fontWeight: FontWeight.w400)),
-                ),
-                visible: (content == null || title.isEmpty) ? false : true,
               ),
               Divider(
                 height: 0.5,

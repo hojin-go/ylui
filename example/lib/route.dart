@@ -2,6 +2,7 @@ import 'package:example/views/button_view.dart';
 import 'package:example/views/checkbox_view.dart';
 import 'package:example/views/color_view.dart';
 import 'package:example/views/confirm_view.dart';
+import 'package:example/views/dialog_demo.dart';
 import 'package:example/views/floating_bottom_view.dart';
 import 'package:example/views/font_view.dart';
 import 'package:example/views/yl_toast_demo.dart';
@@ -25,7 +26,9 @@ List<RouteObject> defineRouteObjects() {
     RouteObject('/popover', 'YlPopover', (context) => PopoverView()),
     RouteObject('/button', 'YlButton', (context) => ButtonView()),
     RouteObject('/toast', 'YlToast', (context) => YlToastDemoPage()),
-    RouteObject('/floating_bottom', 'YlFloatingBottom', (context) => FloatingBottomView())
+    RouteObject('/floating_bottom', 'YlFloatingBottom',
+        (context) => FloatingBottomView()),
+    RouteObject('/dialog', 'YlDialog', (context) => DialogDemoPage()),
   ];
 }
 
