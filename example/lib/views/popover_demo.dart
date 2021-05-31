@@ -10,6 +10,7 @@ class PopoverDemoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoPage(
       title: 'YlPopover',
+      sourceCodePath: 'lib/views/popover_demo.dart',
       child: Center(
         child: DemoButtonVerticalGroup(
           items: [

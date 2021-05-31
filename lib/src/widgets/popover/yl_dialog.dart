@@ -1,42 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ylui/src/widgets/popover/yl_dialog_action.dart';
+import 'package:flutter_ylui/src/widgets/popover/yl_dialog_constants.dart';
+import 'package:flutter_ylui/src/widgets/popover/yl_dialog_divider.dart';
 
-import '../../flutter_ylui.dart';
-
-/// 弹窗按钮的设置
-class YlDialogAction {
-  /// 按钮文字
-  final String title;
-
-  /// 按钮点击事件
-  final VoidCallback action;
-
-  /// 是否高亮按钮，绿颜色
-  final bool highlight;
-
-  /// 是否警告按钮，红颜色
-  final bool alert;
-
-  YlDialogAction(
-      {this.title, this.action, this.highlight = false, this.alert = false});
-}
-
-/// 按钮的分割线
-class _YlDialogDivider extends StatelessWidget {
-  final bool horizontal;
-
-  const _YlDialogDivider({Key key, this.horizontal}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: YlColors.grey2,
-      width: horizontal ? double.infinity : 0.5,
-      height: horizontal ? 0.5 : 56,
-    );
-  }
-}
-
-const _defaultDialogWidth = 300.0;
+import '../../../flutter_ylui.dart';
 
 /// 自定义弹窗
 class YlDialog extends StatelessWidget {
@@ -87,7 +55,7 @@ class YlDialog extends StatelessWidget {
       List<Widget> children = [];
       for (var i = 0; i < actionWidgets.length; i++) {
         if (i > 0) {
-          children.add(_YlDialogDivider(
+          children.add(YlDialogDivider(
             horizontal: false,
           ));
         }
@@ -100,7 +68,7 @@ class YlDialog extends StatelessWidget {
       List<Widget> children = [];
       for (var i = 0; i < actionWidgets.length; i++) {
         if (i > 0) {
-          children.add(_YlDialogDivider(
+          children.add(YlDialogDivider(
             horizontal: true,
           ));
         }
@@ -118,7 +86,7 @@ class YlDialog extends StatelessWidget {
     return Center(
       child: CupertinoPopupSurface(
         child: Container(
-          width: _defaultDialogWidth,
+          width: DefaultDialogWidth,
           color: CupertinoColors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

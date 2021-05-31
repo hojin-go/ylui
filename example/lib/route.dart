@@ -1,3 +1,4 @@
+import 'package:example/views/action_sheet_demo.dart';
 import 'package:example/views/button_group_demo.dart';
 import 'package:example/views/button_view.dart';
 import 'package:example/views/checkbox_view.dart';
@@ -32,6 +33,8 @@ List<RouteObject> defineRouteObjects() {
     RouteObject('/floating_bottom', 'YlFloatingBottom',
         (context) => FloatingBottomView()),
     RouteObject('/dialog', 'YlDialog', (context) => DialogDemoPage()),
+    RouteObject(
+        '/action_sheet', 'YlActionSheet', (context) => ActionSheetDemoPage()),
   ];
 }
 
