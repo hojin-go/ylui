@@ -1,4 +1,4 @@
-import 'package:example/views/componnets/button_group.dart';
+import 'package:example/views/componnets/demo_button_group.dart';
 import 'package:example/views/componnets/demo_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
@@ -10,12 +10,14 @@ class DialogDemoPage extends StatelessWidget {
       title: 'YlDialogDemo',
       sourceCodePath: 'lib/views/dialog_demo.dart',
       child: Center(
-        child: ButtonGroup(
+        child: DemoButtonVerticalGroup(
           items: [
-            ButtonGroupItem('警告确认弹窗', () => _showAlertDialog(context)),
-            ButtonGroupItem('引导确认弹窗', () => _showHighlightDialog(context)),
-            ButtonGroupItem('单个按钮确认弹窗', () => _showSingleActionDialog(context)),
-            ButtonGroupItem('多个按钮确认弹窗', () => _showMutipleActionDialog(context))
+            DemoButtonGroupItem('警告确认弹窗', () => _showAlertDialog(context)),
+            DemoButtonGroupItem('引导确认弹窗', () => _showHighlightDialog(context)),
+            DemoButtonGroupItem(
+                '单个按钮确认弹窗', () => _showSingleActionDialog(context)),
+            DemoButtonGroupItem(
+                '多个按钮确认弹窗', () => _showMutipleActionDialog(context))
           ],
         ),
       ),

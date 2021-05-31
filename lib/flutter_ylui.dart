@@ -3,6 +3,7 @@ library flutter_ylui;
 export 'src/widgets/popover/yl_popover.dart';
 export 'src/widgets/yl_back_button.dart';
 export 'src/widgets/yl_button.dart';
+export 'src/widgets/yl_button_group.dart';
 export 'src/widgets/yl_card.dart';
 export 'src/widgets/yl_checkbox.dart';
 export 'src/widgets/yl_confirm.dart';

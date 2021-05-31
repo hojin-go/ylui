@@ -7,6 +7,7 @@ class FloatingBottomView extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoPage(
       title: 'YlFloatingBottom',
+      sourceCodePath: 'lib/views/floating_bottom_view.dart',
       contentPadding: EdgeInsets.zero,
       child: Column(
         children: [
@@ -16,6 +17,7 @@ class FloatingBottomView extends StatelessWidget {
               size: YlButtonSize.max,
               type: YlButtonType.primary,
               child: Text('Button'),
+              onPressed: () {},
             ),
           )
         ],

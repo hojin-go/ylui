@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
-class ButtonGroupItem {
+class DemoButtonGroupItem {
   final String title;
   final VoidCallback action;
 
-  ButtonGroupItem(this.title, this.action);
+  DemoButtonGroupItem(this.title, this.action);
 }
 
-class ButtonGroup extends StatelessWidget {
-  final List<ButtonGroupItem> items;
+class DemoButtonVerticalGroup extends StatelessWidget {
+  final List<DemoButtonGroupItem> items;
 
-  const ButtonGroup({Key key, this.items}) : super(key: key);
+  const DemoButtonVerticalGroup({Key key, this.items}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(

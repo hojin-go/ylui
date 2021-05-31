@@ -1,3 +1,4 @@
+import 'package:example/views/button_group_demo.dart';
 import 'package:example/views/button_view.dart';
 import 'package:example/views/checkbox_view.dart';
 import 'package:example/views/color_view.dart';
@@ -25,6 +26,8 @@ List<RouteObject> defineRouteObjects() {
     RouteObject('/confirm', 'YlConfirm', (context) => ConfirmView()),
     RouteObject('/popover', 'YlPopover', (context) => PopoverView()),
     RouteObject('/button', 'YlButton', (context) => ButtonView()),
+    RouteObject(
+        '/button/group', 'YlButtonGroup', (context) => ButtonGroupDemoPage()),
     RouteObject('/toast', 'YlToast', (context) => YlToastDemoPage()),
     RouteObject('/floating_bottom', 'YlFloatingBottom',
         (context) => FloatingBottomView()),

@@ -51,7 +51,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - lib/views/
+    - lib/views/yl_toast_demo.dart
+    - lib/views/dialog_demo.dart
+    - lib/views/floating_bottom_view.dart
+    - lib/views/button_group_demo.dart
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
