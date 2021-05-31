@@ -4,41 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
 class YlToast {
+  // 在屏幕中 y 517
+  // 屏幕高度 h 667
+  // 屏幕高度/2 h2 334
+  // 在屏幕下半屏 y2 = 517 - 334 = 183
+  // 中心点在下半屏的位置百分比 x = 183 / 333 = 0.549 = 0.55
+  static const _defaultOffsetY = 0.55;
+
   static const _defaultDuration = Duration(seconds: 2);
+  static const _defaultPadding =
+      EdgeInsets.symmetric(horizontal: 16, vertical: 11);
 
   static CancelFunc _textToastCancelFunc;
 
   static void text(String content,
-      {Duration duration,
-      Color bgColor = const Color.fromRGBO(51, 51, 51, 0.8),
-      Alignment alignment = const Alignment(0, 0.8)}) {
-    if (_textToastCancelFunc != null) {
-      _textToastCancelFunc();
-    }
-    _textToastCancelFunc = BotToast.showCustomText(
-        wrapAnimation: (AnimationController controller, CancelFunc cancelFunc,
-                Widget child) =>
-            FadeAnimation(
-              controller: controller,
-              child: child,
-            ),
-        wrapToastAnimation: null,
-        duration: duration ?? _defaultDuration,
-        align: alignment,
-        toastBuilder: (_) => Container(
-              constraints: BoxConstraints(minWidth: 128, maxWidth: 295),
-              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25), color: bgColor),
-              child: Text(
-                content ?? '',
-                maxLines: 1,
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                style: YlTextStyles.body3
-                    .copyWith(color: YlColors.white, height: 1.3),
-              ),
-            ));
+      {Duration duration, Color bgColor, Alignment alignment}) {
+    _textToast(content,
+        duration: duration, bgColor: bgColor, alignment: alignment);
   }
 
   static void loading({String content = '请求中', bool bLong = false}) {
@@ -53,12 +35,14 @@ class YlToast {
         toastBuilder: (_) => GestureDetector(
               onTap: () => BotToast.closeAllLoading(),
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                padding: _defaultPadding,
+                // constraints: BoxConstraints(minWidth: 128, maxWidth: 300),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
-                    color: Color.fromRGBO(51, 51, 51, 0.8)),
+                    color: YlColors.black70),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Theme(
                         data: ThemeData(
@@ -99,9 +83,32 @@ class YlToast {
         ));
   }
 
-  static void _iconToast(String content, {@required Widget icon}) {
-    BotToast.showCustomText(
-        align: Alignment.center,
+  static _textToast(String content,
+      {Widget prefix, Duration duration, Color bgColor, Alignment alignment}) {
+    if (_textToastCancelFunc != null) {
+      _textToastCancelFunc();
+    }
+
+    Widget widget = Text(
+      content ?? '',
+      maxLines: 1,
+      textAlign: TextAlign.center,
+      overflow: TextOverflow.ellipsis,
+      style: YlTextStyles.body3.copyWith(color: YlColors.white, height: 1.3),
+    );
+    if (prefix != null) {
+      widget = Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          prefix,
+          SizedBox(
+            width: 4,
+          ),
+          widget
+        ],
+      );
+    }
+    _textToastCancelFunc = BotToast.showCustomText(
         wrapAnimation: (AnimationController controller, CancelFunc cancelFunc,
                 Widget child) =>
             FadeAnimation(
@@ -109,36 +116,25 @@ class YlToast {
               child: child,
             ),
         wrapToastAnimation: null,
-        duration: _defaultDuration,
+        duration: duration ?? _defaultDuration,
+        align: const Alignment(0, _defaultOffsetY),
         toastBuilder: (_) => Container(
-              padding: EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+              constraints: BoxConstraints(minWidth: 128, maxWidth: 300),
+              padding: _defaultPadding,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(25),
-                  color: Color.fromRGBO(51, 51, 51, 0.8)),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    // color: YlColors.alertRed,
-                    padding: EdgeInsets.only(bottom: 2),
-                    child: IconTheme(
-                        data: IconThemeData(color: YlColors.white, size: 20),
-                        child: icon),
-                  ),
-                  SizedBox(
-                    width: 4,
-                  ),
-                  Container(
-                    // color: YlColors.lanehubBlue,
-                    child: Text(
-                      content ?? '',
-                      style: YlTextStyles.body3
-                          .copyWith(color: YlColors.white, height: 1.3),
-                    ),
-                  )
-                ],
-              ),
+                  color: bgColor ?? YlColors.black70),
+              child: widget,
             ));
+  }
+
+  static void _iconToast(String content, {@required Widget icon}) {
+    var fixedPrefix = Container(
+      padding: EdgeInsets.only(bottom: 2),
+      child: IconTheme(
+          data: IconThemeData(color: YlColors.white, size: 20), child: icon),
+    );
+    _textToast(content, prefix: fixedPrefix);
   }
 }
 

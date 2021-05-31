@@ -1,3 +1,4 @@
+import 'package:example/views/componnets/button_group.dart';
 import 'package:example/views/componnets/demo_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
@@ -9,45 +10,12 @@ class DialogDemoPage extends StatelessWidget {
       title: 'YlDialogDemo',
       sourceCodePath: 'lib/views/dialog_demo.dart',
       child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            YlButton.fromType(
-                onPressed: () => _showAlertDialog(context),
-                child: Text('警告确认弹窗'),
-                width: 200,
-                size: YlButtonSize.medium,
-                type: YlButtonType.primary),
-            SizedBox(
-              height: 12,
-            ),
-            YlButton.fromType(
-                onPressed: () => _showHighlightDialog(context),
-                child: Text('引导确认弹窗'),
-                width: 200,
-                size: YlButtonSize.medium,
-                type: YlButtonType.primary),
-            SizedBox(
-              height: 12,
-            ),
-            YlButton.fromType(
-                onPressed: () => _showSingleActionDialog(context),
-                child: Text('单个按钮确认弹窗'),
-                width: 200,
-                size: YlButtonSize.medium,
-                type: YlButtonType.primary),
-            SizedBox(
-              height: 12,
-            ),
-            YlButton.fromType(
-                onPressed: () => _showMutipleActionDialog(context),
-                child: Text('多个按钮确认弹窗'),
-                width: 200,
-                size: YlButtonSize.medium,
-                type: YlButtonType.primary),
-            SizedBox(
-              height: 12,
-            ),
+        child: ButtonGroup(
+          items: [
+            ButtonGroupItem('警告确认弹窗', () => _showAlertDialog(context)),
+            ButtonGroupItem('引导确认弹窗', () => _showHighlightDialog(context)),
+            ButtonGroupItem('单个按钮确认弹窗', () => _showSingleActionDialog(context)),
+            ButtonGroupItem('多个按钮确认弹窗', () => _showMutipleActionDialog(context))
           ],
         ),
       ),

@@ -11,6 +11,7 @@ class CodeViewerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DemoPage(
       title: '源码',
+      contentPadding: EdgeInsets.zero,
       child: DefaultTextStyle(
         style: YlTextStyles.caption,
         child: SourceCodeView(
