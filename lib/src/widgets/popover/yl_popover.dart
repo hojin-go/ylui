@@ -6,13 +6,16 @@ import '../../../flutter_ylui.dart';
 class YlPopover extends StatelessWidget {
   final Widget header;
   final Widget body;
+  final Widget footer;
 
-  const YlPopover({Key key, this.body, this.header}) : super(key: key);
+  const YlPopover({Key key, this.body, this.header, this.footer})
+      : super(key: key);
 
   YlPopover.close(
       {Key key,
       Widget title,
       this.body,
+      this.footer,
       Widget closeWidget,
       VoidCallback onClosed})
       : this.header = Container(
@@ -21,14 +24,18 @@ class YlPopover extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               if (title != null)
-                Padding(padding: EdgeInsets.only(left: 20), child: title),
+                Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: DefaultTextStyle(
+                      style: YlTextStyles.header4.copyWith(height: 1.3),
+                      child: title,
+                    )),
               Spacer(),
               CupertinoButton(
                 child: closeWidget ??
-                    Icon(
-                      CupertinoIcons.xmark,
-                      size: 24,
-                      color: YlColors.black,
+                    Image.asset(
+                      'lib/assets/x-mark.png',
+                      package: 'flutter_ylui',
                     ),
                 onPressed: onClosed,
               )
@@ -37,7 +44,11 @@ class YlPopover extends StatelessWidget {
         );
 
   YlPopover.confirm(
-      {Key key, this.body, VoidCallback onCanceled, VoidCallback onDone})
+      {Key key,
+      this.body,
+      this.footer,
+      VoidCallback onCanceled,
+      VoidCallback onDone})
       : this.header = Container(
           child: Row(
             children: [
@@ -80,11 +91,24 @@ class YlPopover extends StatelessWidget {
                   Container(
                     height: 44,
                   ),
-              if (body != null) body
+              if (body != null) body,
+              if (footer != null) footer
             ],
           ),
         ),
       ),
     );
   }
+}
+
+showYlPopover(BuildContext context, YlPopover child) {
+  showCupertinoModalPopup(
+    context: context,
+    builder: (context) => Dismissible(
+      direction: DismissDirection.down,
+      onDismissed: (direction) => Navigator.pop(context),
+      key: Key(''),
+      child: child,
+    ),
+  );
 }

@@ -6,9 +6,9 @@ import 'package:example/views/confirm_view.dart';
 import 'package:example/views/dialog_demo.dart';
 import 'package:example/views/floating_bottom_view.dart';
 import 'package:example/views/font_view.dart';
+import 'package:example/views/popover_demo.dart';
 import 'package:example/views/yl_toast_demo.dart';
 import 'package:flutter/material.dart';
-import 'views/popover_view.dart';
 
 class RouteObject {
   final String route;
@@ -24,7 +24,7 @@ List<RouteObject> defineRouteObjects() {
     RouteObject('/font', 'YlTextStyle', (context) => FontView()),
     RouteObject('/checkbox', 'YlCheckbox', (context) => CheckboxView()),
     RouteObject('/confirm', 'YlConfirm', (context) => ConfirmView()),
-    RouteObject('/popover', 'YlPopover', (context) => PopoverView()),
+    RouteObject('/popover', 'YlPopover', (context) => PopoverDemoPage()),
     RouteObject('/button', 'YlButton', (context) => ButtonView()),
     RouteObject(
         '/button/group', 'YlButtonGroup', (context) => ButtonGroupDemoPage()),

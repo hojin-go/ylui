@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     return CupertinoApp(
       title: 'YlKits',
       theme: CupertinoThemeData(
@@ -22,9 +21,12 @@ class MyApp extends StatelessWidget {
       routes: routesMap,
       home: HomeView(),
       builder: BotToastInit(),
-      navigatorObservers: [
-        BotToastNavigatorObserver()
+      localizationsDelegates: [
+        DefaultMaterialLocalizations.delegate,
+        DefaultCupertinoLocalizations.delegate,
+        DefaultWidgetsLocalizations.delegate,
       ],
+      navigatorObservers: [BotToastNavigatorObserver()],
     );
   }
 }
