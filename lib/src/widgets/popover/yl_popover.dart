@@ -19,6 +19,7 @@ class YlPopover extends StatelessWidget {
       Widget closeWidget,
       VoidCallback onClosed})
       : this.header = Container(
+          height: 64,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -38,6 +39,9 @@ class YlPopover extends StatelessWidget {
                       package: 'flutter_ylui',
                     ),
                 onPressed: onClosed,
+              ),
+              SizedBox(
+                width: 10,
               )
             ],
           ),
@@ -76,6 +80,7 @@ class YlPopover extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
           color: YlColors.white,
           borderRadius: BorderRadius.only(

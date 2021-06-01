@@ -1,6 +1,7 @@
 library flutter_ylui;
 
 export 'src/widgets/popover/yl_popover.dart';
+export 'src/widgets/popover/yl_share_popover.dart';
 export 'src/widgets/button/yl_back_button.dart';
 export 'src/widgets/button/yl_button.dart';
 export 'src/widgets/button/yl_button_group.dart';
