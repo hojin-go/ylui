@@ -18,8 +18,7 @@ class YlRichDialog extends StatelessWidget {
       child: CupertinoPopupSurface(
         child: Container(
           width: _defaultRichDialogWidth,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20), color: YlColors.white),
+          decoration: BoxDecoration(color: YlColors.white),
           child: Stack(
             children: [
               Column(

@@ -45,6 +45,7 @@ class PopoverDemoPage extends StatelessWidget {
     showYlPopover(
         context,
         YlPopover.close(
+          onClosed: () => Navigator.pop(context),
           body: Container(
             height: 372,
             color: YlColors.grey4,
@@ -68,6 +69,7 @@ class PopoverDemoPage extends StatelessWidget {
         context,
         YlPopover.close(
           title: Text('标题'),
+          onClosed: () => Navigator.pop(context),
           body: Container(
             height: 372,
             color: YlColors.grey4,
@@ -91,19 +93,44 @@ class PopoverDemoPage extends StatelessWidget {
   }
 
   _showSharePopover(BuildContext context) {
-    List<YlPopoverShareItem> items = [];
-    for (var i = 0; i < 12; i++) {
-      var item = YlPopoverShareItem(
-        icon: Image.network(
-          'https://pic2.zhimg.com/80/v2-40aa9cb242de7a0ae24226b879220575_1440w.jpg?source=1940ef5c',
-        ),
-        title: Text('分享$i'),
-        action: () {
-          YlToast.text('点击了第 $i 个');
-        },
-      );
-      items.add(item);
-    }
+    List<YlPopoverShareItem> items = [
+      YlPopoverShareItem(
+        icon: Image.asset('images/chrome.png'),
+        title: Text('Chrome'),
+        action: () {},
+      ),
+      YlPopoverShareItem(
+        icon: Image.asset('images/flutter.jpg'),
+        title: Text('Flutter'),
+        action: () {},
+      ),
+      YlPopoverShareItem(
+        icon: Image.asset('images/js.png'),
+        title: Text('JS'),
+        action: () {},
+      ),
+      YlPopoverShareItem(
+        icon: Image.asset('images/macos.png'),
+        title: Text('MacOS'),
+        action: () {},
+      ),
+      YlPopoverShareItem(
+        icon: Image.asset('images/notion.png'),
+        title: Text('Notion'),
+        action: () {},
+      ),
+      YlPopoverShareItem(
+        icon: Image.asset('images/swift.png'),
+        title: Text('Swift'),
+        action: () {},
+      ),
+      YlPopoverShareItem(
+        icon: Image.asset('images/youtube.png'),
+        title: Text('Youtube'),
+        action: () {},
+      )
+    ];
+
     showYlSharePopover(context, items: items);
   }
 }

@@ -78,6 +78,7 @@ showYlSharePopover(BuildContext context,
     title: Text('分享'),
     body: body,
     footer: footer,
+    onClosed: () => Navigator.pop(context),
   );
   showYlPopover(context, child);
 }
