@@ -37,12 +37,11 @@ class DemoPage extends StatelessWidget {
               )
             : null,
       ),
-      child: SafeArea(
-          child: Padding(
+      child: Padding(
         padding:
             contentPadding ?? EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: child,
-      )),
+      ),
     );
   }
 }

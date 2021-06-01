@@ -36,20 +36,23 @@ class SlidingUpPanelDemo extends StatelessWidget {
               separatorBuilder: (context, index) => Divider(),
             ),
           ),
-          YlButtonGroup(
-            weight: YlButtonGroupWeight.equaly,
-            children: [
-              YlButtonGroupItem(
-                child: Text('拒绝'),
-                type: YlButtonType.subSecondary,
-                onPressed: () {},
-              ),
-              YlButtonGroupItem(
-                child: Text('接受'),
-                type: YlButtonType.primary,
-                onPressed: () {},
-              )
-            ],
+          SafeArea(
+            top: false,
+            child: YlButtonGroup(
+              weight: YlButtonGroupWeight.equaly,
+              children: [
+                YlButtonGroupItem(
+                  child: Text('拒绝'),
+                  type: YlButtonType.subSecondary,
+                  onPressed: () {},
+                ),
+                YlButtonGroupItem(
+                  child: Text('接受'),
+                  type: YlButtonType.primary,
+                  onPressed: () {},
+                )
+              ],
+            ),
           )
         ],
       ),

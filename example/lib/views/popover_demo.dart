@@ -33,6 +33,7 @@ class PopoverDemoPage extends StatelessWidget {
     showYlPopover(
         context,
         YlPopover.close(
+          onClosed: () => Navigator.pop(context),
           body: Container(
             height: 300,
             color: YlColors.grey4,

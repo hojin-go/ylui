@@ -53,14 +53,13 @@ class YlActionSheet extends StatelessWidget {
       );
     }).toList();
 
-    return SafeArea(
-      top: false,
-      bottom: true,
-      child: Container(
-        decoration: BoxDecoration(
-            color: YlColors.white,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+    return Container(
+      decoration: BoxDecoration(
+          color: YlColors.white,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+      child: SafeArea(
+        top: false,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
