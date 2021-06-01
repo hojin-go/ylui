@@ -33,7 +33,6 @@ dependencies:
   bot_toast: ^3.0.5
   widget_with_codeview: ^1.0.5
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -58,6 +57,7 @@ flutter:
     - lib/views/action_sheet_demo.dart
     - lib/views/popover_demo.dart
     - lib/views/rich_dialog_demo.dart
+    - lib/views/sliding_up_panel_demo.dart
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
