@@ -57,6 +57,7 @@ flutter:
     - lib/views/button_group_demo.dart
     - lib/views/action_sheet_demo.dart
     - lib/views/popover_demo.dart
+    - lib/views/rich_dialog_demo.dart
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

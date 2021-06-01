@@ -8,6 +8,7 @@ import 'package:example/views/dialog_demo.dart';
 import 'package:example/views/floating_bottom_view.dart';
 import 'package:example/views/font_view.dart';
 import 'package:example/views/popover_demo.dart';
+import 'package:example/views/rich_dialog_demo.dart';
 import 'package:example/views/yl_toast_demo.dart';
 import 'package:flutter/material.dart';
 
@@ -35,6 +36,7 @@ List<RouteObject> defineRouteObjects() {
     RouteObject('/dialog', 'YlDialog', (context) => DialogDemoPage()),
     RouteObject(
         '/action_sheet', 'YlActionSheet', (context) => ActionSheetDemoPage()),
+    RouteObject('/dialog/rich', 'YlRichDialog', (context) => RichDialogDemo()),
   ];
 }
 
