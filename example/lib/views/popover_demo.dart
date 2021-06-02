@@ -11,6 +11,7 @@ class PopoverDemoPage extends StatelessWidget {
     return DemoPage(
       title: 'YlPopover',
       sourceCodePath: 'lib/views/popover_demo.dart',
+      bottomSafe: false,
       child: Center(
         child: DemoButtonVerticalGroup(
           items: [

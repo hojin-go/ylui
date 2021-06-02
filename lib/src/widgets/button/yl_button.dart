@@ -277,7 +277,8 @@ class _YlButtonState extends State<YlButton> {
             color: enabled ? widget.border.color : disableBorderColor,
             width: widget.border.width);
 
-    var textStyle = (widget.textStyle ?? YlTextStyles.subHeader3);
+    var textStyle =
+        (widget.textStyle ?? YlTextStyles.subHeader3).copyWith(height: 1.3);
     if (!enabled) {
       textStyle = textStyle.copyWith(color: widget.disableTextColor);
     }

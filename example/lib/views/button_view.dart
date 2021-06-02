@@ -27,7 +27,10 @@ class ButtonView extends StatelessWidget {
 
   _wrapButton(YlButtonType type, {String title}) {
     return [
-      Text(title, style: YlTextStyles.header1,),
+      Text(
+        title,
+        style: YlTextStyles.header1,
+      ),
       Container(
         margin: EdgeInsets.only(bottom: 10),
         alignment: Alignment.center,

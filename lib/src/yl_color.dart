@@ -51,5 +51,5 @@ class YlColors {
   static const orangeDark = Color.fromRGBO(255, 149, 0, 1);
 
   /// 瓴里蓝色
-  static const lanehubBlue = Color.fromRGBO(60, 88, 242, 1);
+  static const lanehubBlue = Color.fromRGBO(92, 118, 157, 1);
 }

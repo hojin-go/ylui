@@ -9,6 +9,7 @@ class ActionSheetDemoPage extends StatelessWidget {
     return DemoPage(
       title: 'YlActionSheetDemo',
       sourceCodePath: 'lib/views/action_sheet_demo.dart',
+      bottomSafe: false,
       child: Center(
         child: DemoButtonVerticalGroup(
           items: [

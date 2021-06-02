@@ -6,13 +6,15 @@ class DemoPage extends StatelessWidget {
   final String title;
   final EdgeInsets contentPadding;
   final String sourceCodePath;
+  final bool bottomSafe;
 
   const DemoPage(
       {Key key,
       this.title,
       this.child,
       this.contentPadding,
-      this.sourceCodePath})
+      this.sourceCodePath,
+      this.bottomSafe = true})
       : super(key: key);
 
   @override
@@ -37,10 +39,14 @@ class DemoPage extends StatelessWidget {
               )
             : null,
       ),
-      child: Padding(
-        padding:
-            contentPadding ?? EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: child,
+      child: SafeArea(
+        top: true,
+        bottom: bottomSafe,
+        child: Padding(
+          padding: contentPadding ??
+              EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: child,
+        ),
       ),
     );
   }

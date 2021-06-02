@@ -10,6 +10,7 @@ class SlidingUpPanelDemo extends StatelessWidget {
       title: 'SlidingUpPanelDemo',
       sourceCodePath: 'lib/views/sliding_up_panel_demo.dart',
       contentPadding: EdgeInsets.zero,
+      bottomSafe: false,
       child: YlSlidingUpPanel(
         body: Container(
           height: 500,

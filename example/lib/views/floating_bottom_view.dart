@@ -9,6 +9,7 @@ class FloatingBottomView extends StatelessWidget {
       title: 'YlFloatingBottom',
       sourceCodePath: 'lib/views/floating_bottom_view.dart',
       contentPadding: EdgeInsets.zero,
+      bottomSafe: false,
       child: Column(
         children: [
           Expanded(child: Container()),

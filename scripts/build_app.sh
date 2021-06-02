@@ -7,6 +7,7 @@ set -e
 
 # the project workspace directory
 PROJECT_DIR="example"
+PROJECT_NAME="ylui组件库"
 # 飞书上线群里的 bot
 WEB_HOOK="https://open.feishu.cn/open-apis/bot/v2/hook/6322a12d-f818-4e21-ab77-14c43f03442c"
 # 飞书机器人测试
@@ -62,10 +63,10 @@ function uploadToPgyer() {
 
 # 打包ipa
 function buildIpaToPgyer() {
-  # flutter clean
-  # flutter build ios --config-only
+  flutter clean
+  flutter build ios --config-only
   # xcarchive
-  # xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -configuration release -archivePath build/ios/iphoneos/Runner.xcarchive -sdk iphoneos
+  xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -configuration release -archivePath build/ios/iphoneos/Runner.xcarchive -sdk iphoneos
   # ipa
   pwd
   xcodebuild -exportArchive -archivePath build/ios/iphoneos/Runner.xcarchive -exportPath build/ios/iphoneos/ -exportOptionsPlist ../scripts/ExportOptions.plist
@@ -90,14 +91,14 @@ function sendApkWebHook() {
   ## 安卓发布 WebHook 机器人测试
   curl -X "POST" $WEB_HOOK \
     -H 'Content-Type: text/plain; charset=utf-8' \
-    -d '{"msg_type":"interactive","card":{"config":{"wide_screen_mode":true,"enable_forward":true},"elements":[{"tag":"div","text":{"content":"**'"$sBranch"'** 分支，**'"$APP_VERSION"'** 版本的 **安卓** ylui组件测试包已经发布到蒲公英，可前往安装","tag":"lark_md"}},{"actions":[{"tag":"button","text":{"content":"前往安装","tag":"lark_md"},"url":"https://www.pgyer.com/ylui","type":"primary","value":{}}],"tag":"action"}],"header":{"title":{"content":"安卓组件测试版本发布","tag":"plain_text"}}}}'
+    -d '{"msg_type":"interactive","card":{"config":{"wide_screen_mode":true,"enable_forward":true},"elements":[{"tag":"div","text":{"content":"**'"$sBranch"'** 分支，**'"$APP_VERSION"'** 版本的 **安卓** '"$PROJECT_NAME"'测试包已经发布到蒲公英，可前往安装","tag":"lark_md"}},{"actions":[{"tag":"button","text":{"content":"前往安装","tag":"lark_md"},"url":"https://www.pgyer.com/ylui","type":"primary","value":{}}],"tag":"action"}],"header":{"title":{"content":"'"$PROJECT_NAME"'测试版本发布","tag":"plain_text"}}}}'
 }
 
 function sendIpaToPgyWebHook() {
   ## iOS 发布 WebHook 机器人测试
   curl -X "POST" $WEB_HOOK \
     -H 'Content-Type: text/plain; charset=utf-8' \
-    -d '{"msg_type":"interactive","card":{"config":{"wide_screen_mode":true,"enable_forward":true},"elements":[{"tag":"div","text":{"content":"**'"$sBranch"'** 分支，**'"$APP_VERSION"'** 版本的 **iOS** 测试包已经发布到蒲公英，可前往安装","tag":"lark_md"}},{"actions":[{"tag":"button","text":{"content":"前往安装","tag":"lark_md"},"url":"https://www.pgyer.com/eWlE","type":"primary","value":{}},{"tag":"button","text":{"content":"获取 UDID","tag":"lark_md"},"url":"https://lanehubcn.feishu.cn/docs/doccnpN7oCXq6N5P3BqS9QegIch#IPa97j","type":"default","value":{}}],"tag":"action"}],"header":{"title":{"content":"iOS 测试版本发布","tag":"plain_text"}}}}'
+    -d '{"msg_type":"interactive","card":{"config":{"wide_screen_mode":true,"enable_forward":true},"elements":[{"tag":"div","text":{"content":"**'"$sBranch"'** 分支，**'"$APP_VERSION"'** 版本的 **iOS** '"$PROJECT_NAME"'测试包已经发布到蒲公英，可前往安装","tag":"lark_md"}},{"actions":[{"tag":"button","text":{"content":"前往安装","tag":"lark_md"},"url":"https://www.pgyer.com/ylui-ios","type":"primary","value":{}},{"tag":"button","text":{"content":"获取 UDID","tag":"lark_md"},"url":"https://lanehubcn.feishu.cn/docs/doccnpN7oCXq6N5P3BqS9QegIch#IPa97j","type":"default","value":{}}],"tag":"action"}],"header":{"title":{"content":"'"$PROJECT_NAME"'测试版本发布","tag":"plain_text"}}}}'
 
 }
 
@@ -145,7 +146,7 @@ elif [ $sPlatform == "2" ]; then
 
   beforeBuild
   buildIpaToPgyer
-  # sendIpaToPgyWebHook
+  sendIpaToPgyWebHook
 elif [ $sPlatform == '3' ]; then
   # 打包安卓和iOS版本到蒲公英
 
