@@ -10,7 +10,7 @@ class YlPopoverShareItem {
   YlPopoverShareItem({this.icon, this.title, this.action});
 }
 
-showYlSharePopover(BuildContext context,
+Future<T> showYlSharePopover<T>(BuildContext context,
     {@required List<YlPopoverShareItem> items}) {
   var body = Container(
     color: YlColors.white,
@@ -80,5 +80,5 @@ showYlSharePopover(BuildContext context,
     footer: footer,
     onClosed: () => Navigator.pop(context),
   );
-  showYlPopover(context, child);
+  return showYlPopover<T>(context, child);
 }

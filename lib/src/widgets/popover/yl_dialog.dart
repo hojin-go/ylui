@@ -135,9 +135,9 @@ class YlDialog extends StatelessWidget {
 }
 
 /// 快捷展示自定义弹窗的方法
-showYlDialog(BuildContext context,
-    {String title, String content, List<YlDialogAction> actions}) async {
-  await showCupertinoDialog(
+Future<T> showYlDialog<T>(BuildContext context,
+    {String title, String content, List<YlDialogAction> actions}) {
+  return showCupertinoDialog<T>(
     barrierDismissible: true,
     context: context,
     builder: (context) {

@@ -91,10 +91,10 @@ class YlActionSheet extends StatelessWidget {
 }
 
 /// 快捷展示自定义弹窗的方法
-showYlActionSheet(BuildContext context,
-    {String content, List<YlDialogAction> actions}) async {
+Future<T> showYlActionSheet<T>(BuildContext context,
+    {String content, List<YlDialogAction> actions}) {
   var canCancel = actions.where((element) => element.isCancel).isNotEmpty;
-  await showCupertinoModalPopup(
+  return showCupertinoModalPopup<T>(
     context: context,
     builder: (context) {
       Widget widget = YlActionSheet(content: content, actions: actions);

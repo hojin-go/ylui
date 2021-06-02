@@ -90,6 +90,7 @@ class YlRichDialog extends StatelessWidget {
   }
 }
 
-showYlRichDialog(BuildContext context, {@required YlRichDialog dialog}) {
-  showCupertinoDialog(context: context, builder: (context) => dialog);
+Future<T> showYlRichDialog<T>(BuildContext context,
+    {@required YlRichDialog dialog}) {
+  return showCupertinoDialog<T>(context: context, builder: (context) => dialog);
 }

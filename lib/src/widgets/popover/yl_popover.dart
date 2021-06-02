@@ -106,8 +106,8 @@ class YlPopover extends StatelessWidget {
   }
 }
 
-showYlPopover(BuildContext context, YlPopover child) {
-  showCupertinoModalPopup(
+Future<T> showYlPopover<T>(BuildContext context, YlPopover child) {
+  return showCupertinoModalPopup<T>(
     context: context,
     builder: (context) => Dismissible(
       direction: DismissDirection.down,
