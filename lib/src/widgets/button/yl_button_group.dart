@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
@@ -27,7 +29,7 @@ class YlButtonGroupItem {
   }
 }
 
-enum YlButtonGroupWeight { equaly, primaryBigger, primaryExpanded }
+enum YlButtonGroupWeight { equaly, primaryBigger }
 
 class YlButtonGroup extends StatelessWidget {
   final List<YlButtonGroupItem> children;
@@ -44,48 +46,53 @@ class YlButtonGroup extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
+    // 最多两个按钮
+    var count = min(2, children.length);
     var size = YlButtonSize.max;
-    if (children.length > 1) {
+    if (count > 1) {
       size = YlButtonSize.large;
     }
     List<Widget> widgets = [];
-    var count = children.length;
-    for (var i = 0; i < count; i++) {
-      var e = children[i];
-      Widget widget = e.asButton(size);
-      if (weight == YlButtonGroupWeight.equaly) {
-        widget = Expanded(
-          child: widget,
-        );
-      } else if (weight == YlButtonGroupWeight.primaryExpanded &&
-          e.type == YlButtonType.primary) {
-        widget = Expanded(
-          child: widget,
-        );
-      } else if (weight == YlButtonGroupWeight.primaryBigger) {
-        int flex = 1;
-        int primaryFlex = 2;
-        if (e.type == YlButtonType.primary ||
-            e.type == YlButtonType.subPrimary) {
-          widget = Expanded(
-            flex: primaryFlex,
-            child: widget,
-          );
-        } else {
-          widget = Expanded(
-            flex: flex,
-            child: widget,
-          );
-        }
-      }
 
-      if (i > 0) {
-        widgets.add(SizedBox(
-          width: 8,
-        ));
+    if (count == 1) {
+      var e = children.first;
+      widgets.add(Expanded(child: e.asButton(size)));
+    } else {
+      // 两个按钮的情况
+      for (var i = 0; i < count; i++) {
+        var e = children[i];
+        Widget widget = e.asButton(size);
+        if (weight == YlButtonGroupWeight.equaly) {
+          widget = Expanded(
+            child: widget,
+          );
+        } else if (weight == YlButtonGroupWeight.primaryBigger) {
+          var leftWidth = MediaQuery.of(context).size.width -
+              padding.left -
+              padding.right -
+              8;
+          var smallWidth = leftWidth / 3.0;
+          if (e.type == YlButtonType.primary ||
+              e.type == YlButtonType.subPrimary) {
+            widget = Expanded(child: widget);
+          } else {
+            widget = Container(
+              width: smallWidth,
+              constraints: BoxConstraints(minWidth: 109),
+              child: widget,
+            );
+          }
+        }
+
+        if (i > 0) {
+          widgets.add(SizedBox(
+            width: 8,
+          ));
+        }
+        widgets.add(widget);
       }
-      widgets.add(widget);
     }
+
     return Container(
       color: backgroundColor,
       padding: padding,

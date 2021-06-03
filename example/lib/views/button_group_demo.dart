@@ -1,5 +1,6 @@
 import 'package:example/views/componnets/demo_page.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
 class ButtonGroupDemoPage extends StatelessWidget {
@@ -61,58 +62,7 @@ class ButtonGroupDemoPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Text(
-              '主按钮撑满剩余空间',
-              style: YlTextStyles.caption,
-            ),
-          ),
-          YlButtonGroup(
-            weight: YlButtonGroupWeight.primaryExpanded,
-            children: [
-              YlButtonGroupItem(
-                child: Text('自身大小'),
-                type: YlButtonType.subSecondary,
-                onPressed: () {},
-              ),
-              YlButtonGroupItem(
-                child: Text('撑满剩余空间'),
-                type: YlButtonType.primary,
-                onPressed: () {},
-              )
-            ],
-          ),
-          SizedBox(
-            height: 16,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-            child: Text(
-              '主按钮撑满剩余空间，另外按钮固定宽度',
-              style: YlTextStyles.caption,
-            ),
-          ),
-          YlButtonGroup(
-            weight: YlButtonGroupWeight.primaryExpanded,
-            children: [
-              YlButtonGroupItem(
-                child: Text('宽度200'),
-                width: 200,
-                type: YlButtonType.subSecondary,
-                onPressed: () {},
-              ),
-              YlButtonGroupItem(
-                child: Text('撑满剩余空间'),
-                type: YlButtonType.primary,
-                onPressed: () {},
-              )
-            ],
-          ),
-          SizedBox(
-            height: 16,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-            child: Text(
-              '特殊比例，主按钮宽度稍大一些',
+              '特殊比例，主副按钮比例 2:1，副按钮最小宽度 109',
               style: YlTextStyles.caption,
             ),
           ),
