@@ -33,8 +33,8 @@ Future<T> showYlSharePopover<T>(BuildContext context,
                             shape: BoxShape.circle,
                             boxShadow: [
                               BoxShadow(
-                                  blurRadius: 20,
-                                  color: YlColors.black.withOpacity(0.04))
+                                  blurRadius: 32,
+                                  color: YlColors.black.withOpacity(0.08))
                             ]),
                         child: items[index].icon,
                       ),
