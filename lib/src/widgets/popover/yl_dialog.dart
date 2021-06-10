@@ -138,7 +138,7 @@ class YlDialog extends StatelessWidget {
 Future<T> showYlDialog<T>(BuildContext context,
     {String title, String content, List<YlDialogAction> actions}) {
   return showCupertinoDialog<T>(
-    barrierDismissible: true,
+    barrierDismissible: false,
     context: context,
     builder: (context) {
       return YlDialog(title: title, content: content, actions: actions);
