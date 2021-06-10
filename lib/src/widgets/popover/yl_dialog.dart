@@ -83,50 +83,53 @@ class YlDialog extends StatelessWidget {
     var hasTitle = title != null && title.isNotEmpty;
     var hasContent = content != null && content.isNotEmpty;
 
-    return Center(
-      child: CupertinoPopupSurface(
-        child: Container(
-          width: DefaultDialogWidth,
-          color: CupertinoColors.white,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                constraints: BoxConstraints(minHeight: 104),
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 32),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Visibility(
-                        child: Text('$title',
-                            textAlign: TextAlign.center,
-                            style: YlTextStyles.header4),
-                        visible: hasTitle),
-                    Visibility(
-                      child: SizedBox(
-                        height: 16,
+    return WillPopScope(
+      onWillPop: () => Future.value(false),
+      child: Center(
+        child: CupertinoPopupSurface(
+          child: Container(
+            width: DefaultDialogWidth,
+            color: CupertinoColors.white,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  constraints: BoxConstraints(minHeight: 104),
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 32),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Visibility(
+                          child: Text('$title',
+                              textAlign: TextAlign.center,
+                              style: YlTextStyles.header4),
+                          visible: hasTitle),
+                      Visibility(
+                        child: SizedBox(
+                          height: 16,
+                        ),
+                        visible: hasContent,
                       ),
-                      visible: hasContent,
-                    ),
-                    Visibility(
-                      child: Text('$content',
-                          textAlign: TextAlign.center,
-                          style: YlTextStyles.body1
-                              .copyWith(color: YlColors.black50)),
-                      visible: hasContent,
-                    ),
-                  ],
+                      Visibility(
+                        child: Text('$content',
+                            textAlign: TextAlign.center,
+                            style: YlTextStyles.body1
+                                .copyWith(color: YlColors.black50)),
+                        visible: hasContent,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Divider(
-                height: 0.5,
-                thickness: 0.5,
-                color: YlColors.grey2,
-              ),
-              actionContainer
-            ],
+                Divider(
+                  height: 0.5,
+                  thickness: 0.5,
+                  color: YlColors.grey2,
+                ),
+                actionContainer
+              ],
+            ),
           ),
         ),
       ),
