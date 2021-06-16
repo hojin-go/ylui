@@ -6,7 +6,7 @@ import 'package:widget_with_codeview/source_code_view.dart';
 class CodeViewerPage extends StatelessWidget {
   final String filePath;
 
-  const CodeViewerPage({Key key, this.filePath}) : super(key: key);
+  const CodeViewerPage({Key? key, required this.filePath}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return DemoPage(

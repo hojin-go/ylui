@@ -18,9 +18,9 @@ class YlDialogAction {
   final bool isCancel;
 
   YlDialogAction(
-      {this.title,
+      {required this.title,
       this.isCancel = false,
-      this.action,
+      required this.action,
       this.highlight = false,
       this.alert = false});
 }

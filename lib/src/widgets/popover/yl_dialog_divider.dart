@@ -5,7 +5,7 @@ import 'package:flutter_ylui/src/yl_color.dart';
 class YlDialogDivider extends StatelessWidget {
   final bool horizontal;
 
-  const YlDialogDivider({Key key, this.horizontal}) : super(key: key);
+  const YlDialogDivider({Key? key, this.horizontal = true}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

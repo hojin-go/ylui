@@ -7,11 +7,12 @@ class YlPopoverShareItem {
   final Widget title;
   final VoidCallback action;
 
-  YlPopoverShareItem({this.icon, this.title, this.action});
+  YlPopoverShareItem(
+      {required this.icon, required this.title, required this.action});
 }
 
-Future<T> showYlSharePopover<T>(BuildContext context,
-    {@required List<YlPopoverShareItem> items}) {
+Future<T?> showYlSharePopover<T>(BuildContext context,
+    {required List<YlPopoverShareItem> items}) {
   var body = Container(
     color: YlColors.white,
     child: Column(mainAxisSize: MainAxisSize.min, children: [

@@ -6,7 +6,8 @@ class YlSlidingUpPanel extends StatelessWidget {
   final Widget Function(ScrollController sc) panelBuilder;
   final Widget body;
 
-  const YlSlidingUpPanel({Key key, this.panelBuilder, this.body})
+  const YlSlidingUpPanel(
+      {Key? key, required this.panelBuilder, required this.body})
       : super(key: key);
 
   @override

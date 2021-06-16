@@ -9,15 +9,15 @@ import '../../../flutter_ylui.dart';
 /// 自定义弹窗
 class YlDialog extends StatelessWidget {
   /// 弹窗标题
-  final String title;
+  final String? title;
 
   /// 弹窗描述信息，小字
-  final String content;
+  final String? content;
 
   /// 弹窗按钮事件，从左到右，从上到下，按钮过多的情况，可能会超出屏幕高度，暂不支持滚动
   final List<YlDialogAction> actions;
 
-  const YlDialog({@required this.title, this.content, @required this.actions});
+  const YlDialog({required this.title, this.content, required this.actions});
 
   @override
   Widget build(BuildContext context) {
@@ -80,8 +80,8 @@ class YlDialog extends StatelessWidget {
       );
     }
 
-    var hasTitle = title != null && title.isNotEmpty;
-    var hasContent = content != null && content.isNotEmpty;
+    var hasTitle = title != null && title!.isNotEmpty;
+    var hasContent = content != null && content!.isNotEmpty;
 
     return WillPopScope(
       onWillPop: () => Future.value(false),
@@ -138,8 +138,8 @@ class YlDialog extends StatelessWidget {
 }
 
 /// 快捷展示自定义弹窗的方法
-Future<T> showYlDialog<T>(BuildContext context,
-    {String title, String content, List<YlDialogAction> actions}) {
+Future<T?> showYlDialog<T>(BuildContext context,
+    {String? title, String? content, required List<YlDialogAction> actions}) {
   return showCupertinoDialog<T>(
     barrierDismissible: false,
     context: context,

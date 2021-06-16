@@ -5,17 +5,17 @@ import 'package:flutter_ylui/flutter_ylui.dart';
 
 class YlButtonGroupItem {
   final Widget child;
-  final VoidCallback onPressed;
-  final ButtonClickCallback onAsyncPressed;
+  final VoidCallback? onPressed;
+  final ButtonClickCallback? onAsyncPressed;
   final YlButtonType type;
   final double width;
 
   YlButtonGroupItem(
-      {@required this.child,
-      this.width,
+      {required this.child,
+      this.width = 44,
       this.onAsyncPressed,
       this.onPressed,
-      @required this.type});
+      required this.type});
 
   YlButton asButton(YlButtonSize size) {
     return YlButton.fromType(
@@ -38,8 +38,8 @@ class YlButtonGroup extends StatelessWidget {
   final EdgeInsets padding;
 
   const YlButtonGroup(
-      {Key key,
-      this.children,
+      {Key? key,
+      required this.children,
       this.weight = YlButtonGroupWeight.equaly,
       this.backgroundColor = YlColors.white,
       this.padding = const EdgeInsets.symmetric(horizontal: 20, vertical: 10)})

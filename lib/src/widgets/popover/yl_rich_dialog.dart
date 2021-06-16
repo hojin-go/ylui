@@ -6,11 +6,11 @@ const _defaultRichDialogWidth = 300.0;
 class YlRichDialog extends StatelessWidget {
   final bool closeale;
   final String title;
-  final Widget body;
-  final Widget footer;
+  final Widget? body;
+  final Widget? footer;
 
   const YlRichDialog(
-      {Key key, this.closeale = true, this.title = '', this.body, this.footer})
+      {Key? key, this.closeale = true, this.title = '', this.body, this.footer})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class YlRichDialog extends StatelessWidget {
                       Container(
                         height: 200,
                       ),
-                  if (footer != null) footer
+                  if (footer != null) footer!
                 ],
               ),
               if (closeale)
@@ -66,7 +66,7 @@ class YlRichDialog extends StatelessWidget {
     return child;
   }
 
-  Widget _header(BuildContext context, {@required String title}) {
+  Widget _header(BuildContext context, {required String title}) {
     return Container(
       width: double.infinity,
       height: 64,
@@ -90,7 +90,7 @@ class YlRichDialog extends StatelessWidget {
   }
 }
 
-Future<T> showYlRichDialog<T>(BuildContext context,
-    {@required YlRichDialog dialog}) {
+Future<T?> showYlRichDialog<T>(BuildContext context,
+    {required YlRichDialog dialog}) {
   return showCupertinoDialog<T>(context: context, builder: (context) => dialog);
 }

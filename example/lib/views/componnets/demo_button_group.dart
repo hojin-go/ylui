@@ -11,7 +11,8 @@ class DemoButtonGroupItem {
 class DemoButtonVerticalGroup extends StatelessWidget {
   final List<DemoButtonGroupItem> items;
 
-  const DemoButtonVerticalGroup({Key key, this.items}) : super(key: key);
+  const DemoButtonVerticalGroup({Key? key, required this.items})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(
