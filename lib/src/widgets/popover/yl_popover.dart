@@ -106,9 +106,11 @@ class YlPopover extends StatelessWidget {
   }
 }
 
-Future<T?> showYlPopover<T>(BuildContext context, YlPopover child) {
+Future<T?> showYlPopover<T>(BuildContext context, YlPopover child,
+    {RouteSettings? routeSettings}) {
   return showCupertinoModalPopup<T>(
     context: context,
+    routeSettings: routeSettings,
     builder: (context) => Dismissible(
       direction: DismissDirection.down,
       onDismissed: (direction) => Navigator.pop(context),

@@ -12,7 +12,7 @@ class YlPopoverShareItem {
 }
 
 Future<T?> showYlSharePopover<T>(BuildContext context,
-    {required List<YlPopoverShareItem> items}) {
+    {required List<YlPopoverShareItem> items, RouteSettings? routeSettings}) {
   var body = Container(
     color: YlColors.white,
     child: Column(mainAxisSize: MainAxisSize.min, children: [
@@ -81,5 +81,5 @@ Future<T?> showYlSharePopover<T>(BuildContext context,
     footer: footer,
     onClosed: () => Navigator.pop(context),
   );
-  return showYlPopover<T>(context, child);
+  return showYlPopover<T>(context, child, routeSettings: routeSettings);
 }
