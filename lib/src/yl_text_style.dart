@@ -59,4 +59,11 @@ class YlTextStyles {
       color: YlColors.black90,
       fontWeight: FontWeight.normal,
       height: 1.5);
+  static final caption1 = caption;
+
+  static final caption2 = TextStyle(
+      fontSize: 10,
+      color: YlColors.black90,
+      fontWeight: FontWeight.normal,
+      height: 1.4);
 }
