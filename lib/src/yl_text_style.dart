@@ -13,12 +13,15 @@ class YlTextStyles {
       fontSize: 34, color: YlColors.black90, fontWeight: _bold, height: 1.294);
 
   static final header2 = TextStyle(
-      fontSize: 22, color: YlColors.black90, fontWeight: _bold, height: 1.455);
+      fontSize: 28, color: YlColors.black90, fontWeight: _bold, height: 1.286);
 
   static final header3 = TextStyle(
-      fontSize: 20, color: YlColors.black90, fontWeight: _bold, height: 1.5);
+      fontSize: 24, color: YlColors.black90, fontWeight: _bold, height: 1.33);
 
   static final header4 = TextStyle(
+      fontSize: 20, color: YlColors.black90, fontWeight: _bold, height: 1.5);
+
+  static final header5 = TextStyle(
       fontSize: 17, color: YlColors.black90, fontWeight: _bold, height: 1.412);
 
   static final subHeader1 = TextStyle(
@@ -54,12 +57,11 @@ class YlTextStyles {
       fontWeight: FontWeight.normal,
       height: 1.429);
 
-  static final caption = TextStyle(
+  static final caption1 = TextStyle(
       fontSize: 12,
       color: YlColors.black90,
       fontWeight: FontWeight.normal,
       height: 1.5);
-  static final caption1 = caption;
 
   static final caption2 = TextStyle(
       fontSize: 10,
