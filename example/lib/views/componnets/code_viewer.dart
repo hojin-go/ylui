@@ -13,7 +13,7 @@ class CodeViewerPage extends StatelessWidget {
       title: '源码',
       contentPadding: EdgeInsets.zero,
       child: DefaultTextStyle(
-        style: YlTextStyles.caption,
+        style: YlTextStyles.caption1,
         child: SourceCodeView(
           filePath: filePath,
         ),

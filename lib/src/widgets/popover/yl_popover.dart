@@ -28,7 +28,7 @@ class YlPopover extends StatelessWidget {
                 Padding(
                     padding: EdgeInsets.only(left: 20),
                     child: DefaultTextStyle(
-                      style: YlTextStyles.header4.copyWith(height: 1.3),
+                      style: YlTextStyles.header5.copyWith(height: 1.3),
                       child: title,
                     )),
               Spacer(),

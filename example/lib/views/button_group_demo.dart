@@ -19,7 +19,7 @@ class ButtonGroupDemoPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Text(
               '按钮平分',
-              style: YlTextStyles.caption,
+              style: YlTextStyles.caption1,
             ),
           ),
           YlButtonGroup(
@@ -44,7 +44,7 @@ class ButtonGroupDemoPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Text(
               '单个按钮',
-              style: YlTextStyles.caption,
+              style: YlTextStyles.caption1,
             ),
           ),
           YlButtonGroup(
@@ -63,7 +63,7 @@ class ButtonGroupDemoPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Text(
               '特殊比例，主副按钮比例 2:1，副按钮最小宽度 109',
-              style: YlTextStyles.caption,
+              style: YlTextStyles.caption1,
             ),
           ),
           YlButtonGroup(

@@ -45,7 +45,7 @@ Future<T?> showYlSharePopover<T>(BuildContext context,
                     ),
                     DefaultTextStyle(
                       textAlign: TextAlign.center,
-                      style: YlTextStyles.caption
+                      style: YlTextStyles.caption1
                           .copyWith(color: YlColors.black50),
                       child: items[index].title,
                     )
@@ -71,7 +71,7 @@ Future<T?> showYlSharePopover<T>(BuildContext context,
         '取消',
         textAlign: TextAlign.center,
         style:
-            YlTextStyles.header4.copyWith(color: YlColors.black70, height: 1.3),
+            YlTextStyles.header5.copyWith(color: YlColors.black70, height: 1.3),
       ),
     ),
   );

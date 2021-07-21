@@ -76,7 +76,7 @@ class YlRichDialog extends StatelessWidget {
             child: SizedBox(
               width: 160,
               child: DefaultTextStyle(
-                style: YlTextStyles.header3.copyWith(height: 1.3),
+                style: YlTextStyles.header4.copyWith(height: 1.3),
                 child: Text(
                   title,
                   textAlign: TextAlign.center,

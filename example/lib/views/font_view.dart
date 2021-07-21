@@ -16,6 +16,7 @@ class FontView extends StatelessWidget {
     FontTileData('Header2', YlTextStyles.header2),
     FontTileData('Header3', YlTextStyles.header3),
     FontTileData('Header4', YlTextStyles.header4),
+    FontTileData('Header5', YlTextStyles.header5),
     FontTileData('Subheader1', YlTextStyles.subHeader1),
     FontTileData('Subheader2', YlTextStyles.subHeader2),
     FontTileData('Subheader3', YlTextStyles.subHeader3),
@@ -23,31 +24,34 @@ class FontView extends StatelessWidget {
     FontTileData('Body2', YlTextStyles.body2),
     FontTileData('Body3', YlTextStyles.body3),
     FontTileData('Body4', YlTextStyles.body4),
-    FontTileData('Caption', YlTextStyles.caption),
+    FontTileData('Caption1', YlTextStyles.caption1),
+    FontTileData('Caption2', YlTextStyles.caption2),
   ];
 
   @override
   Widget build(BuildContext context) {
     var widgets = <Widget>[];
     data.forEach((element) {
-      widgets.add(
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Text(element.title, style: element.style,),
-            )
-          ],
-        )
-      );
+      widgets.add(Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Text(
+              element.title,
+              style: element.style,
+            ),
+          )
+        ],
+      ));
     });
 
     return DemoPage(
-      title: 'YlTextStyles',
-      child: SingleChildScrollView(child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: widgets,
-        ),)
-    );
+        title: 'YlTextStyles',
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: widgets,
+          ),
+        ));
   }
 }

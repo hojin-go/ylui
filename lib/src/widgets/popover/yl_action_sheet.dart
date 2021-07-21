@@ -27,7 +27,7 @@ class YlActionSheet extends StatelessWidget {
           alignment: Alignment.center,
           child: Text(
             firstAction.title,
-            style: YlTextStyles.header4.copyWith(color: YlColors.black70),
+            style: YlTextStyles.header5.copyWith(color: YlColors.black70),
           ),
         ),
       );
@@ -42,7 +42,7 @@ class YlActionSheet extends StatelessWidget {
           alignment: Alignment.center,
           child: Text(
             e.title,
-            style: YlTextStyles.header4.copyWith(
+            style: YlTextStyles.header5.copyWith(
                 color: e.highlight
                     ? YlColors.branding2
                     : e.alert
@@ -67,7 +67,8 @@ class YlActionSheet extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
                 child: DefaultTextStyle(
-                  style: YlTextStyles.caption.copyWith(color: YlColors.black50),
+                  style:
+                      YlTextStyles.caption1.copyWith(color: YlColors.black50),
                   child: Text(
                     content!,
                     textAlign: TextAlign.center,

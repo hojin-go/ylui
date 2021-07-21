@@ -33,7 +33,7 @@ class YlDialog extends StatelessWidget {
           child: Center(
             child: Text(
               action.title,
-              style: YlTextStyles.header4.copyWith(
+              style: YlTextStyles.header5.copyWith(
                   // 通常按钮文字为单行，重写他的高度，使其垂直居中
                   height: 1.3,
                   color: action.highlight
@@ -104,7 +104,7 @@ class YlDialog extends StatelessWidget {
                       Visibility(
                           child: Text('$title',
                               textAlign: TextAlign.center,
-                              style: YlTextStyles.header4),
+                              style: YlTextStyles.header5),
                           visible: hasTitle),
                       Visibility(
                         child: SizedBox(

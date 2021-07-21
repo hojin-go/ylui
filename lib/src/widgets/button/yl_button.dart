@@ -45,7 +45,7 @@ extension YlButtonSizeData on YlButtonSize {
       case YlButtonSize.max:
       case YlButtonSize.large:
       case YlButtonSize.medium:
-        return YlTextStyles.header4.copyWith(height: 1.3);
+        return YlTextStyles.header5.copyWith(height: 1.3);
       default:
         return YlTextStyles.subHeader2.copyWith(height: 1.3);
     }
