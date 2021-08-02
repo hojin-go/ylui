@@ -6,12 +6,15 @@ class YlFloatingBottom extends StatelessWidget {
   final Widget? child;
   final Color? backgroundColor;
 
-  const YlFloatingBottom({Key? key, this.padding, this.child, this.backgroundColor}) : super(key: key);
+  const YlFloatingBottom(
+      {Key? key, this.padding, this.child, this.backgroundColor})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: padding ?? EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 25),
+      padding:
+          padding ?? EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
       decoration: BoxDecoration(
         color: backgroundColor ?? YlColors.white,
         boxShadow: [
@@ -23,7 +26,11 @@ class YlFloatingBottom extends StatelessWidget {
       ),
       child: SafeArea(
         top: false,
-        child: child ?? Container(width: double.infinity, height: 50,),
+        child: child ??
+            Container(
+              width: double.infinity,
+              height: 50,
+            ),
       ),
     );
   }
