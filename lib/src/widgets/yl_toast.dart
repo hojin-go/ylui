@@ -18,9 +18,15 @@ class YlToast {
   static CancelFunc? _textToastCancelFunc;
 
   static void text(String content,
-      {Duration? duration, Color? bgColor, Alignment? alignment}) {
+      {int? maxLines,
+      Duration? duration,
+      Color? bgColor,
+      Alignment? alignment}) {
     _textToast(content,
-        duration: duration, bgColor: bgColor, alignment: alignment);
+        maxLines: maxLines,
+        duration: duration,
+        bgColor: bgColor,
+        alignment: alignment);
   }
 
   static void loading({String content = '请求中', bool bLong = false}) {
@@ -85,6 +91,7 @@ class YlToast {
 
   static _textToast(String content,
       {Widget? prefix,
+      int? maxLines,
       Duration? duration,
       Color? bgColor,
       Alignment? alignment}) {
@@ -94,7 +101,7 @@ class YlToast {
 
     Widget widget = Text(
       content,
-      maxLines: 1,
+      maxLines: maxLines ?? 1,
       textAlign: TextAlign.center,
       overflow: TextOverflow.ellipsis,
       style: YlTextStyles.body3.copyWith(color: YlColors.white, height: 1.3),
