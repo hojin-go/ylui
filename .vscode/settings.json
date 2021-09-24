@@ -8,5 +8,5 @@
   "files.watcherExclude": {
     "**/.fvm": true
   },
-  "conventionalCommits.scopes": ["color"]
+  "conventionalCommits.scopes": ["color", "version"]
 }
