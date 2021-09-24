@@ -10,7 +10,7 @@ class YlColors {
   static const branding1 = Color.fromRGBO(0, 191, 87, 1);
 
   /// 辅助主题色
-  static const branding2 = Color.fromRGBO(0, 152, 69, 1);
+  static const branding2 = Color(0xff00ab4c);
 
   static const white = Color(0xFFFFFFFF);
 
