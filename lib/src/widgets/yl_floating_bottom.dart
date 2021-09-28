@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
+import '../../flutter_ylui.dart';
+
 class YlFloatingBottom extends StatelessWidget {
   final EdgeInsets? padding;
   final Widget? child;
   final Color? backgroundColor;
-
+  final showBoxshadow;
   const YlFloatingBottom(
-      {Key? key, this.padding, this.child, this.backgroundColor})
+      {Key? key, this.padding, this.child, this.backgroundColor,this.showBoxshadow=true})
       : super(key: key);
 
   @override
@@ -18,10 +20,11 @@ class YlFloatingBottom extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor ?? YlColors.white,
         boxShadow: [
+
           BoxShadow(
               blurRadius: 4.0,
               offset: Offset(0, 0),
-              color: YlColors.black.withOpacity(0.04))
+              color:showBoxshadow? YlColors.black.withOpacity(0.04):YlColors.white)
         ],
       ),
       child: SafeArea(
