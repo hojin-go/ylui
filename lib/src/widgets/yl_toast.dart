@@ -77,6 +77,48 @@ class YlToast {
             ));
   }
 
+  static void custom(Widget child,
+      {String content = '', VoidCallback? onCancel}) {
+    String message;
+    if (content.isEmpty) {
+      message = '';
+    } else {
+      message = content;
+    }
+    BotToast.showCustomLoading(
+        clickClose: true,
+        toastBuilder: (_) => GestureDetector(
+              onTap: () {
+                BotToast.closeAllLoading();
+                if (onCancel != null) {
+                  onCancel();
+                }
+              },
+              child: Container(
+                padding: _defaultPadding,
+                // constraints: BoxConstraints(minWidth: 128, maxWidth: 300),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    color: YlColors.black70),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    child,
+                    SizedBox(
+                      width: 4,
+                    ),
+                    Text(
+                      message,
+                      style: YlTextStyles.body3
+                          .copyWith(color: YlColors.white, height: 1.3),
+                    )
+                  ],
+                ),
+              ),
+            ));
+  }
+
   static void cancel() {
     BotToast.cleanAll();
   }
