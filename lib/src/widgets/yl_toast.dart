@@ -29,7 +29,8 @@ class YlToast {
         alignment: alignment);
   }
 
-  static void loading({String content = '请求中', bool bLong = false}) {
+  static void loading(
+      {String content = '请求中', bool bLong = false, VoidCallback? onCancel}) {
     String message;
     if (content.isEmpty) {
       message = '';
@@ -39,7 +40,12 @@ class YlToast {
     BotToast.showCustomLoading(
         clickClose: true,
         toastBuilder: (_) => GestureDetector(
-              onTap: () => BotToast.closeAllLoading(),
+              onTap: () {
+                BotToast.closeAllLoading();
+                if (onCancel != null) {
+                  onCancel();
+                }
+              },
               child: Container(
                 padding: _defaultPadding,
                 // constraints: BoxConstraints(minWidth: 128, maxWidth: 300),
