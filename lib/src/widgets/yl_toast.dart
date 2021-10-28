@@ -87,34 +87,27 @@ class YlToast {
     }
     BotToast.showCustomLoading(
         clickClose: true,
-        toastBuilder: (_) => GestureDetector(
-              onTap: () {
-                BotToast.closeAllLoading();
-                if (onCancel != null) {
-                  onCancel();
-                }
-              },
-              child: Container(
-                padding: _defaultPadding,
-                // constraints: BoxConstraints(minWidth: 128, maxWidth: 300),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    color: YlColors.black70),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    child,
-                    SizedBox(
-                      width: 4,
-                    ),
-                    Text(
-                      message,
-                      style: YlTextStyles.body3
-                          .copyWith(color: YlColors.white, height: 1.3),
-                    )
-                  ],
-                ),
+        onClose: onCancel,
+        toastBuilder: (_) => Container(
+              padding: _defaultPadding,
+              // constraints: BoxConstraints(minWidth: 128, maxWidth: 300),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  color: YlColors.black70),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  child,
+                  SizedBox(
+                    width: 4,
+                  ),
+                  Text(
+                    message,
+                    style: YlTextStyles.body3
+                        .copyWith(color: YlColors.white, height: 1.3),
+                  )
+                ],
               ),
             ));
   }
