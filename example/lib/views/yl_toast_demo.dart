@@ -15,6 +15,8 @@ class YlToastDemoPage extends StatelessWidget {
             DemoButtonGroupItem('短文本', () => YlToast.text('Hello')),
             DemoButtonGroupItem(
                 '长文本提示', () => YlToast.text('我是一个长文本 Toast，你好啊啊啊啊啊啊啊')),
+            DemoButtonGroupItem(
+                '换行文本', () => YlToast.text('换行1\n换行2', maxLines: 2)),
             DemoButtonGroupItem('加载中..', () {
               YlToast.loading(content: '加载中');
               Future.delayed(Duration(seconds: 2)).then((value) {

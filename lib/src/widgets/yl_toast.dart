@@ -21,7 +21,8 @@ class YlToast {
       {int? maxLines,
       Duration? duration,
       Color? bgColor,
-      Alignment? alignment}) {
+      Alignment? alignment,
+      BorderRadius? borderRadius}) {
     _textToast(content,
         maxLines: maxLines,
         duration: duration,
@@ -135,14 +136,15 @@ class YlToast {
       int? maxLines,
       Duration? duration,
       Color? bgColor,
-      Alignment? alignment}) {
+      Alignment? alignment,
+      BorderRadius? borderRadius}) {
     if (_textToastCancelFunc != null) {
       _textToastCancelFunc!();
     }
-
+    int realLines = maxLines ?? 1;
     Widget widget = Text(
       content,
-      maxLines: maxLines ?? 1,
+      maxLines: realLines,
       textAlign: TextAlign.center,
       overflow: TextOverflow.ellipsis,
       style: YlTextStyles.body3.copyWith(color: YlColors.white, height: 1.3),
@@ -159,6 +161,11 @@ class YlToast {
         ],
       );
     }
+
+    ///211123问的设计师规范：单行25，多行10
+    BorderRadius realRadius =
+        borderRadius ?? BorderRadius.circular(realLines > 1 ? 10 : 25);
+
     _textToastCancelFunc = BotToast.showCustomText(
         wrapAnimation: (AnimationController controller, CancelFunc cancelFunc,
                 Widget child) =>
@@ -173,8 +180,7 @@ class YlToast {
               constraints: BoxConstraints(minWidth: 128, maxWidth: 300),
               padding: _defaultPadding,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  color: bgColor ?? YlColors.black70),
+                  borderRadius: realRadius, color: bgColor ?? YlColors.black70),
               child: widget,
             ));
   }
