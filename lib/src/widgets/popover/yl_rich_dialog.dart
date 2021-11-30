@@ -8,9 +8,10 @@ class YlRichDialog extends StatelessWidget {
   final String title;
   final Widget? body;
   final Widget? footer;
+  final Function? closeFunction;
 
   const YlRichDialog(
-      {Key? key, this.closeale = true, this.title = '', this.body, this.footer})
+      {Key? key, this.closeale = true, this.title = '', this.body, this.footer,this.closeFunction})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,11 @@ class YlRichDialog extends StatelessWidget {
                       package: 'flutter_ylui',
                     ),
                     onPressed: () {
-                      Navigator.pop(context);
+                     if(closeFunction != null){
+                       closeFunction!();
+                     } else {
+                        Navigator.pop(context);
+                     }
                     },
                   ),
                 )
