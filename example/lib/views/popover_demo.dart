@@ -71,6 +71,8 @@ class PopoverDemoPage extends StatelessWidget {
         context,
         YlPopover.close(
           title: Text('标题'),
+          subTitle: Text(
+              '副标题你先操作~如果在过程中有啥疑问的话~都可以问我的哈感谢您的惠顾，欢迎下次光临！都可以问我的哈感谢您的惠顾，欢迎下次光临！'),
           onClosed: () => Navigator.pop(context),
           body: Container(
             height: 372,

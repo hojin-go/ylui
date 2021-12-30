@@ -14,24 +14,50 @@ class YlPopover extends StatelessWidget {
   YlPopover.close(
       {Key? key,
       Widget? title,
+      Widget? subTitle,
       this.body,
       this.footer,
       Widget? closeWidget,
       VoidCallback? onClosed})
       : this.header = Container(
-          height: 64,
+          alignment: Alignment.center,
+          constraints: BoxConstraints(minHeight: 64),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (title != null)
-                Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: DefaultTextStyle(
-                      style: YlTextStyles.header5.copyWith(height: 1.3),
-                      child: title,
-                    )),
-              Spacer(),
+              Expanded(
+                child: Builder(
+                  builder: (context) {
+                    var body = <Widget>[];
+                    if (title != null) {
+                      body.add(DefaultTextStyle(
+                        style: YlTextStyles.header5.copyWith(height: 1.3),
+                        child: title,
+                      ));
+                    }
+                    if (title != null && subTitle != null) {
+                      body.add(SizedBox(
+                        height: 6,
+                      ));
+                    }
+                    if (subTitle != null) {
+                      body.add(DefaultTextStyle(
+                        style: YlTextStyles.body4
+                            .copyWith(height: 1.3, color: YlColors.black50),
+                        child: subTitle,
+                      ));
+                    }
+                    return Container(
+                      padding: EdgeInsets.only(left: 20, top: 20, bottom: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: body,
+                      ),
+                    );
+                  },
+                ),
+              ),
               CupertinoButton(
                 child: closeWidget ??
                     Image.asset(
