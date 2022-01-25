@@ -23,7 +23,7 @@ class YlToastDemoPage extends StatelessWidget {
                 YlToast.cancel();
               });
             }),
-            DemoButtonGroupItem('成功提示', () => YlToast.success('操作成功')),
+            DemoButtonGroupItem('成功提示', () => YlToast.success('成功了')),
             DemoButtonGroupItem('失败提示', () => YlToast.error('操作失败'))
           ],
         ),

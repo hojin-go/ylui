@@ -152,6 +152,7 @@ class YlToast {
     if (prefix != null) {
       widget = Row(
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           prefix,
           SizedBox(
