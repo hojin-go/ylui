@@ -40,6 +40,7 @@ class YlToast {
     }
     BotToast.showCustomLoading(
         clickClose: true,
+        onClose: onCancel,
         toastBuilder: (_) => GestureDetector(
               onTap: () {
                 BotToast.closeAllLoading();
@@ -105,8 +106,10 @@ class YlToast {
                   ),
                   Text(
                     message,
-                    style: YlTextStyles.body3
-                        .copyWith(color: YlColors.white, height: 1.3),
+                    style: YlTextStyles.body3.copyWith(
+                      color: YlColors.white,
+                      height: 1.25,
+                    ),
                   )
                 ],
               ),
