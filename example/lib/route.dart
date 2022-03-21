@@ -13,6 +13,7 @@ import 'package:example/views/popover_demo.dart';
 import 'package:example/views/radiobox_view.dart';
 import 'package:example/views/rich_dialog_demo.dart';
 import 'package:example/views/sliding_up_panel_demo.dart';
+import 'package:example/views/tabs/bottom_tabbar_view.dart';
 import 'package:example/views/tabs/tabs_view.dart';
 import 'package:example/views/yl_toast_demo.dart';
 import 'package:flutter/material.dart';
@@ -59,6 +60,11 @@ List<RouteObject> defineRouteObjects() {
       '/appbar',
       '导航栏',
       (context) => AppBarView(),
+    ),
+    RouteObject(
+      '/bottom_tabbar',
+      '底部导航栏',
+      (context) => BottomTabbarView(),
     ),
   ];
 }
