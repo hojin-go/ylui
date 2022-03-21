@@ -20,5 +20,8 @@ export 'src/widgets/popover/yl_sliding_up_panel.dart';
 export 'src/widgets/yl_toast.dart';
 export 'src/widgets/yl_appbar.dart';
 export 'src/widgets/loading_indicator.dart';
+export 'src/widgets/tabs/yl_horizontal_tabs.dart';
+export 'src/widgets/tabs/yl_vertical_tabs.dart';
+export 'src/widgets/tabs/yl_vertical_tabs_controller.dart';
 export 'src/yl_color.dart';
 export 'src/yl_text_style.dart';

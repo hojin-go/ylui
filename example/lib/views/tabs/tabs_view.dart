@@ -18,7 +18,9 @@ class TabsView extends StatelessWidget {
             trailing: Icon(Icons.chevron_right),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => HorizontalTabsView(),
+                builder: (context) => HorizontalTabsView(
+                  isScrollable: false,
+                ),
               ),
             ),
           ),
@@ -27,7 +29,9 @@ class TabsView extends StatelessWidget {
             trailing: Icon(Icons.chevron_right),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => HorizontalTabsView(),
+                builder: (context) => HorizontalTabsView(
+                  isScrollable: true,
+                ),
               ),
             ),
           ),

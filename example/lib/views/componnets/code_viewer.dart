@@ -1,7 +1,6 @@
 import 'package:example/views/componnets/demo_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
-import 'package:widget_with_codeview/source_code_view.dart';
 
 class CodeViewerPage extends StatelessWidget {
   final String filePath;
@@ -14,9 +13,10 @@ class CodeViewerPage extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       child: DefaultTextStyle(
         style: YlTextStyles.caption1,
-        child: SourceCodeView(
-          filePath: filePath,
-        ),
+        child: Container(),
+        // SourceCodeView(
+        //   filePath: filePath,
+        // ),
       ),
     );
   }
