@@ -18,5 +18,7 @@ export 'src/widgets/popover/yl_rich_dialog.dart';
 export 'src/widgets/popover/yl_action_sheet.dart';
 export 'src/widgets/popover/yl_sliding_up_panel.dart';
 export 'src/widgets/yl_toast.dart';
+export 'src/widgets/yl_appbar.dart';
+export 'src/widgets/loading_indicator.dart';
 export 'src/yl_color.dart';
 export 'src/yl_text_style.dart';

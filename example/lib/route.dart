@@ -7,9 +7,12 @@ import 'package:example/views/confirm_view.dart';
 import 'package:example/views/dialog_demo.dart';
 import 'package:example/views/floating_bottom_view.dart';
 import 'package:example/views/font_view.dart';
+import 'package:example/views/loading_indicator_view.dart';
 import 'package:example/views/popover_demo.dart';
+import 'package:example/views/radiobox_view.dart';
 import 'package:example/views/rich_dialog_demo.dart';
 import 'package:example/views/sliding_up_panel_demo.dart';
+import 'package:example/views/tabs/tabs_view.dart';
 import 'package:example/views/yl_toast_demo.dart';
 import 'package:flutter/material.dart';
 
@@ -23,15 +26,16 @@ class RouteObject {
 
 List<RouteObject> defineRouteObjects() {
   return [
-    RouteObject('/color', 'YlColors', (context) => ColorView()),
-    RouteObject('/font', 'YlTextStyle', (context) => FontView()),
-    RouteObject('/checkbox', 'YlCheckbox', (context) => CheckboxView()),
+    RouteObject('/color', '颜色', (context) => ColorView()),
+    RouteObject('/font', '字体样式', (context) => FontView()),
+    RouteObject('/checkbox', '多选', (context) => CheckboxView()),
+    RouteObject('/radiobox', '单选', (context) => RadioboxView()),
     RouteObject('/confirm', 'YlConfirm', (context) => ConfirmView()),
     RouteObject('/popover', 'YlPopover', (context) => PopoverDemoPage()),
-    RouteObject('/button', 'YlButton', (context) => ButtonView()),
+    RouteObject('/button', '按钮', (context) => ButtonView()),
     RouteObject(
         '/button/group', 'YlButtonGroup', (context) => ButtonGroupDemoPage()),
-    RouteObject('/toast', 'YlToast', (context) => YlToastDemoPage()),
+    RouteObject('/toast', 'Toast', (context) => YlToastDemoPage()),
     RouteObject('/floating_bottom', 'YlFloatingBottom',
         (context) => FloatingBottomView()),
     RouteObject('/dialog', 'YlDialog', (context) => DialogDemoPage()),
@@ -39,7 +43,17 @@ List<RouteObject> defineRouteObjects() {
         '/action_sheet', 'YlActionSheet', (context) => ActionSheetDemoPage()),
     RouteObject('/dialog/rich', 'YlRichDialog', (context) => RichDialogDemo()),
     RouteObject('/sliding_up_panel', 'YlSlidingUpPanel',
-        (context) => SlidingUpPanelDemo())
+        (context) => SlidingUpPanelDemo()),
+    RouteObject(
+      '/loading_indicator',
+      '加载指示器',
+      (context) => LoadingIndicatorView(),
+    ),
+    RouteObject(
+      '/tabs',
+      'Tabs',
+      (context) => TabsView(),
+    ),
   ];
 }
 

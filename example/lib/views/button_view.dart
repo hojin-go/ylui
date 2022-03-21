@@ -37,7 +37,8 @@ class ButtonView extends StatelessWidget {
         child: YlButton.fromType(
           size: YlButtonSize.small,
           type: type,
-          child: Text('small'),
+          child: Text('小号'),
+          loading: true,
           onPressed: () {},
         ),
       ),
@@ -47,8 +48,11 @@ class ButtonView extends StatelessWidget {
         child: YlButton.fromType(
           size: YlButtonSize.medium,
           type: type,
-          child: Text('medium'),
-          onPressed: () {},
+          child: Text('中号'),
+          // onPressed: () {},
+          onAsyncPressed: () => Future.delayed(
+            Duration(seconds: 2),
+          ),
         ),
       ),
       Container(
@@ -57,8 +61,11 @@ class ButtonView extends StatelessWidget {
         child: YlButton.fromType(
           size: YlButtonSize.large,
           type: type,
-          child: Text('large'),
-          onPressed: () {},
+          child: Text('大号'),
+          // onPressed: () {},
+          onAsyncPressed: () => Future.delayed(
+            Duration(seconds: 2),
+          ),
         ),
       ),
       Container(
@@ -67,8 +74,11 @@ class ButtonView extends StatelessWidget {
         child: YlButton.fromType(
           size: YlButtonSize.max,
           type: type,
-          child: Text('max'),
-          onPressed: () {},
+          child: Text('超大号'),
+          // onPressed: () {},
+          onAsyncPressed: () => Future.delayed(
+            Duration(seconds: 2),
+          ),
         ),
       ),
     ];

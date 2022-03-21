@@ -1,5 +1,7 @@
 import 'package:example/views/componnets/code_viewer.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_ylui/flutter_ylui.dart';
 
 class DemoPage extends StatelessWidget {
   final Widget? child;
@@ -7,6 +9,7 @@ class DemoPage extends StatelessWidget {
   final EdgeInsets? contentPadding;
   final String? sourceCodePath;
   final bool bottomSafe;
+  final Color? backgroundColor;
 
   const DemoPage(
       {Key? key,
@@ -14,15 +17,19 @@ class DemoPage extends StatelessWidget {
       this.child,
       this.contentPadding,
       this.sourceCodePath,
-      this.bottomSafe = true})
+      this.bottomSafe = true,
+      this.backgroundColor})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
+    return Scaffold(
+      backgroundColor: backgroundColor ?? CupertinoColors.systemBackground,
+      appBar: YlAppBar(
         brightness: Brightness.light,
-        middle: Text(title ?? ''),
+        title: Text(
+          title ?? '',
+        ),
         trailing: sourceCodePath != null
             ? CupertinoButton(
                 padding: EdgeInsets.zero,
@@ -39,7 +46,7 @@ class DemoPage extends StatelessWidget {
               )
             : null,
       ),
-      child: SafeArea(
+      body: SafeArea(
         top: true,
         bottom: bottomSafe,
         child: Padding(

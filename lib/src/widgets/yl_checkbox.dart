@@ -1,26 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
+import 'package:flutter_ylui/src/helper.dart';
 
 class YlCheckbox extends StatefulWidget {
   final ValueChanged<bool>? onChanged;
-  final bool check;
-  final Color color;
-  final double size;
-  final IconData checkedIcon;
-  final IconData uncheckedIcon;
+  final bool checked;
 
-  const YlCheckbox(
-      {Key? key,
-      this.onChanged,
-      this.check = false,
-      this.color = YlColors.branding2,
-      this.size = 20,
-      this.checkedIcon = CupertinoIcons.checkmark_square_fill,
-      this.uncheckedIcon = CupertinoIcons.checkmark_square})
-      : super(key: key);
+  const YlCheckbox({
+    Key? key,
+    this.onChanged,
+    this.checked = false,
+  }) : super(key: key);
 
   @override
-  _YlCheckboxState createState() => _YlCheckboxState(isCheck: check);
+  _YlCheckboxState createState() => _YlCheckboxState(isCheck: checked);
 }
 
 class _YlCheckboxState extends State<YlCheckbox> {
@@ -32,30 +25,66 @@ class _YlCheckboxState extends State<YlCheckbox> {
   Widget build(BuildContext context) {
     bool enabled = widget.onChanged != null;
 
-    return Container(
-      child: CupertinoButton(
-        padding: EdgeInsets.all(8),
-        minSize: 30,
-        child: isCheck
-            ? Icon(
-                widget.checkedIcon,
-                color: enabled ? widget.color : YlColors.grey2,
-                size: widget.size,
-              )
-            : Icon(
-                widget.uncheckedIcon,
-                color: enabled ? YlColors.black50 : YlColors.grey2,
-                size: widget.size,
-              ),
-        onPressed: enabled
-            ? () {
-                setState(() {
-                  isCheck = !isCheck;
-                });
-                widget.onChanged!(isCheck);
-              }
-            : null,
+    return YlTapDetector(
+      onTap: enabled
+          ? () {
+              setState(() {
+                isCheck = !isCheck;
+              });
+              widget.onChanged!(isCheck);
+            }
+          : null,
+      child: Container(
+        width: 22,
+        height: 22,
+        margin: EdgeInsets.all(11),
+        child: YlCheckboxWidget(checked: isCheck, enabled: enabled),
       ),
     );
+  }
+}
+
+class YlRadioboxWidget extends YlCheckWidget {
+  YlRadioboxWidget({
+    required bool checked,
+    required bool enabled,
+  }) : super(
+            checked: checked,
+            enabled: enabled,
+            imageGetter: (checked, enabled) {
+              return checked
+                  ? 'radio_selected${enabled ? '' : '_disable'}'
+                  : 'radio_unselected${enabled ? '' : '_disable'}';
+            });
+}
+
+class YlCheckboxWidget extends YlCheckWidget {
+  YlCheckboxWidget({required bool checked, required bool enabled})
+      : super(
+            checked: checked,
+            enabled: enabled,
+            imageGetter: (checked, enabled) {
+              return checked
+                  ? 'cb_selected${enabled ? '' : '_disable'}'
+                  : 'cb_unselected${enabled ? '' : '_disable'}';
+            });
+}
+
+typedef String YlCheckboxImageGetter(bool checked, bool enabled);
+
+abstract class YlCheckWidget extends StatelessWidget {
+  final bool checked;
+  final bool enabled;
+  final YlCheckboxImageGetter imageGetter;
+  const YlCheckWidget(
+      {Key? key,
+      required this.checked,
+      required this.enabled,
+      required this.imageGetter})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return getImageFromAssets(imageGetter(checked, enabled), ext: 'png');
   }
 }

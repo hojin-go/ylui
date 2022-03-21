@@ -3,27 +3,27 @@ import 'package:flutter_ylui/flutter_ylui.dart';
 
 import 'componnets/demo_page.dart';
 
-class CheckboxView extends StatefulWidget {
+class RadioboxView extends StatefulWidget {
   @override
-  State<CheckboxView> createState() => _CheckboxViewState();
+  State<RadioboxView> createState() => _RadioboxViewState();
 }
 
-class _CheckboxViewState extends State<CheckboxView> {
+class _RadioboxViewState extends State<RadioboxView> {
   final data = [
-    _CheckboxTile(
+    _RadioboxTile(
       title: '未选中&可点击',
       checked: false,
     ),
-    _CheckboxTile(
+    _RadioboxTile(
       title: '未选中&不可点击',
       checked: false,
       enabled: false,
     ),
-    _CheckboxTile(
+    _RadioboxTile(
       title: '选中&可点击',
       checked: true,
     ),
-    _CheckboxTile(
+    _RadioboxTile(
       title: '选中&不可点击',
       checked: true,
       enabled: false,
@@ -33,7 +33,8 @@ class _CheckboxViewState extends State<CheckboxView> {
   @override
   Widget build(BuildContext context) {
     return DemoPage(
-      title: 'YlCheckbox',
+      title: 'YlRadiobox',
+      backgroundColor: Colors.white,
       child: ListView.separated(
           itemBuilder: (context, index) {
             var item = data[index];
@@ -41,11 +42,9 @@ class _CheckboxViewState extends State<CheckboxView> {
               onTap: item.enabled
                   ? () {
                       setState(() {
-                        item.checked = !item.checked;
+                        data.forEach((e) => e.checked = false);
+                        item.checked = true;
                       });
-
-                      print(
-                          data.map((e) => '${e.title}: ${e.checked}').toList());
                     }
                   : null,
               child: SizedBox(
@@ -55,7 +54,7 @@ class _CheckboxViewState extends State<CheckboxView> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(item.title),
-                    YlCheckboxWidget(
+                    YlRadioboxWidget(
                       checked: item.checked,
                       enabled: item.enabled,
                     )
@@ -70,12 +69,12 @@ class _CheckboxViewState extends State<CheckboxView> {
   }
 }
 
-class _CheckboxTile {
+class _RadioboxTile {
   final String title;
   bool checked;
   final bool enabled;
 
-  _CheckboxTile({
+  _RadioboxTile({
     required this.title,
     this.enabled = true,
     required this.checked,

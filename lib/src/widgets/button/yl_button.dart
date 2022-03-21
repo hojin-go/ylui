@@ -163,7 +163,7 @@ class YlButton extends StatefulWidget {
   final ButtonClickCallback? onAsyncPressed;
   final double? width;
   final double? height;
-  final Widget? child;
+  final Widget child;
   final Color? background;
   final BorderRadius? radius;
   final EdgeInsets? padding;
@@ -173,6 +173,7 @@ class YlButton extends StatefulWidget {
   final Color? disableBorderColor;
   final Color? disableTextColor;
   final TextStyle? textStyle;
+  final bool? loading;
 
   const YlButton(
       {Key? key,
@@ -180,7 +181,7 @@ class YlButton extends StatefulWidget {
       this.width,
       this.height,
       this.onAsyncPressed,
-      this.child,
+      required this.child,
       this.background,
       this.radius,
       this.padding,
@@ -189,7 +190,8 @@ class YlButton extends StatefulWidget {
       this.disableBackgroundColor,
       this.disableBorderColor,
       this.disableTextColor,
-      this.textStyle})
+      this.textStyle,
+      this.loading})
       : super(key: key);
 
   YlButton.text({
@@ -199,6 +201,7 @@ class YlButton extends StatefulWidget {
     this.onPressed,
     this.onAsyncPressed,
     this.width,
+    this.loading,
   })  : this.child = Text(
           title,
         ),
@@ -215,19 +218,20 @@ class YlButton extends StatefulWidget {
         this.disableTextColor = YlButtonType.primary.disableTextColor,
         super(key: key);
 
-  YlButton.fromType(
-      {required YlButtonSize size,
-      required YlButtonType type,
-      this.onPressed,
-      this.onAsyncPressed,
-      this.width,
-      this.child,
-      Color? color,
-      Color? borderColor,
-      Color? textColor,
-      Color? pressedCoverColor,
-      EdgeInsets? padding})
-      : this.background = color ?? type.background,
+  YlButton.fromType({
+    required YlButtonSize size,
+    required YlButtonType type,
+    this.onPressed,
+    this.onAsyncPressed,
+    this.width,
+    required this.child,
+    Color? color,
+    Color? borderColor,
+    Color? textColor,
+    Color? pressedCoverColor,
+    EdgeInsets? padding,
+    this.loading,
+  })  : this.background = color ?? type.background,
         this.disableBackgroundColor = type.disableBackgroundColor,
         this.height = size.height,
         this.radius = size.radius,
@@ -284,44 +288,62 @@ class _YlButtonState extends State<YlButton> {
     }
 
     return SizedBox(
-        width: widget.width,
-        height: widget.height,
-        child: YlTapEffect(
-          radius: widget.radius,
-          backgroundColor: widget.pressedCoverColor,
-          child: Container(
-            padding: widget.padding ??
-                EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            decoration: BoxDecoration(
-              color: enabled ? backgroundColor : disableBackgroundColor,
-              borderRadius: widget.radius,
-              border: border,
-            ),
-            child: Center(
-                child: DefaultTextStyle(
-              child: IconTheme(
-                  data: IconThemeData(
-                      color: textStyle.color, size: textStyle.fontSize),
-                  child: widget.child!),
-              style: textStyle,
-            )),
+      width: widget.width,
+      height: widget.height,
+      child: YlTapEffect(
+        radius: widget.radius,
+        backgroundColor: widget.pressedCoverColor,
+        child: Container(
+          padding: widget.padding ??
+              EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          decoration: BoxDecoration(
+            color: enabled ? backgroundColor : disableBackgroundColor,
+            borderRadius: widget.radius,
+            border: border,
           ),
-          onTap: (widget.onPressed != null ||
-                  (widget.onAsyncPressed != null && isAsync == false))
-              ? () async {
-                  if (widget.onPressed != null) {
-                    widget.onPressed!();
-                  } else if (widget.onAsyncPressed != null) {
-                    setState(() {
-                      isAsync = true;
-                    });
-                    await widget.onAsyncPressed!();
-                    setState(() {
-                      isAsync = false;
-                    });
-                  }
+          child: Center(
+              child: DefaultTextStyle(
+            child: IconTheme(
+                data: IconThemeData(
+                    color: textStyle.color, size: textStyle.fontSize),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Visibility(
+                      visible: isAsync || widget.loading == true,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 8),
+                        child: Transform.scale(
+                          scale: (textStyle.fontSize ?? 20) / 20,
+                          child: YlLoadingIndicator(
+                            color: textStyle.color,
+                          ),
+                        ),
+                      ),
+                    ),
+                    widget.child,
+                  ],
+                )),
+            style: textStyle,
+          )),
+        ),
+        onTap: (widget.onPressed != null ||
+                (widget.onAsyncPressed != null && isAsync == false))
+            ? () async {
+                if (widget.onPressed != null) {
+                  widget.onPressed!();
+                } else if (widget.onAsyncPressed != null) {
+                  setState(() {
+                    isAsync = true;
+                  });
+                  await widget.onAsyncPressed!();
+                  setState(() {
+                    isAsync = false;
+                  });
                 }
-              : null,
-        ));
+              }
+            : null,
+      ),
+    );
   }
 }

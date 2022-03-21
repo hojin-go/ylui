@@ -13,11 +13,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
+    return MaterialApp(
       title: 'YlKits',
-      theme: CupertinoThemeData(
-          brightness: Brightness.light,
-          scaffoldBackgroundColor: YlColors.grey2),
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.white,
+        ),
+      ),
       routes: routesMap,
       home: HomeView(),
       builder: BotToastInit(),
