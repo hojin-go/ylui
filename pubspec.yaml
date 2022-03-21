@@ -1,7 +1,6 @@
 name: flutter_ylui
 description: 圆领 App 组件规范
 version: 1.1.5
-author: yl_tech
 homepage: http://git.release.weiheinc.com/fe/flutter_ylui
 
 environment:
@@ -26,6 +25,7 @@ flutter:
   # To add assets to your package, add an assets section, like this:
   assets:
     - lib/assets/x-mark.png
+    - lib/assets/back_arrow.png
     - lib/assets/cb_selected.png
     - lib/assets/cb_selected_disable.png
     - lib/assets/cb_unselected.png

@@ -26,25 +26,23 @@ class DemoPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: backgroundColor ?? CupertinoColors.systemBackground,
       appBar: YlAppBar(
-        brightness: Brightness.light,
         title: Text(
           title ?? '',
         ),
-        trailing: sourceCodePath != null
-            ? CupertinoButton(
-                padding: EdgeInsets.zero,
-                minSize: 30,
-                child: Icon(CupertinoIcons.chevron_left_slash_chevron_right),
-                onPressed: () => Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      fullscreenDialog: true,
-                      builder: (context) => CodeViewerPage(
-                        filePath: sourceCodePath!,
-                      ),
-                    )),
-              )
-            : null,
+        actions: [
+          if (sourceCodePath != null)
+            YlAppBarButton(
+              child: Icon(CupertinoIcons.chevron_left_slash_chevron_right),
+              onPressed: () => Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    fullscreenDialog: true,
+                    builder: (context) => CodeViewerPage(
+                      filePath: sourceCodePath!,
+                    ),
+                  )),
+            )
+        ],
       ),
       body: SafeArea(
         top: true,

@@ -1,4 +1,5 @@
 import 'package:example/views/action_sheet_demo.dart';
+import 'package:example/views/appbar/appbar_view.dart';
 import 'package:example/views/button_group_demo.dart';
 import 'package:example/views/button_view.dart';
 import 'package:example/views/checkbox_view.dart';
@@ -53,6 +54,11 @@ List<RouteObject> defineRouteObjects() {
       '/tabs',
       'Tabs',
       (context) => TabsView(),
+    ),
+    RouteObject(
+      '/appbar',
+      '导航栏',
+      (context) => AppBarView(),
     ),
   ];
 }
