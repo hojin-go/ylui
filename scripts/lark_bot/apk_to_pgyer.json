@@ -1,0 +1,46 @@
+{
+  "config": {
+    "wide_screen_mode": true,
+    "enable_forward": true
+  },
+  "header": {
+    "template": "blue",
+    "title": {
+      "content": "Android测试版本发布(v3)",
+      "tag": "plain_text"
+    }
+  },
+  "elements": [
+    {
+      "tag": "div",
+      "text": {
+        "content": "**{{branch}}**分支, 版本号为**{{version}}**的测试安装包已经上传到蒲公英分发平台。",
+        "tag": "lark_md"
+      }
+    },
+    {
+      "tag": "hr"
+    },
+    {
+      "tag": "markdown",
+      "content": "CHANGELOG\n{{changelog}}"
+    },
+    {
+      "tag": "action",
+      "actions": [
+        {
+          "tag": "button",
+          "text": {
+            "tag": "plain_text",
+            "content": "安装测试版本"
+          },
+          "multi_url": {
+            "url": "{{url}}",
+            "android_url": "{{android_url}}"
+          },
+          "type": "primary"
+        }
+      ]
+    }
+  ]
+}

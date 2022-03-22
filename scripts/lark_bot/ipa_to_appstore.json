@@ -1,0 +1,36 @@
+{
+  "config": {
+    "wide_screen_mode": true,
+    "enable_forward": true
+  },
+  "header": {
+    "template": "blue",
+    "title": {
+      "content": "iOS正式版本发布(v3)",
+      "tag": "plain_text"
+    }
+  },
+  "elements": [
+    {
+      "tag": "div",
+      "text": {
+        "content": "**{{branch}}**分支, 版本号为**{{version}}**的iOS安装包已经上传到AppStore，请稍后前往提交审核。",
+        "tag": "lark_md"
+      }
+    },
+    {
+      "tag": "action",
+      "actions": [
+        {
+          "tag": "button",
+          "text": {
+            "tag": "plain_text",
+            "content": "前往提交审核"
+          },
+          "url": "https://appstoreconnect.apple.com/apps",
+          "type": "primary"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "config": {
+    "wide_screen_mode": true,
+    "enable_forward": true
+  },
+  "header": {
+    "template": "blue",
+    "title": {
+      "content": "{{title}}",
+      "tag": "plain_text"
+    }
+  },
+  "elements": [
+    {
+      "tag": "div",
+      "text": {
+        "content": "{{content}}",
+        "tag": "lark_md"
+      }
+    },
+    {
+      "tag": "action",
+      "actions": [
+        {
+          "tag": "button",
+          "text": {
+            "tag": "plain_text",
+            "content": "安装测试版本"
+          },
+          "multi_url": {
+            "url": "{{url}}",
+            "android_url": "{{android_url}}",
+            "ios_url": "{{ios_url}}"
+          },
+          "type": "primary"
+        }
+      ]
+    }
+  ]
+}

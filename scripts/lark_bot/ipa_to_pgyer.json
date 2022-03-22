@@ -1,0 +1,46 @@
+{
+  "config": {
+    "wide_screen_mode": true,
+    "enable_forward": true
+  },
+  "header": {
+    "template": "blue",
+    "title": {
+      "content": "iOS测试版本发布(v3)",
+      "tag": "plain_text"
+    }
+  },
+  "elements": [
+    {
+      "tag": "div",
+      "text": {
+        "content": "**{{branch}}**分支, 版本号为**{{version}}**的测试安装包已经上传到蒲公英分发平台。\n\n[💡如安装失败，请戳这](https://lanehubcn.feishu.cn/docs/doccnpN7oCXq6N5P3BqS9QegIch#IPa97j)",
+        "tag": "lark_md"
+      }
+    },
+    {
+      "tag": "hr"
+    },
+    {
+      "tag": "markdown",
+      "content": "CHANGELOG\n{{changelog}}"
+    },
+    {
+      "tag": "action",
+      "actions": [
+        {
+          "tag": "button",
+          "text": {
+            "tag": "plain_text",
+            "content": "安装测试版本"
+          },
+          "multi_url": {
+            "url": "{{url}}",
+            "ios_url": "{{ios_url}}"
+          },
+          "type": "primary"
+        }
+      ]
+    }
+  ]
+}

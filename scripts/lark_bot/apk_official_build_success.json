@@ -1,0 +1,32 @@
+{
+    "config": {
+      "wide_screen_mode": true,
+      "enable_forward": true
+    },
+    "header": {
+      "template": "blue",
+      "title": {
+        "content": "Android官网包构建完成(v3)",
+        "tag": "plain_text"
+      }
+    },
+    "elements": [
+      {
+        "tag": "div",
+        "text": {
+          "content": "**{{branch}}**分支, 版本号为**{{version}}**的官网发布包已经构建完成。\n文件已经上传到快传服务, [点击下载]({{url}})。",
+          "tag": "lark_md"
+        }
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "div",
+        "text": {
+          "content": "[备用] 复制以下命令，在终端执行，以下载文件：\nscp -r -P 8206 mikeooye@139.196.162.214:/Users/mikeooye/Desktop/AppBuild/{{version}}/official ~/Downloads",
+          "tag": "lark_md"
+        }
+      }
+    ]
+  }

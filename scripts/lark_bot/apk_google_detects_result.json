@@ -1,0 +1,23 @@
+{
+    "config": {
+      "wide_screen_mode": true,
+      "enable_forward": true
+    },
+    "header": {
+      "template": "blue",
+      "title": {
+        "content": "google渠道检测结果(v3)",
+        "tag": "plain_text"
+      }
+    },
+    "elements": [
+      {
+        "tag": "div",
+        "text": {
+          "content": "{{content}}",
+          "tag": "lark_md"
+        }
+      }
+    ]
+  }
+  

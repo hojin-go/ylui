@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
-import 'package:flutter_ylui/src/widgets/popover/yl_dialog_action.dart';
-import 'package:flutter_ylui/src/yl_color.dart';
 
 /// 自定义弹窗
 class YlActionSheet extends StatelessWidget {
@@ -27,7 +24,10 @@ class YlActionSheet extends StatelessWidget {
           alignment: Alignment.center,
           child: Text(
             firstAction.title,
-            style: YlTextStyles.header5.copyWith(color: YlColors.black70),
+            style: YlTextStyles.header5.copyWith(
+              color: YlColors.black70,
+              decoration: TextDecoration.none,
+            ),
           ),
         ),
       );
@@ -43,6 +43,7 @@ class YlActionSheet extends StatelessWidget {
           child: Text(
             e.title,
             style: YlTextStyles.header5.copyWith(
+                decoration: TextDecoration.none,
                 color: e.highlight
                     ? YlColors.branding2
                     : e.alert
@@ -67,8 +68,10 @@ class YlActionSheet extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
                 child: DefaultTextStyle(
-                  style:
-                      YlTextStyles.caption1.copyWith(color: YlColors.black50),
+                  style: YlTextStyles.caption1.copyWith(
+                    color: YlColors.black50,
+                    decoration: TextDecoration.none,
+                  ),
                   child: Text(
                     content!,
                     textAlign: TextAlign.center,

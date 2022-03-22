@@ -34,6 +34,7 @@ class YlDialog extends StatelessWidget {
             child: Text(
               action.title,
               style: YlTextStyles.header5.copyWith(
+                  decoration: TextDecoration.none,
                   // 通常按钮文字为单行，重写他的高度，使其垂直居中
                   height: 1.3,
                   color: action.highlight
@@ -102,9 +103,13 @@ class YlDialog extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Visibility(
-                          child: Text('$title',
-                              textAlign: TextAlign.center,
-                              style: YlTextStyles.header5),
+                          child: Text(
+                            '$title',
+                            textAlign: TextAlign.center,
+                            style: YlTextStyles.header5.copyWith(
+                              decoration: TextDecoration.none,
+                            ),
+                          ),
                           visible: hasTitle),
                       Visibility(
                         child: SizedBox(
@@ -113,10 +118,14 @@ class YlDialog extends StatelessWidget {
                         visible: hasContent,
                       ),
                       Visibility(
-                        child: Text('$content',
-                            textAlign: TextAlign.center,
-                            style: YlTextStyles.body1
-                                .copyWith(color: YlColors.black50)),
+                        child: Text(
+                          '$content',
+                          textAlign: TextAlign.center,
+                          style: YlTextStyles.body1.copyWith(
+                            color: YlColors.black50,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
                         visible: hasContent,
                       ),
                     ],

@@ -1,0 +1,28 @@
+{
+  "msg_type": "interactive",
+  "card": {
+    "config": { "wide_screen_mode": true, "enable_forward": true },
+    "elements": [
+      {
+        "tag": "div",
+        "text": {
+          "content": "**{{branch}}** 分支，**{{version}}** 版本的 **安卓** 安装包已经发布到官网\n\n全部apk下载：\n scp -P 8206 -r mikeooye@139.196.162.214:/Users/mikeooye/code/tmp/apk ~/Downloads\n\n应用市场apk下载：\n scp -P 8206 -r mikeooye@139.196.162.214:/Users/mikeooye/code/tmp/apk/market ~/Downloads",
+          "tag": "lark_md"
+        }
+      },
+      {
+        "actions": [
+          {
+            "tag": "button",
+            "text": { "content": "前往安装", "tag": "lark_md" },
+            "url": "https://www.yuanling.com/download",
+            "type": "primary",
+            "value": {}
+          }
+        ],
+        "tag": "action"
+      }
+    ],
+    "header": { "title": { "content": "安卓官网发布", "tag": "plain_text" } }
+  }
+}
