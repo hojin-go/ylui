@@ -134,9 +134,9 @@ extension YlButtonDataFromType on YlButtonType {
       case YlButtonType.alert:
       case YlButtonType.subSecondary:
       case YlButtonType.secondary:
-        return YlColors.grey4;
+        return YlColors.grey1;
       default:
-        return YlColors.grey2;
+        return YlColors.grey3;
     }
   }
 
@@ -145,7 +145,7 @@ extension YlButtonDataFromType on YlButtonType {
       case YlButtonType.alert:
       case YlButtonType.subSecondary:
       case YlButtonType.secondary:
-        return YlColors.grey2;
+        return YlColors.grey3;
       default:
         return null;
     }
@@ -273,8 +273,8 @@ class _YlButtonState extends State<YlButton> {
 
     var backgroundColor = widget.background ?? YlColors.branding1;
     var disableBackgroundColor =
-        widget.disableBackgroundColor ?? YlColors.grey2;
-    var disableBorderColor = widget.disableBorderColor ?? YlColors.grey2;
+        widget.disableBackgroundColor ?? YlColors.grey3;
+    var disableBorderColor = widget.disableBorderColor ?? YlColors.grey3;
     var border = widget.border == null
         ? null
         : Border.all(

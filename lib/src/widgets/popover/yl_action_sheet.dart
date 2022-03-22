@@ -84,7 +84,7 @@ class YlActionSheet extends StatelessWidget {
             if (cancelButton != null)
               Container(
                 height: 8,
-                color: YlColors.grey3,
+                color: YlColors.grey2,
               ),
             if (cancelButton != null) cancelButton,
           ],

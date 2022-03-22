@@ -31,7 +31,7 @@ class RichDialogDemo extends StatelessWidget {
             closeale: false,
             body: Container(
               height: 400,
-              color: YlColors.grey2,
+              color: YlColors.grey3,
             ),
             footer: Container(
               color: YlColors.orangeLight,
@@ -51,7 +51,7 @@ class RichDialogDemo extends StatelessWidget {
           closeale: true,
           body: Container(
             height: 400,
-            color: YlColors.grey2,
+            color: YlColors.grey3,
           ),
           footer: Container(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),

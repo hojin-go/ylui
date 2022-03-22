@@ -24,40 +24,41 @@ class ColorView extends StatelessWidget {
     ColorTileData(YlColors.black50, 'Black Alpha50'),
     ColorTileData(YlColors.black30, 'Black Alpha30'),
     ColorTileData(YlColors.black10, 'Black Alpha10'),
-    ColorTileData(YlColors.grey1, 'Grey1'),
-    ColorTileData(YlColors.grey2, 'Grey2'),
-    ColorTileData(YlColors.grey3, 'Grey3'),
-    ColorTileData(YlColors.grey4, 'Grey4'),
+    ColorTileData(YlColors.grey4, 'Grey1'),
+    ColorTileData(YlColors.grey3, 'Grey2'),
+    ColorTileData(YlColors.grey2, 'Grey3'),
+    ColorTileData(YlColors.grey1, 'Grey4'),
     ColorTileData(YlColors.white, 'White'),
     ColorTileData(YlColors.transparent, 'Transparent'),
   ];
 
   @override
   Widget build(BuildContext context) {
-
     var widgets = <Widget>[];
     data.forEach((element) {
-      widgets.add(
-        Row(
-          children: [
-            Container(
-              width: 44,
-              height: 44,
-              margin: EdgeInsets.all(8),
-              color: element.color,
-            ),
-            Text(element.title, style: YlTextStyles.body1,)
-          ],
-        )
-      );
+      widgets.add(Row(
+        children: [
+          Container(
+            width: 44,
+            height: 44,
+            margin: EdgeInsets.all(8),
+            color: element.color,
+          ),
+          Text(
+            element.title,
+            style: YlTextStyles.body1,
+          )
+        ],
+      ));
     });
 
     return DemoPage(
-      title: 'YlColors',
-      child: SingleChildScrollView(child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: widgets,
-        ),)
-    );
+        title: 'YlColors',
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: widgets,
+          ),
+        ));
   }
 }

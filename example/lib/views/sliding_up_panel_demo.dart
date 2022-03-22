@@ -71,7 +71,7 @@ class SlidingUpPanelDemo extends StatelessWidget {
             width: 24,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
-              color: YlColors.grey2,
+              color: YlColors.grey3,
             ),
           )
         ],

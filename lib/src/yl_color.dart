@@ -12,6 +12,9 @@ class YlColors {
   /// 辅助主题色, #FFA902
   static const branding2 = Color.fromRGBO(0, 171, 76, 1);
 
+  /// 透明色
+  static const transparent = Color(0x00000000);
+
   static const white = Color(0xFFFFFFFF);
 
   /// 黑色，名称取自 Colors.black
@@ -22,35 +25,25 @@ class YlColors {
   static const black30 = Color.fromRGBO(0, 0, 0, 0.3);
   static const black10 = Color.fromRGBO(0, 0, 0, 0.1);
 
-  /// 透明色
-  static const transparent = Color(0x00000000);
-
-  /// 灰色，分割线, #E6E8EB
-  static const grey1 = Color.fromRGBO(230, 232, 235, 1);
-
-  /// 灰色，分割线, #E6E8EB
-  static const divider = grey1;
-
-  /// 分割线颜色, 命名取自 CupertinoColors.separator
-  static const separator = grey1;
-
-  /// 暗示可点击、线框, #EFF0F2
-  static const grey2 = Color.fromRGBO(239, 240, 242, 1);
-
-  /// 暗示可点击、线框, #EFF0F2
-  static const border = grey2;
+  /// 底色, #FAFAFB
+  static const grey1 = Color(0xFFFAFAFB);
+  static const background = grey1;
 
   /// 灰块分割, #F5F6F8
-  static const grey3 = Color.fromRGBO(245, 246, 248, 1);
+  static const grey2 = Color(0xFFF5F6F8);
+  static const dividerBlock = grey2;
 
-  /// 灰块分割, #F5F6F8
-  static const dividerBlock = grey3;
+  /// 暗示可点击、线框, #EFF0F2
+  static const grey3 = Color(0xFFEFF0F2);
+  static const border = grey3;
 
-  /// 底色, #FAFAFB
-  static const grey4 = Color.fromRGBO(250, 250, 251, 1);
+  /// 灰色，分割线, #E6E8EB
+  static const grey4 = Color(0xFFE6E8EB);
+  static const divider = grey4;
+  static const separator = grey4;
 
-  /// 底色, #FAFAFB
-  static const background = grey4;
+  /// 浅色插画
+  static const grey5 = Color(0xFFD6DAE0);
 
   /// 提醒色，命名取自, #FA243C
   static const alertRed = Color.fromRGBO(250, 36, 60, 1);
@@ -63,4 +56,6 @@ class YlColors {
 
   /// 瓴里蓝色, #5C769D
   static const lanehubBlue = Color.fromRGBO(92, 118, 157, 1);
+
+  static const note = Color(0xFFC22CDB);
 }

@@ -37,7 +37,7 @@ class PopoverDemoPage extends StatelessWidget {
           onClosed: () => Navigator.pop(context),
           body: Container(
             height: 300,
-            color: YlColors.grey4,
+            color: YlColors.grey1,
           ),
         ));
   }
@@ -50,7 +50,7 @@ class PopoverDemoPage extends StatelessWidget {
           onClosed: () => Navigator.pop(context),
           body: Container(
             height: 372,
-            color: YlColors.grey4,
+            color: YlColors.grey1,
           ),
           footer: YlButtonGroup(
             weight: YlButtonGroupWeight.equaly,
@@ -76,7 +76,7 @@ class PopoverDemoPage extends StatelessWidget {
           onClosed: () => Navigator.pop(context),
           body: Container(
             height: 372,
-            color: YlColors.grey4,
+            color: YlColors.grey1,
           ),
           footer: YlButtonGroup(
             weight: YlButtonGroupWeight.equaly,

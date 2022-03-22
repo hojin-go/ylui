@@ -9,7 +9,7 @@ class YlDialogDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: YlColors.grey2,
+      color: YlColors.grey3,
       width: horizontal ? double.infinity : 0.5,
       height: horizontal ? 0.5 : 56,
     );

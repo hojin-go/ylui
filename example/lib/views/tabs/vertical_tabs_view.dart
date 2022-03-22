@@ -29,7 +29,7 @@ class _VerticalTabsViewState extends State<VerticalTabsView> {
   @override
   Widget build(BuildContext context) {
     return DemoPage(
-      backgroundColor: YlColors.grey3,
+      backgroundColor: YlColors.grey2,
       contentPadding: EdgeInsets.zero,
       title: '竖向Tabs',
       child: Row(

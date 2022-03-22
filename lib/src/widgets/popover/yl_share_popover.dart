@@ -58,7 +58,7 @@ Future<T?> showYlSharePopover<T>(BuildContext context,
       ),
       Container(
         height: 8,
-        color: YlColors.grey2,
+        color: YlColors.grey3,
       )
     ]),
   );

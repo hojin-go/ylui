@@ -134,7 +134,7 @@ class YlDialog extends StatelessWidget {
                 Divider(
                   height: 0.5,
                   thickness: 0.5,
-                  color: YlColors.grey2,
+                  color: YlColors.grey3,
                 ),
                 actionContainer
               ],
