@@ -4,6 +4,9 @@ import 'package:flutter_ylui/flutter_ylui.dart';
 class YlVerticalTabs extends StatefulWidget {
   final YlVerticalTabsController controller;
   final List<Text> tabs;
+
+  // todo text layout type: fitWidth, lineBreak
+
   const YlVerticalTabs({
     Key? key,
     required this.controller,

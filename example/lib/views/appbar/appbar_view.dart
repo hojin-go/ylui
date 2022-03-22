@@ -46,9 +46,9 @@ class AppBarView extends StatelessWidget {
           ),
           YlAppBar(
             title: Text('圆领官方'),
-            leading: YlAppBarBackButton(
-              backgroundColor: Colors.yellow[100],
-            ),
+            backgroundColor: Colors.blue,
+            foregroundColor: Colors.red,
+            leading: YlAppBarBackButton(),
             actions: [
               YlAppBarButton(
                 child: Icon(CupertinoIcons.ellipsis),

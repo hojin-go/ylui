@@ -33,8 +33,19 @@ class YlAppBar extends StatelessWidget implements PreferredSizeWidget {
     var canPop = ModalRoute.of(context)?.canPop ?? false;
 
     var leadingWidget = leading;
-    if (leadingWidget == null && automaticallyImplyLeading && canPop) {
-      leadingWidget = YlAppBarBackButton();
+
+    if (leadingWidget != null &&
+        leadingWidget is YlAppBarBackButton &&
+        leadingWidget.color == null) {
+      // 如果 leading 是 YlAppBarBackButton 且未设置颜色，则自动推断颜色
+      leadingWidget = leadingWidget.copyWith(
+        color: foregroundColor,
+      );
+    } else if (leadingWidget == null && automaticallyImplyLeading && canPop) {
+      // 如果 leading 为 null，且自动推断为 true，且可以返回，则添加 leading
+      leadingWidget = YlAppBarBackButton(
+        color: foregroundColor,
+      );
     }
 
     return AppBar(
@@ -107,10 +118,13 @@ class YlAppBarButton extends StatelessWidget {
 class YlAppBarBackButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final Color? backgroundColor;
+  final Color? color;
+
   const YlAppBarBackButton({
     Key? key,
     this.onPressed,
     this.backgroundColor,
+    this.color,
   }) : super(key: key);
 
   @override
@@ -123,12 +137,27 @@ class YlAppBarBackButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(
           horizontal: 14,
         ),
-        child: getImageFromAssets('back_arrow'),
+        child: getImageFromAssets(
+          'back_arrow',
+          color: color,
+        ),
       ),
       onPressed: onPressed ??
           () {
             Navigator.pop(context);
           },
+    );
+  }
+
+  YlAppBarBackButton copyWith({
+    VoidCallback? onPressed,
+    Color? backgroundColor,
+    Color? color,
+  }) {
+    return YlAppBarBackButton(
+      onPressed: onPressed ?? this.onPressed,
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      color: color ?? this.color,
     );
   }
 }

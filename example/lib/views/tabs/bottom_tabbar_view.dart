@@ -27,7 +27,9 @@ class _BottomTabbarViewState extends State<BottomTabbarView> {
       ),
       BottomNavigationBarItem(
         icon: Image.asset('images/tabs_icon/message_default.png'),
-        activeIcon: Image.asset('images/tabs_icon/message_selected.png'),
+        activeIcon: Image.asset(
+          'images/tabs_icon/message_selected.png',
+        ),
         label: '消息',
       ),
       BottomNavigationBarItem(
