@@ -19,53 +19,31 @@ class _BottomTabbarViewState extends State<BottomTabbarView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: Theme(
-        data: ThemeData(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-        ),
-        child: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: '首页',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: '搜索',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.add_circle),
-              label: '发布',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: '我的',
-            ),
-          ],
-          selectedItemColor: YlColors.branding1,
-          unselectedItemColor: YlColors.black30,
-          selectedFontSize: 10,
-          selectedLabelStyle: TextStyle(
-            fontSize: 10,
-            fontWeight: YlFontWeight.bold,
-            color: YlColors.branding2,
-          ),
-          unselectedFontSize: 10,
-          unselectedLabelStyle: TextStyle(
-            fontWeight: YlFontWeight.bold,
-            color: YlColors.black50,
-          ),
-          iconSize: 28.0,
-          elevation: 4.0,
-          currentIndex: _index,
-          type: BottomNavigationBarType.fixed,
-          onTap: (index) {
-            _handleIndexChanged(index);
-          },
-        ),
+    var items = [
+      BottomNavigationBarItem(
+        icon: Image.asset('images/tabs_icon/work_default.png'),
+        activeIcon: Image.asset('images/tabs_icon/work_selected.png'),
+        label: '工作',
       ),
+      BottomNavigationBarItem(
+        icon: Image.asset('images/tabs_icon/message_default.png'),
+        activeIcon: Image.asset('images/tabs_icon/message_selected.png'),
+        label: '消息',
+      ),
+      BottomNavigationBarItem(
+        icon: Image.asset('images/tabs_icon/community_default.png'),
+        activeIcon: Image.asset('images/tabs_icon/community_selected.png'),
+        label: '社区',
+      ),
+      BottomNavigationBarItem(
+        icon: Image.asset('images/tabs_icon/me_default.png'),
+        activeIcon: Image.asset('images/tabs_icon/me_selected.png'),
+        label: '我的',
+      ),
+    ];
+    return Scaffold(
+      bottomNavigationBar:
+          YlTabBar(items: items, index: _index, onTap: _handleIndexChanged),
     );
   }
 }

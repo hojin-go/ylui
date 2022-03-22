@@ -63,6 +63,14 @@ flutter:
     - images/notion.png
     - images/swift.png
     - images/youtube.png
+    - images/tabs_icon/work_default.png
+    - images/tabs_icon/work_selected.png
+    - images/tabs_icon/message_default.png
+    - images/tabs_icon/message_selected.png
+    - images/tabs_icon/community_default.png
+    - images/tabs_icon/community_selected.png
+    - images/tabs_icon/me_default.png
+    - images/tabs_icon/me_selected.png
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
