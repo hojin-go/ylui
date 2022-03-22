@@ -14,6 +14,7 @@ class ColorView extends StatelessWidget {
   final data = [
     ColorTileData(YlColors.branding1, 'Brand Color'),
     ColorTileData(YlColors.branding2, 'Secondary Brand Color'),
+    ColorTileData(YlColors.note, 'Note'),
     ColorTileData(YlColors.alertRed, 'Destructive Red'),
     ColorTileData(YlColors.orangeLight, 'Reminder Orange Light'),
     ColorTileData(YlColors.orangeDark, 'Reminder Orange Dark'),
@@ -24,10 +25,11 @@ class ColorView extends StatelessWidget {
     ColorTileData(YlColors.black50, 'Black Alpha50'),
     ColorTileData(YlColors.black30, 'Black Alpha30'),
     ColorTileData(YlColors.black10, 'Black Alpha10'),
-    ColorTileData(YlColors.grey4, 'Grey1'),
-    ColorTileData(YlColors.grey3, 'Grey2'),
-    ColorTileData(YlColors.grey2, 'Grey3'),
-    ColorTileData(YlColors.grey1, 'Grey4'),
+    ColorTileData(YlColors.grey5, 'Grey5'),
+    ColorTileData(YlColors.grey4, 'Grey4'),
+    ColorTileData(YlColors.grey3, 'Grey3'),
+    ColorTileData(YlColors.grey2, 'Grey2'),
+    ColorTileData(YlColors.grey1, 'Grey1'),
     ColorTileData(YlColors.white, 'White'),
     ColorTileData(YlColors.transparent, 'Transparent'),
   ];
