@@ -161,11 +161,13 @@ class YlAppBarBackButton extends StatelessWidget {
     VoidCallback? onPressed,
     Color? backgroundColor,
     Color? color,
+    Widget? child,
   }) {
     return YlAppBarBackButton(
       onPressed: onPressed ?? this.onPressed,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       color: color ?? this.color,
+      child: child ?? this.child,
     );
   }
 }
