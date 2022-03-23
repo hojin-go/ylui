@@ -115,16 +115,23 @@ class YlAppBarButton extends StatelessWidget {
   }
 }
 
+/// 导航栏返回按钮，一般放置在左侧，将在内部将图片或图标偏移处理
 class YlAppBarBackButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final Color? backgroundColor;
+
+  /// 图片颜色，将只影响默认图标
   final Color? color;
+
+  /// 可传入图标或图片，尺寸不宜超过24x24
+  final Widget? child;
 
   const YlAppBarBackButton({
     Key? key,
     this.onPressed,
     this.backgroundColor,
     this.color,
+    this.child,
   }) : super(key: key);
 
   @override
@@ -137,10 +144,11 @@ class YlAppBarBackButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(
           horizontal: 14,
         ),
-        child: getImageFromAssets(
-          'back_arrow',
-          color: color,
-        ),
+        child: child ??
+            getImageFromAssets(
+              'back_arrow',
+              color: color,
+            ),
       ),
       onPressed: onPressed ??
           () {
