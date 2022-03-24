@@ -1,7 +1,6 @@
+import 'package:example/views/componnets/demo_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
-
-import 'componnets/demo_page.dart';
 
 class ButtonView extends StatelessWidget {
   @override

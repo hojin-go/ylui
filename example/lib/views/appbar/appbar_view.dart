@@ -76,6 +76,27 @@ class AppBarView extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(
+            height: 20,
+          ),
+          YlAppBar(
+            leading: YlAppBarBackButton(
+              backgroundColor: Colors.yellow[100],
+              child: Text('取消'),
+            ),
+            actions: [
+              YlAppBarButton(
+                child: Icon(
+                  CupertinoIcons.chart_pie,
+                ),
+                backgroundColor: Colors.yellow[100],
+              ),
+              YlAppBarButton(
+                child: Icon(CupertinoIcons.share),
+                backgroundColor: Colors.red[100],
+              ),
+            ],
+          ),
         ],
       ),
     );

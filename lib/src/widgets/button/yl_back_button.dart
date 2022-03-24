@@ -8,7 +8,11 @@ class YlBackButton extends StatelessWidget {
   final EdgeInsets? padding;
 
   const YlBackButton(
-      {Key? key, this.onTap, this.color = YlColors.black90, this.icon, this.padding})
+      {Key? key,
+      this.onTap,
+      this.color = YlColors.black90,
+      this.icon,
+      this.padding})
       : super(key: key);
 
   @override

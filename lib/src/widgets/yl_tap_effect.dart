@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
-import 'package:flutter_ylui/src/widgets/yl_tap_detector.dart';
 
 class YlTapEffect extends StatefulWidget {
   final Widget? child;

@@ -32,6 +32,7 @@ dependencies:
     path: "../"
   # widget_with_codeview: 2.0.1+2
   bot_toast: ^4.0.1
+  modal_bottom_sheet: ^2.0.1
 
 dev_dependencies:
   flutter_test:

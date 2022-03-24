@@ -81,6 +81,7 @@ class YlAppBarButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final Widget child;
   final Color? backgroundColor;
+  final Color? foregroundColor;
   final EdgeInsets? padding;
 
   const YlAppBarButton({
@@ -89,6 +90,7 @@ class YlAppBarButton extends StatelessWidget {
     required this.child,
     this.backgroundColor,
     this.padding,
+    this.foregroundColor,
   }) : super(key: key);
 
   @override
@@ -101,7 +103,13 @@ class YlAppBarButton extends StatelessWidget {
       alignment: Alignment.center,
       padding: padding ?? const EdgeInsets.all(8),
       color: backgroundColor,
-      child: child,
+      child: DefaultTextStyle(
+        style: TextStyle(
+          color: foregroundColor,
+          fontSize: 17,
+        ),
+        child: child,
+      ),
     );
 
     if (onPressed != null) {
@@ -136,19 +144,33 @@ class YlAppBarBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var padding = EdgeInsets.symmetric(
+      horizontal: 14,
+    );
+
+    if (child is Text) {
+      padding = EdgeInsets.only(
+        left: 20,
+      );
+    }
+
     return YlAppBarButton(
       padding: EdgeInsets.zero,
       backgroundColor: backgroundColor,
       child: Container(
         alignment: Alignment.centerLeft,
-        padding: EdgeInsets.symmetric(
-          horizontal: 14,
+        padding: padding,
+        child: DefaultTextStyle(
+          style: TextStyle(
+            color: color,
+            fontSize: 17,
+          ),
+          child: child ??
+              getImageFromAssets(
+                'back_arrow',
+                color: color,
+              ),
         ),
-        child: child ??
-            getImageFromAssets(
-              'back_arrow',
-              color: color,
-            ),
       ),
       onPressed: onPressed ??
           () {

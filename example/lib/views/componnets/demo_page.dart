@@ -56,3 +56,11 @@ class DemoPage extends StatelessWidget {
     );
   }
 }
+
+toPage(BuildContext context, Widget page) {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => page,
+    ),
+  );
+}

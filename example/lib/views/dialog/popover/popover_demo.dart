@@ -13,17 +13,22 @@ class PopoverDemoPage extends StatelessWidget {
       sourceCodePath: 'lib/views/popover_demo.dart',
       bottomSafe: false,
       child: Center(
-        child: DemoButtonVerticalGroup(
-          items: [
-            DemoButtonGroupItem('没按钮', () => _showPlainPopover(context)),
-            DemoButtonGroupItem(
-                '一个按钮/没标题', () => _showPopoverWithFooterAction(context)),
-            DemoButtonGroupItem(
-                '两个按钮/有标题', () => _showPopoverWithTwoFooterAction(context)),
-            DemoButtonGroupItem(
-              '分享',
-              () => _showSharePopover(context),
-            )
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            DemoButtonVerticalGroup(
+              items: [
+                DemoButtonGroupItem('没按钮', () => _showPlainPopover(context)),
+                DemoButtonGroupItem(
+                    '一个按钮/没标题', () => _showPopoverWithFooterAction(context)),
+                DemoButtonGroupItem(
+                    '两个按钮/有标题', () => _showPopoverWithTwoFooterAction(context)),
+                DemoButtonGroupItem(
+                  '分享',
+                  () => _showSharePopover(context),
+                ),
+              ],
+            ),
           ],
         ),
       ),

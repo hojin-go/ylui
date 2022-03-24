@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 /// tabBar 下划线，可更改长度，默认 34
 /// Used with [TabBar.indicator] to draw a horizontal line below the
