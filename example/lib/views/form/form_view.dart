@@ -1,6 +1,7 @@
-import 'package:example/views/componnets/demo_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
+
+import '../componnets/demo_page.dart';
 
 class FormView extends StatefulWidget {
   const FormView({Key? key}) : super(key: key);
@@ -21,16 +22,17 @@ class _FormViewState extends State<FormView> {
       child: SingleChildScrollView(
         child: Form(
           key: _formKey,
-          autovalidateMode: AutovalidateMode.always,
+          autovalidateMode: AutovalidateMode.disabled,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: YlTextFormField(
-                  label: '姓名',
+                  label: '必选标识在前',
                   textInputAction: TextInputAction.next,
                   isRequired: true,
+                  requiredPosition: YlFormFieldRequiredPosition.start,
                   placeholder: '请输入',
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -43,9 +45,43 @@ class _FormViewState extends State<FormView> {
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: YlTextFormField(
-                  label: '称呼',
+                  label: '必选标志在后',
                   textInputAction: TextInputAction.next,
                   isRequired: true,
+                  placeholder: '请输入',
+                  // The validator receives the text that the user has entered.
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: YlTextFormField(
+                  label: '可选',
+                  textInputAction: TextInputAction.next,
+                  placeholder: '请输入',
+                  // The validator receives the text that the user has entered.
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: YlTextFormField(
+                  label: '标题样式定制',
+                  labelStyle: TextStyle(
+                    fontSize: 12,
+                    color: YlColors.black30,
+                  ),
+                  textInputAction: TextInputAction.next,
                   placeholder: '请输入',
                   // The validator receives the text that the user has entered.
                   validator: (value) {
@@ -78,7 +114,7 @@ class _FormViewState extends State<FormView> {
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: YlTextFormField(
-                  label: '职位',
+                  label: '回车收起键盘',
                   textInputAction: TextInputAction.done,
                   isRequired: true,
                   placeholder: '请输入',
@@ -103,9 +139,8 @@ class _FormViewState extends State<FormView> {
                   label: '禁止',
                   enabled: false,
                   textInputAction: TextInputAction.done,
-                  isRequired: true,
                   placeholder: '请输入',
-                  initialValue: '我坏了',
+                  initialValue: '不可输入',
                   // The validator receives the text that the user has entered.
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -117,19 +152,32 @@ class _FormViewState extends State<FormView> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Validate returns true if the form is valid, or false otherwise.
-                    if (_formKey.currentState!.validate()) {
-                      _formKey.currentState!.save();
-                      // If the form is valid, display a snackbar. In the real world,
-                      // you'd often call a server or save the information in a database.
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Processing Data')),
-                      );
-                    }
-                  },
-                  child: const Text('Submit'),
+                child: Row(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        // Validate returns true if the form is valid, or false otherwise.
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
+                          // If the form is valid, display a snackbar. In the real world,
+                          // you'd often call a server or save the information in a database.
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Processing Data')),
+                          );
+                        }
+                      },
+                      child: const Text('Submit'),
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        _formKey.currentState!.reset();
+                      },
+                      child: const Text('Reset'),
+                    ),
+                  ],
                 ),
               ),
             ],

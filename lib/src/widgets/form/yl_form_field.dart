@@ -1,0 +1,4 @@
+enum YlFormFieldRequiredPosition {
+  start,
+  end,
+}

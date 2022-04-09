@@ -103,7 +103,10 @@ class YlTextFormField extends FormField<String> {
     String? initialValue,
     String? placeholder,
     String? label,
+    TextStyle? labelStyle,
     bool? isRequired,
+    YlFormFieldRequiredPosition requiredPosition =
+        YlFormFieldRequiredPosition.end,
     FocusNode? focusNode,
     TextInputType? keyboardType,
     TextCapitalization textCapitalization = TextCapitalization.none,
@@ -212,14 +215,26 @@ class YlTextFormField extends FormField<String> {
                   if (label != null)
                     Text.rich(
                       TextSpan(
-                        text: label,
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: YlFontWeight.bold,
-                          color: YlColors.black70,
-                        ),
+                        style: labelStyle ??
+                            TextStyle(
+                              fontSize: 15,
+                              fontWeight: YlFontWeight.bold,
+                              color: YlColors.black70,
+                            ),
                         children: [
-                          if (isRequired ?? false)
+                          if ((isRequired ?? false) &&
+                              requiredPosition ==
+                                  YlFormFieldRequiredPosition.start)
+                            TextSpan(
+                              text: '* ',
+                              style: TextStyle(
+                                color: YlColors.alertRed,
+                              ),
+                            ),
+                          TextSpan(text: label),
+                          if ((isRequired ?? false) &&
+                              requiredPosition ==
+                                  YlFormFieldRequiredPosition.end)
                             TextSpan(
                               text: ' *',
                               style: TextStyle(
