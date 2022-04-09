@@ -107,6 +107,7 @@ class YlTextFormField extends FormField<String> {
     bool? isRequired,
     YlFormFieldRequiredPosition requiredPosition =
         YlFormFieldRequiredPosition.end,
+    String? helperText,
     FocusNode? focusNode,
     TextInputType? keyboardType,
     TextCapitalization textCapitalization = TextCapitalization.none,
@@ -351,10 +352,20 @@ class YlTextFormField extends FormField<String> {
                       padding: const EdgeInsets.only(top: 2),
                       child: Text(
                         field.errorText!,
-                        style:
-                            TextStyle(fontSize: 12, color: YlColors.alertRed),
+                        style: YlTextStyles.n12(color: YlColors.alertRed),
                       ),
-                    )
+                    ),
+                  // 有helperText的情况下， 单行有错误不展示，多行始终展示
+                  if ((!field.hasError || mutipleLine) && helperText != null)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 2),
+                      child: Text(
+                        helperText,
+                        style: YlTextStyles.n12(
+                          color: YlColors.black30,
+                        ),
+                      ),
+                    ),
                 ],
               ),
             );

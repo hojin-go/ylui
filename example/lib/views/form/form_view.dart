@@ -114,6 +114,43 @@ class _FormViewState extends State<FormView> {
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: YlTextFormField(
+                  label: '有帮助文字',
+                  textInputAction: TextInputAction.next,
+                  isRequired: true,
+                  helperText: '*我是帮助文字，可做一些解释说明',
+                  placeholder: '请输入',
+                  // The validator receives the text that the user has entered.
+                  validator: (value) {
+                    if (value == null || value.length < 10) {
+                      return '请输入超过10字符';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: YlTextFormField(
+                  label: '有帮助文字 | 多行情况',
+                  textInputAction: TextInputAction.next,
+                  isRequired: true,
+                  maxLength: 50,
+                  minLines: 1,
+                  maxLines: 3,
+                  helperText: '我是帮助文字，可做一些解释说明',
+                  placeholder: '请输入',
+                  // The validator receives the text that the user has entered.
+                  validator: (value) {
+                    if (value == null || value.length < 10) {
+                      return '请输入超过10字符';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: YlTextFormField(
                   label: '回车收起键盘',
                   textInputAction: TextInputAction.done,
                   isRequired: true,
