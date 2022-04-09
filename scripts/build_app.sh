@@ -20,7 +20,7 @@ function beforeBuild() {
   sBranch="$(git branch --show-current)"
   echo $sBranch
   cd $PROJECT_DIR
-  
+
   # Find and increment the version number.
   perl -i -pe 's/^(version:\s+\d+\.\d+\.\d+\+)(\d+)$/$1.($2+1)/e' pubspec.yaml
   getVersionAndLog
@@ -38,7 +38,11 @@ function getVersionAndLog() {
   # pull new code
   # list newest 5 commits
   echo ''
-  git --no-pager lg -3
+  log=$(git log --pretty=format:%an:%s -5 --no-merges --grep=version --invert-grep)
+
+  # join log with newline
+  log=$(echo "$log" | sed -e 's/^/\\n/')
+  CHANGELOG="$log"
   echo ''
   echo ''
   echo '👆上面是最近3条提交记录'
@@ -48,7 +52,6 @@ function getVersionAndLog() {
 #### build
 function buildApk() {
   echo "build apk ing .."
-  flutter clean
   flutter build apk --release
 }
 
@@ -56,12 +59,15 @@ function uploadToPgyer() {
   echo -e "$INFO 上传蒲公英中.."
   filePath="build/app/outputs/flutter-apk/app-release.apk"
 
-  bash "../scripts/pgyer.sh" --platform="android" --title="YLUI组件测试版本发布" --content="Android，版本号：${APP_VERSION}。" --file="$filePath"
+  bash "../scripts/pgyer.sh" \
+    --platform="android" \
+    --title="YLUI组件测试版本发布" \
+    --content="Android，版本号：${APP_VERSION}。\n\nCHANGELOG: $CHANGELOG" \
+    --file="$filePath"
 }
 
 # 打包ipa
 function buildIpaToPgyer() {
-  flutter clean
   flutter build ios --config-only
   # xcarchive
   xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner -configuration release -archivePath build/ios/iphoneos/Runner.xcarchive -sdk iphoneos
@@ -77,7 +83,11 @@ function uploadIpaToPgyer() {
   echo -e "$INFO 上传蒲公英中.."
   filePath="build/ios/iphoneos/ylui.ipa"
 
-  bash "../scripts/pgyer.sh" --platform="ios" --title="YLUI组件测试版本发布" --content="iOS, 版本号：${APP_VERSION}。" --file="$filePath"
+  bash "../scripts/pgyer.sh" \
+    --platform="ios" \
+    --title="YLUI组件测试版本发布" \
+    --content="iOS, 版本号：${APP_VERSION}。\n\nCHANGELOG: $CHANGELOG" \
+    --file="$filePath"
 }
 
 echo '  1. Android -> Pgyer'

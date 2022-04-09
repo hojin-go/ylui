@@ -3,10 +3,10 @@
 # Usage: 见 ./readme.md
 
 # test
-# WEB_HOOK_HOST="https://open.feishu.cn/open-apis/bot/v2/hook/fbd1ec5e-c36c-46e1-a80e-0c76f249be8e"
+WEB_HOOK_HOST="https://open.feishu.cn/open-apis/bot/v2/hook/fbd1ec5e-c36c-46e1-a80e-0c76f249be8e"
 
 # test2
-WEB_HOOK_HOST="https://open.feishu.cn/open-apis/bot/v2/hook/3d4d5ec7-e2f3-4c73-83ac-8edc23ade329"
+# WEB_HOOK_HOST="https://open.feishu.cn/open-apis/bot/v2/hook/3d4d5ec7-e2f3-4c73-83ac-8edc23ade329"
 
 # prod
 # WEB_HOOK_HOST="https://open.feishu.cn/open-apis/bot/v2/hook/6322a12d-f818-4e21-ab77-14c43f03442c"
@@ -96,7 +96,8 @@ FILE_PATH="$BASEDIR/$FILE"
 
 DATA=$(cat $FILE_PATH)
 DATA=${DATA//\{\{title\}\}/"$TITLE"}
-DATA=${DATA//\{\{content\}\}/"$CONTENT"}
+cContent=$(echo $CONTENT)
+DATA=${DATA//\{\{content\}\}/$cContent}
 DATA=${DATA//\{\{branch\}\}/"$BRANCH"}
 DATA=${DATA//\{\{version\}\}/"$VERSION"}
 DATA=${DATA//\{\{changelog\}\}/"$CHANGELOG"}
