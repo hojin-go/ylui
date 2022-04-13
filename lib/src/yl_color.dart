@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 class YlColors {
   // This class is not meant to be instantiated or extended; this constructor
   // prevents instantiation and extension.
@@ -7,10 +9,13 @@ class YlColors {
   YlColors._();
 
   /// 主题色，名称取自 figma, #00BF57
-  static const branding1 = Color.fromRGBO(0, 191, 87, 1);
+  static const branding1 = Color(0xFF00BF57);
 
   /// 辅助主题色, #FFA902
-  static const branding2 = Color.fromRGBO(0, 171, 76, 1);
+  static const branding2 = Color(0xFF00AB4C);
+
+  /// 品牌/成功底色
+  static final branding3 = Color(0xFFEBF9EB);
 
   /// 透明色
   static const transparent = Color(0x00000000);
@@ -46,13 +51,23 @@ class YlColors {
   static const grey5 = Color(0xFFD6DAE0);
 
   /// 提醒色，命名取自, #FA243C
-  static const alertRed = Color.fromRGBO(250, 36, 60, 1);
+  static const alertRed = Color(0xFFFA243C);
+
+  /// 警示性提示条底色
+  static const alertRedBg = Color(0xFFFFF5F6);
+
+  /// 强提醒文案
+  static const reminderOrange = Color(0xFFF0A431);
+
+  /// 强提示条底色
+  static final reminderBg = Color(0xFFFDF6EC);
 
   /// 警告色，橙色，浅色, #FFA902
   static const orangeLight = Color.fromRGBO(255, 169, 2, 1);
 
   /// 警告色，橙色，深色, #FF9500
-  static const orangeDark = Color.fromRGBO(255, 149, 0, 1);
+  @Deprecated('使用 reminderOrange 代替')
+  static const orangeDark = reminderOrange;
 
   /// 瓴里蓝色, #5C769D
   static const lanehubBlue = Color.fromRGBO(92, 118, 157, 1);
