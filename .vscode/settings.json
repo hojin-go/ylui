@@ -9,6 +9,8 @@
     "**/.fvm": true
   },
   "conventionalCommits.scopes": [
-    "form"
+    "form",
+    "color",
+    "scope"
   ]
 }
