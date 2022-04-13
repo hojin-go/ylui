@@ -208,164 +208,201 @@ class YlTextFormField extends FormField<String> {
             var border = InputBorder.none;
             var focusBorder = InputBorder.none;
 
+            double bottomPadding = 12;
+
+            if (mutipleLine || field.hasError || helperText != null) {
+              bottomPadding += 20;
+            }
+
             return UnmanagedRestorationScope(
               bucket: field.bucket,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Stack(
+                alignment: Alignment.centerLeft,
                 children: [
-                  if (label != null)
-                    Text.rich(
-                      TextSpan(
-                        style: labelStyle ??
-                            TextStyle(
-                              fontSize: 15,
-                              fontWeight: YlFontWeight.bold,
-                              color: YlColors.black70,
-                            ),
-                        children: [
-                          if ((isRequired ?? false) &&
-                              requiredPosition ==
-                                  YlFormFieldRequiredPosition.start)
-                            TextSpan(
-                              text: '* ',
-                              style: TextStyle(
-                                color: YlColors.alertRed,
-                              ),
-                            ),
-                          TextSpan(text: label),
-                          if ((isRequired ?? false) &&
-                              requiredPosition ==
-                                  YlFormFieldRequiredPosition.end)
-                            TextSpan(
-                              text: ' *',
-                              style: TextStyle(
-                                color: YlColors.alertRed,
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
-                  TextField(
-                    restorationId: restorationId,
-                    controller: state._effectiveController,
-                    focusNode: focusNode,
-                    decoration: InputDecoration(
-                      hintText: placeholder,
-                      hintStyle: style.copyWith(color: YlColors.black30),
-                      // 调整输入框的高度的内边距
-                      isDense: true,
-                      contentPadding: const EdgeInsets.only(top: 4, bottom: 12),
-                      border: border,
-                      enabledBorder: border,
-                      disabledBorder: border,
-                      focusedBorder: focusBorder,
-                      // 禁止自带的文字计数样式
-                      counterText: '',
-                    ),
-                    keyboardType: keyboardType,
-                    textInputAction: textInputAction,
-                    style: style,
-                    textCapitalization: textCapitalization,
-                    autofocus: autofocus,
-                    toolbarOptions: toolbarOptions,
-                    readOnly: readOnly,
-                    obscuringCharacter: obscuringCharacter,
-                    obscureText: obscureText,
-                    autocorrect: autocorrect,
-                    smartDashesType: smartDashesType ??
-                        (obscureText
-                            ? SmartDashesType.disabled
-                            : SmartDashesType.enabled),
-                    smartQuotesType: smartQuotesType ??
-                        (obscureText
-                            ? SmartQuotesType.disabled
-                            : SmartQuotesType.enabled),
-                    enableSuggestions: enableSuggestions,
-                    maxLengthEnforced: maxLengthEnforced,
-                    maxLengthEnforcement: maxLengthEnforcement,
-                    maxLines: maxLines,
-                    minLines: minLines,
-                    expands: expands,
-                    maxLength: maxLength,
-                    // buildCounter: (ctx,
-                    //     {required int currentLength,
-                    //     required bool isFocused,
-                    //     required int? maxLength}) {
-                    //   return null;
-                    // },
-                    onChanged: onChangedHandler,
-                    onTap: onTap,
-                    onEditingComplete: onEditingComplete,
-                    onSubmitted: onFieldSubmitted,
-                    inputFormatters: inputFormatters,
-                    enabled: enabled ?? true,
-                    cursorColor: YlColors.branding1,
-                    scrollPadding: scrollPadding,
-                    scrollPhysics: scrollPhysics,
-                    keyboardAppearance: keyboardAppearance,
-                    enableInteractiveSelection: enableInteractiveSelection,
-                    selectionControls: selectionControls,
-                    autofillHints: autofillHints,
-                    scrollController: scrollController,
-                    enableIMEPersonalizedLearning:
-                        enableIMEPersonalizedLearning,
-                  ),
-                  // 自定义计数器和表单错误效果
-                  if (mutipleLine)
-                    Container(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      alignment: Alignment.centerRight,
-                      child: Text.rich(
-                        TextSpan(
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (label != null)
+                        Text.rich(
+                          TextSpan(
+                            style: labelStyle ??
+                                TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: YlFontWeight.bold,
+                                  color: YlColors.black70,
+                                ),
                             children: [
-                              if (field.hasError)
+                              if ((isRequired ?? false) &&
+                                  requiredPosition ==
+                                      YlFormFieldRequiredPosition.start)
                                 TextSpan(
-                                  text: field.errorText,
+                                  text: '* ',
                                   style: TextStyle(
                                     color: YlColors.alertRed,
                                   ),
                                 ),
-                              if (field.hasError)
-                                WidgetSpan(
-                                  child: SizedBox(width: 12),
+                              TextSpan(text: label),
+                              if ((isRequired ?? false) &&
+                                  requiredPosition ==
+                                      YlFormFieldRequiredPosition.end)
+                                TextSpan(
+                                  text: ' *',
+                                  style: TextStyle(
+                                    color: YlColors.alertRed,
+                                  ),
                                 ),
-                              TextSpan(
-                                  text: '字数 ' +
-                                      state._effectiveController.text.length
-                                          .toString()),
                             ],
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: YlColors.black30,
-                            )),
-                      ),
-                    ),
-                  // 自定义表单底线
-                  Divider(
-                    height: 1,
-                    thickness: 0.5,
-                    color: field.hasError ? YlColors.alertRed : YlColors.grey3,
-                  ),
-                  // 自定义单行表单时的报错展示效果
-                  if (field.hasError && !mutipleLine)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 2),
-                      child: Text(
-                        field.errorText!,
-                        style: YlTextStyles.n12(color: YlColors.alertRed),
-                      ),
-                    ),
-                  // 有helperText的情况下， 单行有错误不展示，多行始终展示
-                  if ((!field.hasError || mutipleLine) && helperText != null)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 2),
-                      child: Text(
-                        helperText,
-                        style: YlTextStyles.n12(
-                          color: YlColors.black30,
+                          ),
                         ),
-                      ),
+                      TextField(
+                        restorationId: restorationId,
+                        controller: state._effectiveController,
+                        focusNode: focusNode,
+                        decoration: InputDecoration(
+                          hintText: placeholder,
+                          hintStyle: style.copyWith(color: YlColors.black30),
+                          // 调整输入框的高度的内边距
+                          isDense: true,
+
+                          contentPadding: EdgeInsets.only(
+                            top: 4,
+                            // bottom 32=bottom padding + error text height
+                            bottom: bottomPadding,
+                          ),
+                          border: border,
+                          enabledBorder: border,
+                          disabledBorder: border,
+                          focusedBorder: focusBorder,
+                          // 禁止自带的文字计数样式
+                          counterText: '',
+                        ),
+                        keyboardType: keyboardType,
+                        textInputAction: textInputAction,
+                        style: style,
+                        textCapitalization: textCapitalization,
+                        autofocus: autofocus,
+                        toolbarOptions: toolbarOptions,
+                        readOnly: readOnly,
+                        obscuringCharacter: obscuringCharacter,
+                        obscureText: obscureText,
+                        autocorrect: autocorrect,
+                        smartDashesType: smartDashesType ??
+                            (obscureText
+                                ? SmartDashesType.disabled
+                                : SmartDashesType.enabled),
+                        smartQuotesType: smartQuotesType ??
+                            (obscureText
+                                ? SmartQuotesType.disabled
+                                : SmartQuotesType.enabled),
+                        enableSuggestions: enableSuggestions,
+                        maxLengthEnforced: maxLengthEnforced,
+                        maxLengthEnforcement: maxLengthEnforcement,
+                        maxLines: maxLines,
+                        minLines: minLines,
+                        expands: expands,
+                        maxLength: maxLength,
+                        // buildCounter: (ctx,
+                        //     {required int currentLength,
+                        //     required bool isFocused,
+                        //     required int? maxLength}) {
+                        //   return null;
+                        // },
+                        onChanged: onChangedHandler,
+                        onTap: onTap,
+                        onEditingComplete: onEditingComplete,
+                        onSubmitted: onFieldSubmitted,
+                        inputFormatters: inputFormatters,
+                        enabled: enabled ?? true,
+                        cursorColor: YlColors.branding1,
+                        cursorWidth: 2.5,
+                        scrollPadding: scrollPadding,
+                        scrollPhysics: scrollPhysics,
+                        keyboardAppearance: keyboardAppearance,
+                        enableInteractiveSelection: enableInteractiveSelection,
+                        selectionControls: selectionControls,
+                        autofillHints: autofillHints,
+                        scrollController: scrollController,
+                        enableIMEPersonalizedLearning:
+                            enableIMEPersonalizedLearning,
+                      )
+                    ],
+                  ),
+                  // 自定义计数器和表单错误效果
+                  Positioned(
+                    left: 0,
+                    bottom: 0,
+                    right: 0,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (mutipleLine)
+                          Container(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            alignment: Alignment.centerRight,
+                            child: Text.rich(
+                              TextSpan(
+                                  children: [
+                                    if (field.hasError || helperText != null)
+                                      TextSpan(
+                                        text: field.hasError
+                                            ? field.errorText
+                                            : helperText,
+                                        style: TextStyle(
+                                          color: field.hasError
+                                              ? YlColors.alertRed
+                                              : YlColors.black30,
+                                        ),
+                                      ),
+                                    WidgetSpan(
+                                      child: SizedBox(width: 12),
+                                    ),
+                                    TextSpan(
+                                        text: '字数 ' +
+                                            state._effectiveController.text
+                                                .length
+                                                .toString()),
+                                  ],
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: YlColors.black30,
+                                  )),
+                            ),
+                          ),
+                        // 自定义表单底线
+                        Divider(
+                          height: 1,
+                          thickness: 0.5,
+                          color: field.hasError
+                              ? YlColors.alertRed
+                              : YlColors.grey3,
+                        ),
+                        // 自定义单行表单时的报错展示效果
+                        if (field.hasError && !mutipleLine)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 2),
+                            child: Text(
+                              field.errorText!,
+                              style: YlTextStyles.n12(color: YlColors.alertRed),
+                            ),
+                          ),
+                        // 有helperText的情况下， 单行有错误不展示，多行始终展示
+                        if (!mutipleLine &&
+                            !field.hasError &&
+                            helperText != null)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 2),
+                            child: Text(
+                              helperText,
+                              style: YlTextStyles.n12(
+                                color: YlColors.black30,
+                              ),
+                            ),
+                          )
+                      ],
                     ),
+                  ),
                 ],
               ),
             );

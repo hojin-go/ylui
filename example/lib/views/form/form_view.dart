@@ -20,6 +20,7 @@ class _FormViewState extends State<FormView> {
     return DemoPage(
       title: '表单',
       child: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Form(
           key: _formKey,
           autovalidateMode: AutovalidateMode.disabled,
@@ -105,7 +106,7 @@ class _FormViewState extends State<FormView> {
                   // The validator receives the text that the user has entered.
                   validator: (value) {
                     if (value == null || value.length < 10) {
-                      return '请输入超过10字符';
+                      return '至少10字';
                     }
                     return null;
                   },
@@ -132,17 +133,18 @@ class _FormViewState extends State<FormView> {
                 padding: const EdgeInsets.only(top: 20),
                 child: YlTextFormField(
                   label: '有帮助文字 | 多行情况',
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   textInputAction: TextInputAction.next,
                   isRequired: true,
                   maxLength: 50,
                   minLines: 1,
                   maxLines: 3,
-                  helperText: '我是帮助文字，可做一些解释说明',
+                  helperText: '至少10字',
                   placeholder: '请输入',
                   // The validator receives the text that the user has entered.
                   validator: (value) {
                     if (value == null || value.length < 10) {
-                      return '请输入超过10字符';
+                      return '至少10字';
                     }
                     return null;
                   },
