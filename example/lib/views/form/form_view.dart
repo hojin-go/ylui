@@ -27,6 +27,182 @@ class _FormViewState extends State<FormView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(
+                'Selector',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: YlSelectorFormField<DateTime>(
+                  label: '选择日期',
+                  isRequired: true,
+                  requiredPosition: YlFormFieldRequiredPosition.start,
+                  placeholder: '请选择',
+                  initialValue: DateTime.now(),
+                  enabled: false,
+                  contentBuilder: (context, value) {
+                    return YlFormTextContent(
+                      _formatDate(value),
+                      placeholder: '请选择',
+                      enabled: false,
+                    );
+                  },
+                  autovalidateMode: AutovalidateMode.always,
+                  onTap: (value) async {
+                    var ret = await showDatePicker(
+                        context: context,
+                        initialDate: value ?? DateTime.now(),
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2030));
+
+                    return ret;
+                  },
+                  validator: (value) {
+                    if (value == null) {
+                      return '请选择日期';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: YlSelectorFormField<DateTime>(
+                  label: '选择日期',
+                  isRequired: true,
+                  requiredPosition: YlFormFieldRequiredPosition.start,
+                  placeholder: '请选择',
+                  initialValue: DateTime.now(),
+                  enabled: true,
+                  contentBuilder: (context, value) {
+                    return YlFormTextContent(
+                      _formatDate(value),
+                      placeholder: '请选择',
+                      enabled: true,
+                    );
+                  },
+                  autovalidateMode: AutovalidateMode.always,
+                  onTap: (value) async {
+                    var ret = await showDatePicker(
+                        context: context,
+                        initialDate: value ?? DateTime.now(),
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2030));
+
+                    return ret;
+                  },
+                  validator: (value) {
+                    if (value == null) {
+                      return '请选择日期';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: YlSelectorFormField<String>(
+                  label: '选择日期范围',
+                  isRequired: true,
+                  requiredPosition: YlFormFieldRequiredPosition.start,
+                  placeholder: '请选择',
+                  contentBuilder: (context, value) {
+                    return YlFormTextContent(
+                      value ?? '',
+                      placeholder: '请选择',
+                    );
+                  },
+                  autovalidateMode: AutovalidateMode.always,
+                  onTap: (value) async {
+                    var ret = await showDateRangePicker(
+                        context: context,
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime(2030),
+                        builder: (ctx, child) => Theme(
+                              data: ThemeData.light().copyWith(
+                                primaryColor: const Color(0xFF8CE7F1),
+                                colorScheme: ColorScheme.light(
+                                    primary: const Color(0xFF8CE7F1)),
+                                buttonTheme: ButtonThemeData(
+                                    textTheme: ButtonTextTheme.primary),
+                              ),
+                              child: child!,
+                            ));
+
+                    if (ret == null) {
+                      return null;
+                    }
+
+                    return '${_formatDate(ret.start)} 至\n${_formatDate(ret.end)}';
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return '请选择日期范围';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: YlSelectorFormField<DateTimeRange>(
+                  label: '选择日期范围',
+                  isRequired: true,
+                  requiredPosition: YlFormFieldRequiredPosition.start,
+                  placeholder: '请选择',
+                  contentBuilder: (context, value) {
+                    return Row(
+                      children: [
+                        Expanded(
+                            child: YlFormTextContent(_formatDate(value?.start),
+                                placeholder: '请选择')),
+                        Container(
+                          height: 1,
+                          color: YlColors.black30,
+                          width: 12,
+                          margin: const EdgeInsets.all(8),
+                        ),
+                        Expanded(
+                            child: YlFormTextContent(_formatDate(value?.end),
+                                placeholder: '请选择')),
+                      ],
+                    );
+                  },
+                  autovalidateMode: AutovalidateMode.always,
+                  onTap: (value) async {
+                    var ret = await showDateRangePicker(
+                        context: context,
+                        initialDateRange: value,
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime(2030),
+                        builder: (ctx, child) => Theme(
+                              data: ThemeData.light().copyWith(
+                                primaryColor: const Color(0xFF8CE7F1),
+                                colorScheme: ColorScheme.light(
+                                    primary: const Color(0xFF8CE7F1)),
+                                buttonTheme: ButtonThemeData(
+                                    textTheme: ButtonTextTheme.primary),
+                              ),
+                              child: child!,
+                            ));
+
+                    return ret;
+                  },
+                  validator: (value) {
+                    if (value == null) {
+                      return '请选择日期范围';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Text(
+                'TextFormField',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: YlTextFormField(
@@ -99,6 +275,7 @@ class _FormViewState extends State<FormView> {
                   label: '多行文本',
                   textInputAction: TextInputAction.next,
                   isRequired: true,
+                  minLength: 10,
                   maxLength: 50,
                   minLines: 1,
                   maxLines: 3,
@@ -119,6 +296,8 @@ class _FormViewState extends State<FormView> {
                   textInputAction: TextInputAction.next,
                   isRequired: true,
                   helperText: '*我是帮助文字，可做一些解释说明',
+                  minLength: 10,
+                  maxLength: 1000,
                   placeholder: '请输入',
                   // The validator receives the text that the user has entered.
                   validator: (value) {
@@ -136,10 +315,10 @@ class _FormViewState extends State<FormView> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   textInputAction: TextInputAction.next,
                   isRequired: true,
-                  maxLength: 50,
+                  minLength: 10,
                   minLines: 1,
                   maxLines: 3,
-                  helperText: '至少10字',
+                  helperText: '',
                   placeholder: '请输入',
                   // The validator receives the text that the user has entered.
                   validator: (value) {
@@ -225,4 +404,8 @@ class _FormViewState extends State<FormView> {
       ),
     );
   }
+}
+
+String _formatDate(DateTime? dt) {
+  return dt == null ? '' : '${dt.year}-${dt.month}-${dt.day}';
 }

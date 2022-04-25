@@ -6,6 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
+import 'yl_form_counter.dart';
+import 'yl_form_divider.dart';
+import 'yl_form_error_helper.dart';
+import 'yl_form_label.dart';
+
 export 'package:flutter/services.dart' show SmartQuotesType, SmartDashesType;
 
 /// A [FormField] that contains a [TextField].
@@ -97,6 +102,9 @@ class YlTextFormField extends FormField<String> {
   /// [label] is used to set the label text in the text field.
   ///
   /// [isRequired] 用来设置表单项是否为必须.
+  ///
+  /// [minLength] 最少字数，不起校验作用，仅仅在多行表单输入时，在 counter 处显示
+  ///
   YlTextFormField({
     Key? key,
     this.controller,
@@ -131,6 +139,7 @@ class YlTextFormField extends FormField<String> {
     int? maxLines = 1,
     int? minLines,
     bool expands = false,
+    int? minLength,
     int? maxLength,
     ValueChanged<String>? onChanged,
     GestureTapCallback? onTap,
@@ -224,36 +233,11 @@ class YlTextFormField extends FormField<String> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       if (label != null)
-                        Text.rich(
-                          TextSpan(
-                            style: labelStyle ??
-                                TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: YlFontWeight.bold,
-                                  color: YlColors.black70,
-                                ),
-                            children: [
-                              if ((isRequired ?? false) &&
-                                  requiredPosition ==
-                                      YlFormFieldRequiredPosition.start)
-                                TextSpan(
-                                  text: '* ',
-                                  style: TextStyle(
-                                    color: YlColors.alertRed,
-                                  ),
-                                ),
-                              TextSpan(text: label),
-                              if ((isRequired ?? false) &&
-                                  requiredPosition ==
-                                      YlFormFieldRequiredPosition.end)
-                                TextSpan(
-                                  text: ' *',
-                                  style: TextStyle(
-                                    color: YlColors.alertRed,
-                                  ),
-                                ),
-                            ],
-                          ),
+                        YlFormLabel(
+                          style: labelStyle,
+                          isRequired: isRequired,
+                          label: label,
+                          requiredPosition: requiredPosition,
                         ),
                       TextField(
                         restorationId: restorationId,
@@ -341,65 +325,20 @@ class YlTextFormField extends FormField<String> {
                           Container(
                             padding: const EdgeInsets.only(bottom: 8),
                             alignment: Alignment.centerRight,
-                            child: Text.rich(
-                              TextSpan(
-                                  children: [
-                                    if (field.hasError || helperText != null)
-                                      TextSpan(
-                                        text: field.hasError
-                                            ? field.errorText
-                                            : helperText,
-                                        style: TextStyle(
-                                          color: field.hasError
-                                              ? YlColors.alertRed
-                                              : YlColors.black30,
-                                        ),
-                                      ),
-                                    WidgetSpan(
-                                      child: SizedBox(width: 12),
-                                    ),
-                                    TextSpan(
-                                        text: '字数 ' +
-                                            state._effectiveController.text
-                                                .length
-                                                .toString()),
-                                  ],
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: YlColors.black30,
-                                  )),
+                            child: YlTextFormCounter(
+                              length: state._effectiveController.text.length,
+                              minLength: minLength,
+                              maxLength: maxLength,
                             ),
                           ),
                         // 自定义表单底线
-                        Divider(
-                          height: 1,
-                          thickness: 0.5,
-                          color: field.hasError
-                              ? YlColors.alertRed
-                              : YlColors.grey3,
-                        ),
-                        // 自定义单行表单时的报错展示效果
-                        if (field.hasError && !mutipleLine)
-                          Padding(
-                            padding: const EdgeInsets.only(top: 2),
-                            child: Text(
-                              field.errorText!,
-                              style: YlTextStyles.n12(color: YlColors.alertRed),
-                            ),
-                          ),
-                        // 有helperText的情况下， 单行有错误不展示，多行始终展示
-                        if (!mutipleLine &&
-                            !field.hasError &&
-                            helperText != null)
-                          Padding(
-                            padding: const EdgeInsets.only(top: 2),
-                            child: Text(
-                              helperText,
-                              style: YlTextStyles.n12(
-                                color: YlColors.black30,
-                              ),
-                            ),
-                          )
+
+                        YlFormDivider(field: field),
+                        YlFormErrorHelper(
+                          hasError: field.hasError,
+                          errorText: field.errorText,
+                          helperText: helperText,
+                        )
                       ],
                     ),
                   ),
