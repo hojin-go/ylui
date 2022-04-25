@@ -58,20 +58,17 @@ class YlToast {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Theme(
-                        data: ThemeData(
-                            cupertinoOverrideTheme: CupertinoThemeData(
-                                brightness: Brightness.dark)),
-                        child: CupertinoActivityIndicator(
-                          radius: 15 * 1.3 * 0.5,
-                        )),
+                    YlLoadingIndicator(
+                      color: Colors.white,
+                      size: 16,
+                    ),
                     SizedBox(
                       width: 4,
                     ),
                     Text(
                       message,
                       style: YlTextStyles.body3
-                          .copyWith(color: YlColors.white, height: 1.3),
+                          .copyWith(color: YlColors.white, height: 1.25),
                     )
                   ],
                 ),
@@ -121,17 +118,11 @@ class YlToast {
   }
 
   static void success(String content) {
-    _iconToast(content,
-        icon: Icon(
-          CupertinoIcons.checkmark_circle,
-        ));
+    _iconToast(content, icon: Icon(CupertinoIcons.checkmark_circle));
   }
 
   static void error(String content) {
-    _iconToast(content,
-        icon: Icon(
-          CupertinoIcons.xmark_circle,
-        ));
+    _iconToast(content, icon: Icon(CupertinoIcons.xmark_circle));
   }
 
   static _textToast(String content,
@@ -150,12 +141,16 @@ class YlToast {
       maxLines: realLines,
       textAlign: TextAlign.center,
       overflow: TextOverflow.ellipsis,
-      style: YlTextStyles.body3.copyWith(color: YlColors.white, height: 1.3),
+      style: YlTextStyles.body3.copyWith(
+        color: YlColors.white,
+        height: realLines > 1 ? 22.0 / 15.0 : 1.25,
+      ),
     );
     if (prefix != null) {
       widget = Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           prefix,
           SizedBox(
@@ -193,7 +188,7 @@ class YlToast {
     var fixedPrefix = Container(
       padding: EdgeInsets.only(bottom: 2),
       child: IconTheme(
-          data: IconThemeData(color: YlColors.white, size: 20), child: icon),
+          data: IconThemeData(color: YlColors.white, size: 18), child: icon),
     );
     _textToast(content, prefix: fixedPrefix);
   }

@@ -5,7 +5,12 @@ import 'package:flutter_ylui/src/helper.dart';
 
 class YlLoadingIndicator extends StatefulWidget {
   final Color? color;
-  const YlLoadingIndicator({Key? key, this.color}) : super(key: key);
+  final double? size;
+  const YlLoadingIndicator({
+    Key? key,
+    this.color,
+    this.size,
+  }) : super(key: key);
 
   @override
   State<YlLoadingIndicator> createState() => _YlLoadingIndicatorState();
@@ -42,6 +47,8 @@ class _YlLoadingIndicatorState extends State<YlLoadingIndicator>
       child: getImageFromAssets(
         'loading_indicator',
         color: widget.color,
+        fit: BoxFit.fitWidth,
+        width: widget.size,
       ),
     );
   }
