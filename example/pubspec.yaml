@@ -55,7 +55,6 @@ flutter:
     - lib/views/floating_bottom_view.dart
     - lib/views/button_group_demo.dart
     - lib/views/action_sheet_demo.dart
-    - lib/views/popover_demo.dart
     - lib/views/rich_dialog_demo.dart
     - lib/views/sliding_up_panel_demo.dart
     - images/chrome.png

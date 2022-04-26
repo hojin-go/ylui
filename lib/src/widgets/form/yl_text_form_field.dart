@@ -105,6 +105,8 @@ class YlTextFormField extends FormField<String> {
   ///
   /// [minLength] 最少字数，不起校验作用，仅仅在多行表单输入时，在 counter 处显示
   ///
+  /// [countTrim] 是否去除空格，默认为true
+  ///
   YlTextFormField({
     Key? key,
     this.controller,
@@ -138,6 +140,7 @@ class YlTextFormField extends FormField<String> {
     MaxLengthEnforcement? maxLengthEnforcement,
     int? maxLines = 1,
     int? minLines,
+    bool? countTrim,
     bool expands = false,
     int? minLength,
     int? maxLength,
@@ -219,7 +222,11 @@ class YlTextFormField extends FormField<String> {
 
             double bottomPadding = 12;
 
-            if (mutipleLine || field.hasError || helperText != null) {
+            if (mutipleLine) {
+              bottomPadding += 20;
+            }
+
+            if (field.hasError || helperText != null) {
               bottomPadding += 20;
             }
 
@@ -325,11 +332,17 @@ class YlTextFormField extends FormField<String> {
                           Container(
                             padding: const EdgeInsets.only(bottom: 8),
                             alignment: Alignment.centerRight,
-                            child: YlTextFormCounter(
-                              length: state._effectiveController.text.length,
-                              minLength: minLength,
-                              maxLength: maxLength,
-                            ),
+                            child: Builder(builder: (context) {
+                              var text = state._effectiveController.text;
+                              if (countTrim == true) {
+                                text = text.trim();
+                              }
+                              return YlTextFormCounter(
+                                length: text.length,
+                                minLength: minLength,
+                                maxLength: maxLength,
+                              );
+                            }),
                           ),
                         // 自定义表单底线
 

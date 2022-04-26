@@ -28,12 +28,7 @@ samples, guidance on mobile development, and a full API reference.
 - [ ] Toast 抽象 
 
 ## CHANGELOG
-
-### v0.1
-
-1. YlColors
-2. YlTextStyles
-3. YlCheckbox
+🔗 [CHANGELOG.md](./changelog/CHANGELOG.md)
 
 ## 贡献
 
