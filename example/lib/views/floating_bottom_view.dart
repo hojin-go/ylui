@@ -12,7 +12,14 @@ class FloatingBottomView extends StatelessWidget {
       bottomSafe: false,
       child: Column(
         children: [
-          Expanded(child: Container()),
+          Expanded(
+            child: Container(
+              child: CupertinoDatePicker(
+                onDateTimeChanged: (dt) {},
+                initialDateTime: DateTime.now(),
+              ),
+            ),
+          ),
           YlFloatingBottom(
             backgroundColor: YlColors.white,
             child: YlButton.fromType(

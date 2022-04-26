@@ -33,10 +33,13 @@ dependencies:
   # widget_with_codeview: 2.0.1+2
   bot_toast: ^4.0.1
   modal_bottom_sheet: ^2.0.1
+  flutter_localizations:
+    sdk: flutter 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
