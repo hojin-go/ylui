@@ -62,8 +62,14 @@ RESP=$(curl -F "file=@$BUILD_FILE" \
     -F "_api_key=$PGY_API_KEY" \
     "$PGY_API_HOST")
 
+echo "$RESP"
+
 BUILD_QR_URL=$(echo $RESP | jq -r '.data.buildQRCodeURL')
 BUILD_KEY=$(echo $RESP | jq -r '.data.buildKey')
+SHORTURL="https://pgyer.com/$(echo $RESP | jq -r '.data.buildShortcutUrl')"
+echo "short url: $SHORTURL"
+
+NOTIFY_CONTENT="$NOTIFY_CONTENT\n\n[🔗 固定安装链接]($SHORTURL)\n"
 
 IOS_URL="$BUILD_QR_URL"
 ANDROID_URL="$BUILD_QR_URL"
