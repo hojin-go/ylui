@@ -21,6 +21,18 @@ class ActionSheetDemoPage extends StatelessWidget {
                 '我文字超长', () => _showActionSheetWithLongContent(context)),
             DemoButtonGroupItem(
                 '没有取消按钮', () => _showActionSheetWithNoCancelButton(context)),
+            DemoButtonGroupItem(
+                '没有描述文字',
+                () => showYlActionSheet(context, actions: [
+                      YlDialogAction(
+                          title: '按钮1', action: () => Navigator.pop(context)),
+                      YlDialogAction(
+                          title: '按钮2', action: () => Navigator.pop(context)),
+                      YlDialogAction(
+                          title: '取消',
+                          isCancel: true,
+                          action: () => Navigator.pop(context)),
+                    ])),
           ],
         ),
       ),
