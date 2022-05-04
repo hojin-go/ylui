@@ -1,5 +1,7 @@
+import 'package:example/common/yl_iconfont.dart';
 import 'package:example/views/componnets/demo_page.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
 class ButtonView extends StatelessWidget {
@@ -47,7 +49,15 @@ class ButtonView extends StatelessWidget {
         child: YlButton.fromType(
           size: YlButtonSize.medium,
           type: type,
-          child: Text('中号'),
+          child: Row(
+            children: [
+              Icon(YlIcons.scan),
+              SizedBox(
+                width: 8,
+              ),
+              Text('中号'),
+            ],
+          ),
           // onPressed: () {},
           onAsyncPressed: () => Future.delayed(
             Duration(seconds: 2),
@@ -60,7 +70,15 @@ class ButtonView extends StatelessWidget {
         child: YlButton.fromType(
           size: YlButtonSize.large,
           type: type,
-          child: Text('大号'),
+          child: Row(
+            children: [
+              Icon(YlIcons.scan),
+              SizedBox(
+                width: 8,
+              ),
+              Text('大号'),
+            ],
+          ),
           // onPressed: () {},
           onAsyncPressed: () => Future.delayed(
             Duration(seconds: 2),
@@ -73,7 +91,15 @@ class ButtonView extends StatelessWidget {
         child: YlButton.fromType(
           size: YlButtonSize.max,
           type: type,
-          child: Text('超大号'),
+          child: Row(
+            children: [
+              Icon(YlIcons.scan),
+              SizedBox(
+                width: 8,
+              ),
+              Text('超大号'),
+            ],
+          ),
           // onPressed: () {},
           onAsyncPressed: () => Future.delayed(
             Duration(seconds: 2),

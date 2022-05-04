@@ -303,8 +303,7 @@ class _YlButtonState extends State<YlButton> {
           child: Center(
               child: DefaultTextStyle(
             child: IconTheme(
-                data: IconThemeData(
-                    color: textStyle.color, size: textStyle.fontSize),
+                data: IconThemeData(color: textStyle.color, size: 24),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
