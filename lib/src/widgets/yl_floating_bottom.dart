@@ -9,7 +9,11 @@ class YlFloatingBottom extends StatelessWidget {
   final Color? backgroundColor;
   final showBoxshadow;
   const YlFloatingBottom(
-      {Key? key, this.padding, this.child, this.backgroundColor,this.showBoxshadow=true})
+      {Key? key,
+      this.padding,
+      this.child,
+      this.backgroundColor,
+      this.showBoxshadow = true})
       : super(key: key);
 
   @override
@@ -20,11 +24,12 @@ class YlFloatingBottom extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor ?? YlColors.white,
         boxShadow: [
-
           BoxShadow(
-              blurRadius: 4.0,
-              offset: Offset(0, 0),
-              color:showBoxshadow? YlColors.black.withOpacity(0.04):YlColors.white)
+              offset: Offset(0.0, -2.0),
+              blurRadius: 2.0,
+              color: showBoxshadow
+                  ? YlColors.black.withOpacity(0.04)
+                  : YlColors.white)
         ],
       ),
       child: SafeArea(

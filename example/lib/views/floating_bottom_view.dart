@@ -1,5 +1,5 @@
 import 'package:example/views/componnets/demo_page.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
 class FloatingBottomView extends StatelessWidget {
@@ -12,13 +12,16 @@ class FloatingBottomView extends StatelessWidget {
       bottomSafe: false,
       child: Column(
         children: [
-          Expanded(
+          Spacer(),
+          YlFloatingBottom(
+            backgroundColor: YlColors.white,
             child: Container(
-              child: CupertinoDatePicker(
-                onDateTimeChanged: (dt) {},
-                initialDateTime: DateTime.now(),
-              ),
+              height: 44,
+              color: Colors.red[50],
             ),
+          ),
+          SizedBox(
+            height: 20,
           ),
           YlFloatingBottom(
             backgroundColor: YlColors.white,
@@ -28,7 +31,7 @@ class FloatingBottomView extends StatelessWidget {
               child: Text('Button'),
               onPressed: () {},
             ),
-          )
+          ),
         ],
       ),
     );
