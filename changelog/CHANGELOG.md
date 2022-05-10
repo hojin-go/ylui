@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.2.7
+1. `YlFloatingBottom` 优化阴影效果，使只有组件顶部显示阴影。
+
 ## 1.2.6
 1. `YlButton` 中，设定icon的默认样式，颜色跟随文字颜色，大小固定为24
 
