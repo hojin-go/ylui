@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.2.8
+1. 新增 `YlSliverAppBar` 实现大页面标题，向上滑动后变成小标题的效果
+
+
+<img src="./src/Simulator Screen Shot - iPhone 13 - 2022-05-11 at 18.35.36.png" width=320>
+<img src="./src/Simulator Screen Shot - iPhone 13 - 2022-05-11 at 18.35.42.png" width=320>
+
 ## 1.2.7
 1. `YlFloatingBottom` 优化阴影效果，使只有组件顶部显示阴影。
 

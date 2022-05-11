@@ -3,6 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 import 'package:flutter_ylui/src/helper.dart';
 
+const _kAppBarHeight = 44.0;
+const _kAppBarLargeTitleHeightExtension = 62.0;
+const _kAppBarTitleFadeDuration = Duration(milliseconds: 150);
+
 class YlAppBar extends StatelessWidget implements PreferredSizeWidget {
   final SystemUiOverlayStyle? systemUiOverlayStyle;
   final Color? backgroundColor;
@@ -51,7 +55,7 @@ class YlAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: backgroundColor,
       systemOverlayStyle: systemUiOverlayStyle,
-      toolbarHeight: 44,
+      toolbarHeight: _kAppBarHeight,
       leadingWidth: 64,
       elevation: 0,
       centerTitle: true,
@@ -74,6 +78,160 @@ class YlAppBar extends StatelessWidget implements PreferredSizeWidget {
         size: 24,
       ),
     );
+  }
+}
+
+class YlSliverAppBar extends StatelessWidget {
+  final SystemUiOverlayStyle? systemUiOverlayStyle;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
+  final Widget? leading;
+  final String title;
+  final List<Widget>? actions;
+
+  /// 是否自动推断添加 leading
+  final bool automaticallyImplyLeading;
+
+  const YlSliverAppBar({
+    Key? key,
+    this.systemUiOverlayStyle,
+    this.backgroundColor = Colors.white,
+    this.foregroundColor = Colors.black,
+    this.leading,
+    required this.title,
+    this.actions,
+    this.automaticallyImplyLeading = true,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverPersistentHeader(
+      delegate: _YlLargeTitleAppBarSliverDelegate(
+        persistentHeight: _kAppBarHeight + MediaQuery.of(context).padding.top,
+        title: title,
+        leading: leading,
+        actions: actions,
+        automaticallyImplyLeading: automaticallyImplyLeading,
+        backgroundColor: backgroundColor,
+        foregroundColor: foregroundColor,
+        systemUiOverlayStyle: systemUiOverlayStyle,
+      ),
+      pinned: true,
+    );
+  }
+}
+
+class _YlLargeTitleAppBarSliverDelegate extends SliverPersistentHeaderDelegate {
+  final double persistentHeight;
+
+  final SystemUiOverlayStyle? systemUiOverlayStyle;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
+  final Widget? leading;
+  final String title;
+  final List<Widget>? actions;
+
+  /// 是否自动推断添加 leading
+  final bool automaticallyImplyLeading;
+
+  _YlLargeTitleAppBarSliverDelegate({
+    required this.persistentHeight,
+    this.systemUiOverlayStyle,
+    this.backgroundColor,
+    this.foregroundColor,
+    this.leading,
+    this.actions,
+    required this.title,
+    this.automaticallyImplyLeading = true,
+  });
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    final bool showLargeTitle = shrinkOffset < maxExtent - minExtent - 10;
+
+    final YlAppBar persistentNavigationBar = YlAppBar(
+      title: showLargeTitle ? null : Text(title),
+      systemUiOverlayStyle: systemUiOverlayStyle,
+      backgroundColor: backgroundColor,
+      foregroundColor: foregroundColor,
+      leading: leading,
+      actions: actions,
+      automaticallyImplyLeading: automaticallyImplyLeading,
+    );
+
+    final largeTitle = Text(title);
+
+    final Widget navBar = Stack(
+      fit: StackFit.expand,
+      children: <Widget>[
+        Positioned(
+          top: persistentHeight,
+          left: 0.0,
+          right: 0.0,
+          bottom: 0.0,
+          child: Container(
+            color: backgroundColor,
+            child: ClipRect(
+              // The large title starts at the persistent bar.
+              // It's aligned with the bottom of the sliver and expands clipped
+              // and behind the persistent bar.
+              child: OverflowBox(
+                minHeight: 0.0,
+                maxHeight: double.infinity,
+                alignment: AlignmentDirectional.bottomStart,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+                  child: SafeArea(
+                    top: false,
+                    bottom: false,
+                    child: AnimatedOpacity(
+                      opacity: showLargeTitle ? 1.0 : 0.0,
+                      duration: _kAppBarTitleFadeDuration,
+                      child: DefaultTextStyle(
+                        style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: YlFontWeight.bold,
+                            color: foregroundColor),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        child: largeTitle,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          left: 0.0,
+          right: 0.0,
+          top: 0.0,
+          child: persistentNavigationBar,
+        ),
+      ],
+    );
+
+    return navBar;
+  }
+
+  @override
+  double get maxExtent => persistentHeight + _kAppBarLargeTitleHeightExtension;
+
+  @override
+  double get minExtent => persistentHeight;
+
+  @override
+  bool shouldRebuild(covariant _YlLargeTitleAppBarSliverDelegate oldDelegate) {
+    return oldDelegate != this ||
+        oldDelegate.persistentHeight != persistentHeight ||
+        oldDelegate.actions != actions ||
+        oldDelegate.title != title ||
+        oldDelegate.leading != leading ||
+        oldDelegate.automaticallyImplyLeading != automaticallyImplyLeading ||
+        oldDelegate.backgroundColor != backgroundColor ||
+        oldDelegate.foregroundColor != foregroundColor ||
+        oldDelegate.systemUiOverlayStyle != systemUiOverlayStyle;
   }
 }
 
