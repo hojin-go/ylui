@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.2.9
+1. YlTab 支持定制文字样式和indicator，默认左对齐
+
 ## 1.2.8
 1. 新增 `YlSliverAppBar` 实现大页面标题，向上滑动后变成小标题的效果
 
