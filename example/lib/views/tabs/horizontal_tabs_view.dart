@@ -4,9 +4,11 @@ import 'package:flutter_ylui/flutter_ylui.dart';
 
 class HorizontalTabsView extends StatefulWidget {
   final bool isScrollable;
+  final bool custom;
   const HorizontalTabsView({
     Key? key,
     required this.isScrollable,
+    this.custom = false,
   }) : super(key: key);
 
   @override
@@ -19,16 +21,16 @@ class _HorizontalTabsViewState extends State<HorizontalTabsView>
 
   @override
   Widget build(BuildContext context) {
-    _tabController ??=
-        TabController(length: widget.isScrollable ? 10 : 4, vsync: this);
+    final length = 4;
+    _tabController ??= TabController(length: length, vsync: this);
     String title;
     List<Tab> tabs;
     List<Widget> tabViews;
     if (widget.isScrollable) {
       title = '横向非均分Tabs';
-      tabs = List.generate(10, (index) => Tab(text: 'Tab $index'));
+      tabs = List.generate(length, (index) => Tab(text: 'Tab $index'));
       tabViews = List.generate(
-          10,
+          length,
           (index) => Container(
                 color: Colors.primaries[index % Colors.primaries.length],
                 child: Center(
@@ -37,9 +39,9 @@ class _HorizontalTabsViewState extends State<HorizontalTabsView>
               ));
     } else {
       title = '横向均分Tabs';
-      tabs = List.generate(4, (index) => Tab(text: 'Tab $index'));
+      tabs = List.generate(length, (index) => Tab(text: 'Tab $index'));
       tabViews = List.generate(
-          4,
+          length,
           (index) => Container(
                 color: Colors.primaries[index % Colors.primaries.length],
                 child: Center(
@@ -55,9 +57,26 @@ class _HorizontalTabsViewState extends State<HorizontalTabsView>
       child: Column(
         children: [
           YlHorizontalTabs(
-            backgroundColor: Colors.white,
+            backgroundColor: widget.custom ? YlColors.branding1 : Colors.white,
             tabController: _tabController!,
             isScrollable: widget.isScrollable,
+            labelStyle: widget.custom
+                ? TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold)
+                : null,
+            unselectedLabelStyle: widget.custom
+                ? TextStyle(fontSize: 20, color: YlColors.white)
+                : null,
+            indicator: widget.custom
+                ? YlUnderlineTabIndicator(
+                    width: 20,
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                      width: 4,
+                    ))
+                : null,
             tabs: tabs,
           ),
           Expanded(

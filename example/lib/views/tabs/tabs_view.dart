@@ -36,6 +36,18 @@ class TabsView extends StatelessWidget {
             ),
           ),
           ListTile(
+            title: Text('横向非均分 & 定制'),
+            trailing: Icon(Icons.chevron_right),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => HorizontalTabsView(
+                  isScrollable: true,
+                  custom: true,
+                ),
+              ),
+            ),
+          ),
+          ListTile(
             title: Text('竖向'),
             trailing: Icon(Icons.chevron_right),
             onTap: () => Navigator.of(context).push(

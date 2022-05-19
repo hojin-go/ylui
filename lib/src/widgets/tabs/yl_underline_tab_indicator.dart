@@ -10,11 +10,11 @@ import 'package:flutter/material.dart';
 /// The [TabBar.indicatorSize] property can be used to define the indicator's
 /// bounds in terms of its (centered) widget with [TabIndicatorSize.label],
 /// or the entire tab with [TabIndicatorSize.tab].
-class LimitedUnderlineTabIndicator extends Decoration {
+class YlUnderlineTabIndicator extends Decoration {
   /// Create an underline style selected tab indicator.
   ///
   /// The [borderSide] and [insets] arguments must not be null.
-  const LimitedUnderlineTabIndicator({
+  const YlUnderlineTabIndicator({
     this.borderSide = const BorderSide(width: 2.0, color: Colors.white),
     this.insets = EdgeInsets.zero,
     this.width = 34,
@@ -47,8 +47,8 @@ class LimitedUnderlineTabIndicator extends Decoration {
 
   @override
   Decoration? lerpTo(Decoration? b, double t) {
-    if (b is LimitedUnderlineTabIndicator) {
-      return LimitedUnderlineTabIndicator(
+    if (b is YlUnderlineTabIndicator) {
+      return YlUnderlineTabIndicator(
         borderSide: BorderSide.lerp(borderSide, b.borderSide, t),
         insets: EdgeInsetsGeometry.lerp(insets, b.insets, t) ??
             EdgeInsetsDirectional.only(),
@@ -67,7 +67,7 @@ class _MyUnderlinePainter extends BoxPainter {
   _MyUnderlinePainter(this.decoration, VoidCallback onChanged)
       : super(onChanged);
 
-  final LimitedUnderlineTabIndicator decoration;
+  final YlUnderlineTabIndicator decoration;
 
   BorderSide get borderSide => decoration.borderSide;
 
