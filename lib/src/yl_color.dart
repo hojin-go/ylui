@@ -57,7 +57,7 @@ class YlColors {
   static const alertRedBg = Color(0xFFFFF5F6);
 
   /// 强提醒文案
-  static const reminderOrange = Color(0xFFF0A431);
+  static const reminderOrange = Color(0xFFDE8D13);
 
   /// 强提示条底色
   static final reminderBg = Color(0xFFFDF6EC);
