@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+/// https://www.figma.com/file/9T1OmAr4MqUcY0u1Y2FZdw/%F0%9F%93%97-YLApp-Components?node-id=4215%3A8832
 class YlColors {
   // This class is not meant to be instantiated or extended; this constructor
   // prevents instantiation and extension.
