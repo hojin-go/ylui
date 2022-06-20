@@ -76,21 +76,27 @@ class YlHorizontalTabs extends StatelessWidget {
           this.unselectedLabelStyle?.color ?? YlColors.black70;
     }
 
-    return Container(
-      color: backgroundColor,
-      width: double.infinity,
-      height: 44,
-      child: TabBar(
-        padding: EdgeInsets.zero,
-        controller: tabController,
-        isScrollable: isScrollable,
-        labelStyle: labelStyle,
-        labelPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 0),
-        unselectedLabelStyle: unselectedLabelStyle,
-        labelColor: labelColor,
-        unselectedLabelColor: unselectedLabelColor,
-        indicator: indicator,
-        tabs: tabs,
+    return Theme(
+      data: ThemeData(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+      ),
+      child: Container(
+        color: backgroundColor,
+        width: double.infinity,
+        height: 44,
+        child: TabBar(
+          padding: EdgeInsets.zero,
+          controller: tabController,
+          isScrollable: isScrollable,
+          labelStyle: labelStyle,
+          labelPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+          unselectedLabelStyle: unselectedLabelStyle,
+          labelColor: labelColor,
+          unselectedLabelColor: unselectedLabelColor,
+          indicator: indicator,
+          tabs: tabs,
+        ),
       ),
     );
   }
