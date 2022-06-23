@@ -1,5 +1,13 @@
 # CHANGELOG
 
+
+## 1.2.12  
+1. YlAppBar 增加 leadingWidth 属性
+## 1.2.11  
+1. 去掉 TabBar 按下时的水波纹效果
+## 1.2.10  
+1. 更新橙色色值
+
 ## 1.2.9
 1. YlTab 支持定制文字样式和indicator，默认左对齐
 

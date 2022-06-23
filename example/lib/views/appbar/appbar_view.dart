@@ -8,7 +8,7 @@ class AppBarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: YlColors.background,
+      backgroundColor: YlColors.grey3,
       body: CustomScrollView(
         slivers: [
           YlSliverAppBar(title: 'AppBarView'),
@@ -88,6 +88,32 @@ class AppBarView extends StatelessWidget {
                       backgroundColor: Colors.yellow[100],
                       child: Text('取消'),
                     ),
+                    actions: [
+                      YlAppBarButton(
+                        child: Icon(
+                          CupertinoIcons.chart_pie,
+                        ),
+                        backgroundColor: Colors.yellow[100],
+                      ),
+                      YlAppBarButton(
+                        child: Icon(CupertinoIcons.share),
+                        backgroundColor: Colors.red[100],
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  YlAppBar(
+                    leading: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "大标题",
+                        style: TextStyle(fontSize: 24, color: Colors.black),
+                      ),
+                    ),
+                    leadingWidth: 100,
+                    automaticallyImplyLeading: false,
                     actions: [
                       YlAppBarButton(
                         child: Icon(

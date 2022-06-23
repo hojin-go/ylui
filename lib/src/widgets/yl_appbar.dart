@@ -12,6 +12,7 @@ class YlAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? backgroundColor;
   final Color? foregroundColor;
   final Widget? leading;
+  final double? leadingWidth;
   final Widget? title;
   final List<Widget>? actions;
 
@@ -30,6 +31,7 @@ class YlAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.actions,
     this.automaticallyImplyLeading = true,
     this.systemUiOverlayStyle,
+    this.leadingWidth,
   }) : super(key: key);
 
   @override
@@ -56,7 +58,7 @@ class YlAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: backgroundColor,
       systemOverlayStyle: systemUiOverlayStyle,
       toolbarHeight: _kAppBarHeight,
-      leadingWidth: 64,
+      leadingWidth: this.leadingWidth ?? 64.0,
       elevation: 0,
       centerTitle: true,
       automaticallyImplyLeading: automaticallyImplyLeading,
