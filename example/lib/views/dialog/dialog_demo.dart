@@ -1,6 +1,6 @@
 import 'package:example/views/componnets/demo_button_group.dart';
 import 'package:example/views/componnets/demo_page.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
 class DialogDemoPage extends StatelessWidget {
@@ -16,6 +16,8 @@ class DialogDemoPage extends StatelessWidget {
             DemoButtonGroupItem('引导确认弹窗', () => _showHighlightDialog(context)),
             DemoButtonGroupItem(
                 '单个按钮确认弹窗', () => _showSingleActionDialog(context)),
+            DemoButtonGroupItem(
+                '【定制】确认弹窗', () => _showCustomSingleActionDialog(context)),
             DemoButtonGroupItem(
                 '多个按钮确认弹窗', () => _showMutipleActionDialog(context))
           ],
@@ -50,6 +52,23 @@ class DialogDemoPage extends StatelessWidget {
     showYlDialog(context,
         title: '订单正在审核，暂无法沟通',
         content: '我们正在快速审核订单，预计等待5分钟，审核通过后可与人才直接沟',
+        actions: [
+          YlDialogAction(
+            title: '知道了',
+            highlight: true,
+            action: () => Navigator.pop(context),
+          ),
+        ]);
+  }
+
+  _showCustomSingleActionDialog(BuildContext context) {
+    showYlDialog(context,
+        title: '订单正在审核，暂无法沟通',
+        contentWidget: Container(
+          width: double.infinity,
+          height: 88,
+          color: Colors.red[50],
+        ),
         actions: [
           YlDialogAction(
             title: '知道了',

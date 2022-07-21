@@ -13,10 +13,17 @@ class YlDialog extends StatelessWidget {
   /// 弹窗描述信息，小字
   final String? content;
 
+  final Widget? contentWidget;
+
   /// 弹窗按钮事件，从左到右，从上到下，按钮过多的情况，可能会超出屏幕高度，暂不支持滚动
   final List<YlDialogAction> actions;
 
-  const YlDialog({required this.title, this.content, required this.actions});
+  const YlDialog({
+    required this.title,
+    this.content,
+    required this.actions,
+    this.contentWidget,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +88,8 @@ class YlDialog extends StatelessWidget {
     }
 
     var hasTitle = title != null && title!.isNotEmpty;
-    var hasContent = content != null && content!.isNotEmpty;
+    var hasContent =
+        (content != null && content!.isNotEmpty) || contentWidget != null;
 
     return WillPopScope(
       onWillPop: () => Future.value(false),
@@ -117,14 +125,16 @@ class YlDialog extends StatelessWidget {
                         visible: hasContent,
                       ),
                       Visibility(
-                        child: Text(
-                          '$content',
-                          textAlign: TextAlign.center,
-                          style: YlTextStyles.body1.copyWith(
-                            color: YlColors.black50,
-                            decoration: TextDecoration.none,
-                          ),
-                        ),
+                        child: DefaultTextStyle(
+                            style: YlTextStyles.body1.copyWith(
+                              color: YlColors.black50,
+                              decoration: TextDecoration.none,
+                            ),
+                            child: contentWidget ??
+                                Text(
+                                  '$content',
+                                  textAlign: TextAlign.center,
+                                )),
                         visible: hasContent,
                       ),
                     ],
@@ -149,13 +159,18 @@ class YlDialog extends StatelessWidget {
 Future<T?> showYlDialog<T>(BuildContext context,
     {String? title,
     String? content,
+    Widget? contentWidget,
     required List<YlDialogAction> actions,
     RouteSettings? routeSettings}) {
   return showCupertinoDialog<T>(
       barrierDismissible: false,
       context: context,
       builder: (context) {
-        return YlDialog(title: title, content: content, actions: actions);
+        return YlDialog(
+            title: title,
+            content: content,
+            contentWidget: contentWidget,
+            actions: actions);
       },
       routeSettings: routeSettings);
 }
