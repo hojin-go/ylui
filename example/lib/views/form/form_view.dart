@@ -30,7 +30,7 @@ class _FormViewState extends State<FormView> {
             children: [
               Text(
                 'Selector',
-                style: Theme.of(context).textTheme.titleLarge,
+                style: Theme.of(context).textTheme.headline5,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20),
@@ -195,7 +195,7 @@ class _FormViewState extends State<FormView> {
               ///////////////////////////////////////////////////////////////////////
               Text(
                 'TextFormField',
-                style: Theme.of(context).textTheme.titleLarge,
+                style: Theme.of(context).textTheme.headline5,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20),

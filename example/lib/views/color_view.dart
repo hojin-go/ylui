@@ -20,6 +20,8 @@ class ColorView extends StatelessWidget {
     ColorTileData(YlColors.alertRedBg, 'Alert Red Background'),
     ColorTileData(YlColors.orangeLight, '[废弃]Reminder Orange Light'),
     ColorTileData(YlColors.reminderOrange, 'Reminder Orange'),
+    ColorTileData(YlColors.gold1, '浅金色'),
+    ColorTileData(YlColors.gold2, '深金色'),
     ColorTileData(YlColors.lanehubBlue, 'Lanehub Blue'),
     ColorTileData(YlColors.black, 'Black'),
     ColorTileData(YlColors.black90, 'Black Alpha90'),

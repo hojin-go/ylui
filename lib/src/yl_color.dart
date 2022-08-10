@@ -74,4 +74,10 @@ class YlColors {
   static const lanehubBlue = Color.fromRGBO(92, 118, 157, 1);
 
   static const note = Color(0xFFC22CDB);
+
+  /// 金色，浅色，尝试性颜色
+  static const gold1 = Color(0xFFF3D6A3);
+
+  /// 金色，深色，尝试性颜色
+  static const gold2 = Color(0xFF976830);
 }
