@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
-import 'yl_underline_tab_indicator.dart';
-
 class YlHorizontalTabs extends StatelessWidget {
   /// 背景色
   final Color? backgroundColor;
@@ -21,6 +19,8 @@ class YlHorizontalTabs extends StatelessWidget {
   /// 指示器，可使用 [YlUnderlineTabIndicator] 定制效果
   final Decoration? indicator;
 
+  final void Function(int index)? onTap;
+
   const YlHorizontalTabs({
     Key? key,
     this.backgroundColor,
@@ -30,6 +30,7 @@ class YlHorizontalTabs extends StatelessWidget {
     this.labelStyle,
     this.unselectedLabelStyle,
     this.indicator,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -96,6 +97,7 @@ class YlHorizontalTabs extends StatelessWidget {
           unselectedLabelColor: unselectedLabelColor,
           indicator: indicator,
           tabs: tabs,
+          onTap: onTap,
         ),
       ),
     );
