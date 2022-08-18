@@ -228,10 +228,12 @@ class YlButton extends StatefulWidget {
     Color? borderColor,
     Color? textColor,
     Color? pressedCoverColor,
+    Color? disableTextColor,
+    Color? disableBackgroundColor,
+    Color? disableBorderColor,
     EdgeInsets? padding,
     this.loading,
   })  : this.background = color ?? type.background,
-        this.disableBackgroundColor = type.disableBackgroundColor,
         this.height = size.height,
         this.radius = size.radius,
         this.textStyle =
@@ -240,8 +242,10 @@ class YlButton extends StatefulWidget {
             ? BorderSide(width: 1, color: borderColor ?? type.borderColor!)
             : null,
         this.pressedCoverColor = pressedCoverColor ?? type.pressedCoverColor,
-        this.disableTextColor = type.disableTextColor,
-        this.disableBorderColor = type.disableBorderColor,
+        this.disableTextColor = disableTextColor ?? type.disableTextColor,
+        this.disableBorderColor = disableBorderColor ?? type.disableBorderColor,
+        this.disableBackgroundColor =
+            disableBackgroundColor ?? type.disableBackgroundColor,
         this.padding = padding ?? size.padding;
 
   @override
