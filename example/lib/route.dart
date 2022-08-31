@@ -6,6 +6,7 @@ import 'package:example/views/floating_bottom_view.dart';
 import 'package:example/views/font_view.dart';
 import 'package:example/views/form/form_view.dart';
 import 'package:example/views/loading_indicator_view.dart';
+import 'package:example/views/scrollview/scrollview_demo.dart';
 import 'package:example/views/selector/selector_view.dart';
 import 'package:example/views/tabs/bottom_tabbar_view.dart';
 import 'package:example/views/tabs/tabs_view.dart';
@@ -55,6 +56,7 @@ List<RouteObject> defineRouteObjects() {
       '表单',
       (context) => FormView(),
     ),
+    RouteObject('/scrollview', '滚动视图', (context) => ScrollviewDemo()),
   ];
 }
 
