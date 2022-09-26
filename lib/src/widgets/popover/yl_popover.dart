@@ -74,24 +74,50 @@ class YlPopover extends StatelessWidget {
 
   YlPopover.confirm(
       {Key? key,
+      Widget? title,
+      Widget? subTitle,
       this.body,
       this.footer,
       VoidCallback? onCanceled,
       VoidCallback? onDone})
       : this.header = Container(
+          margin: const EdgeInsets.only(top: 20),
           child: Row(
             children: [
               CupertinoButton(
-                padding: EdgeInsets.only(top: 20, left: 20),
+                minSize: 0,
+                padding: EdgeInsets.only(left: 20),
                 child: Text(
                   '取消',
                   style: YlTextStyles.body1.copyWith(color: YlColors.black70),
                 ),
                 onPressed: onCanceled,
               ),
-              Spacer(),
+              Expanded(
+                child: Builder(builder: (context) {
+                  var body = <Widget>[];
+                  if (title != null) {
+                    body.add(DefaultTextStyle(
+                      style: YlTextStyles.b17(color: YlColors.black90),
+                      child: title,
+                    ));
+                  }
+                  if (subTitle != null) {
+                    body.add(DefaultTextStyle(
+                      style: YlTextStyles.body4
+                          .copyWith(height: 1.3, color: YlColors.black50),
+                      child: subTitle,
+                    ));
+                  }
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: body,
+                  );
+                }),
+              ),
               CupertinoButton(
-                padding: EdgeInsets.only(top: 20, right: 20),
+                minSize: 0,
+                padding: EdgeInsets.only(right: 20),
                 child: Text(
                   '完成',
                   style: YlTextStyles.body1.copyWith(color: YlColors.branding1),

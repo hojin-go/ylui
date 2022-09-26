@@ -20,6 +20,8 @@ class PopoverDemoPage extends StatelessWidget {
               items: [
                 DemoButtonGroupItem('没按钮', () => _showPlainPopover(context)),
                 DemoButtonGroupItem(
+                    '确认类型', () => _showPlainConfirmPopover(context)),
+                DemoButtonGroupItem(
                     '一个按钮/没标题', () => _showPopoverWithFooterAction(context)),
                 DemoButtonGroupItem(
                     '两个按钮/有标题', () => _showPopoverWithTwoFooterAction(context)),
@@ -40,6 +42,21 @@ class PopoverDemoPage extends StatelessWidget {
         context,
         YlPopover.close(
           onClosed: () => Navigator.pop(context),
+          body: Container(
+            height: 300,
+            color: YlColors.grey1,
+          ),
+        ));
+  }
+
+  _showPlainConfirmPopover(BuildContext context) {
+    showYlPopover(
+        context,
+        YlPopover.confirm(
+          onCanceled: () => Navigator.pop(context),
+          onDone: () => Navigator.pop(context),
+          title: Text('Confirm'),
+          subTitle: Text('Subtitle'),
           body: Container(
             height: 300,
             color: YlColors.grey1,
