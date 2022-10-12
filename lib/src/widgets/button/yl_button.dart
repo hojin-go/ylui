@@ -18,25 +18,7 @@ extension YlButtonSizeData on YlButtonSize {
   }
 
   BorderRadius get radius {
-    var value = 0.0;
-    switch (this) {
-      case YlButtonSize.max:
-        {
-          value = 10;
-          break;
-        }
-      case YlButtonSize.large:
-        {
-          value = 10;
-          break;
-        }
-      default:
-        {
-          value = height * 0.5;
-          break;
-        }
-    }
-    return BorderRadius.circular(value);
+    return BorderRadius.circular(8);
   }
 
   TextStyle get textStyle {
