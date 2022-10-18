@@ -19,6 +19,8 @@ class YlHorizontalTabs extends StatelessWidget {
   /// 指示器，可使用 [YlUnderlineTabIndicator] 定制效果
   final Decoration? indicator;
 
+  final EdgeInsetsGeometry? labelPadding;
+
   final void Function(int index)? onTap;
 
   const YlHorizontalTabs({
@@ -31,6 +33,7 @@ class YlHorizontalTabs extends StatelessWidget {
     this.unselectedLabelStyle,
     this.indicator,
     this.onTap,
+    this.labelPadding,
   }) : super(key: key);
 
   @override
@@ -91,7 +94,8 @@ class YlHorizontalTabs extends StatelessWidget {
           controller: tabController,
           isScrollable: isScrollable,
           labelStyle: labelStyle,
-          labelPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+          labelPadding: labelPadding ??
+              const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
           unselectedLabelStyle: unselectedLabelStyle,
           labelColor: labelColor,
           unselectedLabelColor: unselectedLabelColor,
