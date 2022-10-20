@@ -158,9 +158,10 @@ class YlPopover extends StatelessWidget {
 }
 
 Future<T?> showYlPopover<T>(BuildContext context, YlPopover child,
-    {RouteSettings? routeSettings}) {
+    {RouteSettings? routeSettings,bool barrierDismissible=true}) {
   return showCupertinoModalPopup<T>(
     context: context,
+    barrierDismissible: barrierDismissible,
     routeSettings: routeSettings,
     builder: (context) => Dismissible(
       direction: DismissDirection.down,
