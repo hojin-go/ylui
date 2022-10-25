@@ -104,6 +104,10 @@ flutter:
     - family: iconfont
       fonts:
         - asset: fonts/iconfont.ttf
+    - family: DIN Alternate
+      fonts:
+        - asset: fonts/DINAlternate-Bold.ttf
+          weight: 700
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

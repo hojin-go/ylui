@@ -1,3 +1,4 @@
+import 'package:example/views/biz/PriceView.dart';
 import 'package:example/views/button/button_demo.dart';
 import 'package:example/views/appbar/appbar_view.dart';
 import 'package:example/views/color_view.dart';
@@ -54,6 +55,11 @@ List<RouteObject> defineRouteObjects() {
       '/form_view',
       '表单',
       (context) => FormView(),
+    ),
+    RouteObject(
+      '/biz/price',
+      '价格组件',
+      (context) => PriceViewDemo(),
     ),
   ];
 }
