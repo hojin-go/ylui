@@ -158,7 +158,7 @@ class YlPopover extends StatelessWidget {
 }
 
 Future<T?> showYlPopover<T>(BuildContext context, YlPopover child,
-    {RouteSettings? routeSettings,bool barrierDismissible=true}) {
+    {RouteSettings? routeSettings, bool barrierDismissible = true}) {
   return showCupertinoModalPopup<T>(
     context: context,
     barrierDismissible: barrierDismissible,
@@ -168,6 +168,55 @@ Future<T?> showYlPopover<T>(BuildContext context, YlPopover child,
       onDismissed: (direction) => Navigator.pop(context),
       key: Key(''),
       child: child,
+    ),
+  );
+}
+
+///
+Future<bool?> showYlPlainPopover(
+  BuildContext context, {
+  RouteSettings? routeSettings,
+  required String title,
+  required String content,
+  String? confirmText,
+}) {
+  return showYlPopover<bool>(
+    context,
+    YlPopover.close(
+      onClosed: () => Navigator.pop(context, false),
+      body: Container(
+        padding: const EdgeInsets.fromLTRB(40, 0, 40, 28),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            DefaultTextStyle(
+                style: YlTextStyles.b20(
+                  color: YlColors.black,
+                ),
+                child: Text(title)),
+            SizedBox(height: 20),
+            DefaultTextStyle(
+                style: YlTextStyles.n16(
+                  color: YlColors.black70,
+                ),
+                child: Text(content)),
+            Visibility(
+              visible: confirmText != null,
+              child: Container(
+                alignment: Alignment.center,
+                margin: const EdgeInsets.only(top: 40),
+                child: YlButton.fromType(
+                  width: 200,
+                  size: YlButtonSize.large,
+                  type: YlButtonType.primary,
+                  child: Text(confirmText ?? ''),
+                  onPressed: () => Navigator.of(context).pop(true),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     ),
   );
 }

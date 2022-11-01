@@ -29,6 +29,10 @@ class PopoverDemoPage extends StatelessWidget {
                   '分享',
                   () => _showSharePopover(context),
                 ),
+                DemoButtonGroupItem(
+                  '文本通知弹窗',
+                  () => _showTextNotificationPopover(context),
+                ),
               ],
             ),
           ],
@@ -158,5 +162,14 @@ class PopoverDemoPage extends StatelessWidget {
     ];
 
     showYlSharePopover(context, items: items);
+  }
+
+  _showTextNotificationPopover(BuildContext context) {
+    final title = '为什么我无法开启服务？';
+    final content =
+        '专职卖家最多工作12小时/天，若当前有进行中的订单达到了最高值。则平台会限制服务时长，直至卖家完成当前的订单，有多余的时间释出。';
+
+    showYlPlainPopover(context,
+        title: title, content: content, confirmText: '知道了');
   }
 }
