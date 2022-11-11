@@ -61,7 +61,7 @@ class YlPopover extends StatelessWidget {
           ),
         ),
         CupertinoButton(
-          padding: EdgeInsets.only(left: 20,top: 20,right: 20),
+          padding: EdgeInsets.only(top: 10),
           child: closeWidget ??
               Image.asset(
                 'lib/assets/x-mark.png',
