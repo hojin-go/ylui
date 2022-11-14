@@ -10,6 +10,7 @@ export 'src/widgets/yl_checkbox.dart';
 export 'src/widgets/yl_confirm.dart';
 export 'src/widgets/yl_tap_detector.dart';
 export 'src/widgets/yl_tap_effect.dart';
+export 'src/widgets/yl_opacity_tap_effect.dart';
 export 'src/widgets/yl_floating_bottom.dart';
 export 'src/widgets/yl_dot.dart';
 export 'src/widgets/popover/yl_dialog.dart';
@@ -31,5 +32,11 @@ export 'src/widgets/form/yl_text_form_field.dart';
 export 'src/widgets/form/yl_form_field.dart';
 export 'src/widgets/form/yl_selector_form_field.dart';
 export 'src/widgets/form/yl_form_text_content.dart';
+
+// progress indicator
+export 'src/widgets/progress_indicator/yl_line_progress_indicator.dart';
+
+// rating bar
+export 'src/widgets/yl_rating_bar.dart';
 
 export 'src/widgets/biz/price.dart';

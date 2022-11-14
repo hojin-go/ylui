@@ -13,6 +13,7 @@ dependencies:
   sliding_up_panel: ^2.0.0+1
   bot_toast: ^4.0.1
   intl: ^0.17.0
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
@@ -37,6 +38,8 @@ flutter:
     - lib/assets/radio_unselected_disable.png
     - lib/assets/loading_indicator.png
     - lib/assets/icon_right.png
+    - lib/assets/star.png
+    - lib/assets/star_empty.png
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

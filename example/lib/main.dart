@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       routes: routesMap,
       home: HomeView(),
       builder: BotToastInit(),
+      navigatorObservers: [BotToastNavigatorObserver()],
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -28,7 +29,6 @@ class MyApp extends StatelessWidget {
         const Locale('en', 'US'),
       ],
       locale: Locale('zh'),
-      navigatorObservers: [BotToastNavigatorObserver()],
     );
   }
 }
