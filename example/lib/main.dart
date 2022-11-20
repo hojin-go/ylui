@@ -4,8 +4,10 @@ import 'package:example/views/home_view.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_ylui/flutter_ylui.dart';
 
 void main() {
+  YlTextStyles.setDefaultNumFontFamily('DIN Alternate');
   runApp(MyApp());
 }
 

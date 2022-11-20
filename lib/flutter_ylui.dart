@@ -37,6 +37,6 @@ export 'src/widgets/form/yl_form_text_content.dart';
 export 'src/widgets/progress_indicator/yl_line_progress_indicator.dart';
 
 // rating bar
-export 'src/widgets/yl_rating_bar.dart';
+export 'src/widgets/rating/yl_rating_bar.dart';
 
 export 'src/widgets/biz/price.dart';

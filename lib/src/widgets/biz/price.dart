@@ -1,50 +1,163 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 import 'package:intl/intl.dart';
 
-class YlPrice extends StatelessWidget {
+enum YlPriceHeightStyle {
+  // 高度相等
+  equal,
+  // 驼峰
+  camel,
+}
+
+class _YlPrice extends StatelessWidget {
+  /// 金额前缀，通常为金额符号
   final String? prefix;
+
+  /// 金额，可以是整数，也可以是小数，也可以是字符串
   final dynamic price;
+
+  /// 金额单位
   final String? suffix;
+
+  /// 文字颜色
   final Color? color;
-  final TextStyle? prefixStyle;
-  final TextStyle? priceStyle;
-  final TextStyle? suffixStyle;
-  final bool? showComma;
-  const YlPrice({
+
+  /// 前缀样式
+  final double? prefixFontSize;
+
+  /// 金额样式
+  final double fontSize;
+
+  /// 小数样式
+  final double? decimalFontSize;
+
+  /// 后缀样式
+  final double? suffixFontSize;
+
+  /// 高度风格
+  final YlPriceHeightStyle heightStyle;
+
+  /// 是否缩短显示，仅当金额超过99999时有效
+  final bool short;
+  const _YlPrice({
     Key? key,
     this.prefix,
     this.price,
     this.suffix,
     this.color,
-    this.prefixStyle,
-    this.priceStyle,
-    this.suffixStyle,
-    this.showComma,
+    this.short = true,
+    this.heightStyle = YlPriceHeightStyle.camel,
+    this.prefixFontSize,
+    this.fontSize = 16,
+    this.decimalFontSize,
+    this.suffixFontSize,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final fmtter = NumberFormat(showComma == true ? "#,###.##" : "###.##");
-    final value = double.tryParse(price.toString());
-    final priceText = fmtter.format(value ?? '0');
+    final fmtter = NumberFormat("###.##");
+    var value = double.tryParse(price.toString()) ?? 0.0;
+    var unit = '';
+    if (short && value > 99999) {
+      // 金额大于99999时，单位为万
+      unit = '万';
+      value = value / 10000;
+    }
+    final priceStr = fmtter.format(value);
+    // 提取整数和小数部分
+    final comps = priceStr.split('.');
+    final integer = priceStr.split('.').first;
+    final decimal = comps.length == 2 ? priceStr.split('.').last : null;
+
+    final _fontSize = max(12.0, fontSize);
+
+    var _prefixFontSize = prefixFontSize ?? _fontSize;
+    var _decimalFontSize = decimalFontSize ?? _fontSize;
+    var _suffixFontSize = suffixFontSize ?? _fontSize;
+
+    if (heightStyle == YlPriceHeightStyle.camel) {
+      _prefixFontSize = 12;
+      _decimalFontSize = max(12, _fontSize * 14.0 / 18.0);
+      _suffixFontSize = 12;
+    }
+
+    final prefixStyle = YlTextStyles.number(_prefixFontSize);
+    final integerStyle = YlTextStyles.number(fontSize);
+    final decimalStyle = YlTextStyles.number(_decimalFontSize);
+    final suffixStyle = YlTextStyles.number(_suffixFontSize);
+
     return RichText(
       text: TextSpan(
           style: TextStyle(
             color: color ?? YlColors.amount,
           ),
           children: [
+            TextSpan(text: prefix, style: prefixStyle),
             TextSpan(
-                text: prefix, style: prefixStyle ?? YlTextStyles.number(16)),
-            TextSpan(
-              text: priceText,
-              style: priceStyle ?? YlTextStyles.number(28),
+              text: integer,
+              style: integerStyle,
             ),
+            if (decimal != null)
+              TextSpan(
+                text: '.$decimal',
+                style: decimalStyle,
+              ),
+            TextSpan(text: unit, style: suffixStyle),
             TextSpan(
               text: suffix,
-              style: suffixStyle ?? TextStyle(fontSize: 12),
+              style: suffixStyle,
             ),
           ]),
+    );
+  }
+}
+
+class YlPriceFormatter extends StatelessWidget {
+  /// 金额文本，可包含金额符号和单位，例如：¥ 100.00 元
+  final String price;
+
+  /// 高度样式
+  final YlPriceHeightStyle heightStyle;
+
+  /// 是否缩短显示，仅当金额超过99999时有效
+  final bool short;
+
+  /// 文字颜色
+  final Color? color;
+
+  /// 金额大小，取金额部分的字体大小
+  final double size;
+  const YlPriceFormatter({
+    Key? key,
+    required this.price,
+    this.heightStyle = YlPriceHeightStyle.camel,
+    this.short = true,
+    this.color,
+    this.size = 18,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final regexp = RegExp(r'\d+(\.\d+)?');
+    final number = regexp.stringMatch(price);
+    print('number: $number');
+    if (number == null) {
+      return Text(price);
+    }
+
+    final prefix = price.substring(0, price.indexOf(number));
+    final suffix = price.substring(price.indexOf(number) + number.length);
+    print('price: $price, prefix: $prefix, suffix: $suffix');
+    return _YlPrice(
+      prefix: prefix,
+      price: number,
+      suffix: suffix,
+      short: short,
+      heightStyle: heightStyle,
+      color: color,
+      fontSize: size,
     );
   }
 }
