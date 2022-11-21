@@ -161,7 +161,7 @@ class YlPriceFormatter extends StatelessWidget {
     this.color,
     this.size = 18,
     this.height,
-    required this.fontFamily,
+    this.fontFamily = YlPriceFontFamily.din,
   }) : super(key: key);
 
   @override
