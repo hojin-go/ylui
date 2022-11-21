@@ -11,6 +11,13 @@ enum YlPriceHeightStyle {
   camel,
 }
 
+enum YlPriceFontFamily {
+  // 默认
+  system,
+  // 粗体
+  din,
+}
+
 class _YlPrice extends StatelessWidget {
   /// 金额前缀，通常为金额符号
   final String? prefix;
@@ -42,6 +49,8 @@ class _YlPrice extends StatelessWidget {
   /// 是否缩短显示，仅当金额超过99999时有效
   final bool short;
 
+  final YlPriceFontFamily fontFamily;
+
   /// 行高
   final double? height;
   const _YlPrice({
@@ -57,6 +66,7 @@ class _YlPrice extends StatelessWidget {
     this.decimalFontSize,
     this.suffixFontSize,
     this.height,
+    this.fontFamily = YlPriceFontFamily.din,
   }) : super(key: key);
 
   @override
@@ -87,10 +97,16 @@ class _YlPrice extends StatelessWidget {
       _suffixFontSize = 12;
     }
 
-    final prefixStyle = YlTextStyles.number(_prefixFontSize);
-    final integerStyle = YlTextStyles.number(fontSize);
-    final decimalStyle = YlTextStyles.number(_decimalFontSize);
-    final suffixStyle = YlTextStyles.number(_suffixFontSize);
+    final getStyle = (double size) {
+      return fontFamily == YlPriceFontFamily.din
+          ? YlTextStyles.number(size)
+          : TextStyle(fontSize: size);
+    };
+
+    final prefixStyle = getStyle(_prefixFontSize);
+    final integerStyle = getStyle(_fontSize);
+    final decimalStyle = getStyle(_decimalFontSize);
+    final suffixStyle = getStyle(_suffixFontSize);
 
     return RichText(
       text: TextSpan(
@@ -135,6 +151,8 @@ class YlPriceFormatter extends StatelessWidget {
   /// 金额大小，取金额部分的字体大小
   final double size;
   final double? height;
+
+  final YlPriceFontFamily fontFamily;
   const YlPriceFormatter({
     Key? key,
     required this.price,
@@ -143,6 +161,7 @@ class YlPriceFormatter extends StatelessWidget {
     this.color,
     this.size = 18,
     this.height,
+    required this.fontFamily,
   }) : super(key: key);
 
   @override
@@ -164,6 +183,7 @@ class YlPriceFormatter extends StatelessWidget {
       color: color,
       fontSize: size,
       height: height,
+      fontFamily: fontFamily,
     );
   }
 }
