@@ -41,6 +41,9 @@ class _YlPrice extends StatelessWidget {
 
   /// 是否缩短显示，仅当金额超过99999时有效
   final bool short;
+
+  /// 行高
+  final double? height;
   const _YlPrice({
     Key? key,
     this.prefix,
@@ -53,6 +56,7 @@ class _YlPrice extends StatelessWidget {
     this.fontSize = 16,
     this.decimalFontSize,
     this.suffixFontSize,
+    this.height,
   }) : super(key: key);
 
   @override
@@ -92,6 +96,7 @@ class _YlPrice extends StatelessWidget {
       text: TextSpan(
           style: TextStyle(
             color: color ?? YlColors.amount,
+            height: height,
           ),
           children: [
             TextSpan(text: prefix, style: prefixStyle),
@@ -129,6 +134,7 @@ class YlPriceFormatter extends StatelessWidget {
 
   /// 金额大小，取金额部分的字体大小
   final double size;
+  final double? height;
   const YlPriceFormatter({
     Key? key,
     required this.price,
@@ -136,20 +142,19 @@ class YlPriceFormatter extends StatelessWidget {
     this.short = true,
     this.color,
     this.size = 18,
+    this.height,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final regexp = RegExp(r'\d+(\.\d+)?');
     final number = regexp.stringMatch(price);
-    print('number: $number');
     if (number == null) {
       return Text(price);
     }
 
     final prefix = price.substring(0, price.indexOf(number));
     final suffix = price.substring(price.indexOf(number) + number.length);
-    print('price: $price, prefix: $prefix, suffix: $suffix');
     return _YlPrice(
       prefix: prefix,
       price: number,
@@ -158,6 +163,7 @@ class YlPriceFormatter extends StatelessWidget {
       heightStyle: heightStyle,
       color: color,
       fontSize: size,
+      height: height,
     );
   }
 }
