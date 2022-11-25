@@ -11,7 +11,7 @@ class PriceViewDemo extends StatefulWidget {
 
 class _PriceViewDemoState extends State<PriceViewDemo> {
   int _fontSize = 18;
-  YlPriceHeightStyle _heightStyle = YlPriceHeightStyle.camel;
+  bool _camel = true;
   @override
   Widget build(BuildContext context) {
     final priceList = [
@@ -25,6 +25,7 @@ class _PriceViewDemoState extends State<PriceViewDemo> {
       '¥108765.00/年',
       '¥1000000.00/年',
       '¥10007467.00/年',
+      '¥99.12-¥123.45/月',
     ];
     return Scaffold(
       appBar: YlAppBar(
@@ -58,19 +59,19 @@ class _PriceViewDemoState extends State<PriceViewDemo> {
           const SizedBox(height: 8),
           Row(
             children: [
-              Text('    样式'),
+              Text('    驼峰样式'),
               Expanded(
-                child: CupertinoSegmentedControl<YlPriceHeightStyle>(
+                child: CupertinoSegmentedControl<bool>(
                   children: {
-                    YlPriceHeightStyle.camel: Text('驼峰样式'),
-                    YlPriceHeightStyle.equal: Text('等高样式'),
+                    true: Text('是'),
+                    false: Text('否'),
                   },
                   onValueChanged: (style) {
                     setState(() {
-                      _heightStyle = style;
+                      _camel = style;
                     });
                   },
-                  groupValue: _heightStyle,
+                  groupValue: _camel,
                 ),
               ),
             ],
@@ -78,12 +79,11 @@ class _PriceViewDemoState extends State<PriceViewDemo> {
           Expanded(
             child: ListView.separated(
               itemBuilder: (ctx, index) => ListTile(
-                title: YlPriceFormatter(
+                title: YlPrice(
                   price: priceList[index],
                   size: _fontSize.toDouble(),
-                  heightStyle: _heightStyle,
                   bold: true,
-                  height: 1.3,
+                  camel: _camel,
                 ),
               ),
               separatorBuilder: (ctx, index) => Divider(

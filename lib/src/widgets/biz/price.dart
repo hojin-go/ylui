@@ -4,147 +4,55 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 import 'package:intl/intl.dart';
 
-enum YlPriceHeightStyle {
-  // 高度相等
-  equal,
-  // 驼峰
-  camel,
+enum _PriceTextTag {
+  other,
+  integer,
+  decimal,
 }
 
-enum YlPriceFontFamily {
-  // 默认
-  system,
-  // 粗体
-  din,
-}
+class _PriceTextWrap {
+  final String text;
+  final _PriceTextTag tag;
 
-class _YlPrice extends StatelessWidget {
-  /// 金额前缀，通常为金额符号
-  final String? prefix;
+  _PriceTextWrap(this.text, this.tag);
 
-  /// 金额，可以是整数，也可以是小数，也可以是字符串
-  final dynamic price;
+  String toString() {
+    return '$text (${tag.toString().split('.').last})';
+  }
 
-  /// 金额单位
-  final String? suffix;
-
-  /// 文字颜色
-  final Color? color;
-
-  /// 前缀样式
-  final double? prefixFontSize;
-
-  /// 金额样式
-  final double fontSize;
-
-  /// 小数样式
-  final double? decimalFontSize;
-
-  /// 后缀样式
-  final double? suffixFontSize;
-
-  /// 高度风格
-  final YlPriceHeightStyle heightStyle;
-
-  /// 是否缩短显示，仅当金额超过99999时有效
-  final bool short;
-
-  final YlPriceFontFamily fontFamily;
-
-  final bool? bold;
-
-  /// 行高
-  final double? height;
-  const _YlPrice({
-    Key? key,
-    this.prefix,
-    this.price,
-    this.suffix,
-    this.color,
-    this.short = false,
-    this.heightStyle = YlPriceHeightStyle.camel,
-    this.prefixFontSize,
-    this.fontSize = 16,
-    this.decimalFontSize,
-    this.suffixFontSize,
-    this.height,
-    this.fontFamily = YlPriceFontFamily.din,
-    this.bold = false,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final fmtter = NumberFormat("###.##");
-    var value = double.tryParse(price.toString()) ?? 0.0;
-    var unit = '';
-    if (short && value > 99999) {
-      // 金额大于99999时，单位为万
-      unit = '万';
-      value = value / 10000;
+  double get heightScale {
+    switch (tag) {
+      case _PriceTextTag.integer:
+        return 1.0;
+      case _PriceTextTag.decimal:
+        return 0.65;
+      default:
+        return 0.5;
     }
-    final priceStr = fmtter.format(value);
-    // 提取整数和小数部分
-    final comps = priceStr.split('.');
-    final integer = priceStr.split('.').first;
-    final decimal = comps.length == 2 ? priceStr.split('.').last : null;
+  }
 
-    final _fontSize = max(12.0, fontSize);
-
-    var _prefixFontSize = prefixFontSize ?? _fontSize;
-    var _decimalFontSize = decimalFontSize ?? _fontSize;
-    var _suffixFontSize = suffixFontSize ?? _fontSize;
-
-    if (heightStyle == YlPriceHeightStyle.camel) {
-      _prefixFontSize = 12;
-      _decimalFontSize = max(12, _fontSize * 14.0 / 18.0);
-      _suffixFontSize = 12;
+  TextStyle getStyle(
+      {double? fontSize, Color? color, bool ignoreScale = false}) {
+    if (ignoreScale) {
+      return TextStyle(fontSize: fontSize, color: color);
     }
+    final size = max(11.0, (fontSize ?? 16) * heightScale);
+    final style = tag != _PriceTextTag.other
+        ? YlTextStyles.number(size, height: 1)
+        : TextStyle(fontSize: size);
 
-    final getStyle = (double size) {
-      return fontFamily == YlPriceFontFamily.din
-          ? YlTextStyles.number(size)
-          : TextStyle(fontSize: size);
-    };
-
-    final prefixStyle = getStyle(_prefixFontSize);
-    final integerStyle = getStyle(_fontSize);
-    final decimalStyle = getStyle(_decimalFontSize);
-    final suffixStyle = getStyle(_suffixFontSize);
-
-    return RichText(
-      text: TextSpan(
-          style: TextStyle(
-            color: color ?? YlColors.amount,
-            height: height,
-            fontWeight: bold == true ? YlFontWeight.bold : FontWeight.normal,
-          ),
-          children: [
-            TextSpan(text: prefix, style: prefixStyle),
-            TextSpan(
-              text: integer,
-              style: integerStyle,
-            ),
-            if (decimal != null)
-              TextSpan(
-                text: '.$decimal',
-                style: decimalStyle,
-              ),
-            TextSpan(text: unit, style: suffixStyle),
-            TextSpan(
-              text: suffix,
-              style: suffixStyle,
-            ),
-          ]),
+    return style.copyWith(
+      color: color ?? YlColors.amount,
     );
   }
 }
 
-class YlPriceFormatter extends StatelessWidget {
+class YlPrice extends StatelessWidget {
   /// 金额文本，可包含金额符号和单位，例如：¥ 100.00 元
   final String price;
 
   /// 高度样式
-  final YlPriceHeightStyle heightStyle;
+  final bool camel;
 
   /// 是否缩短显示，仅当金额超过99999时有效
   final bool short;
@@ -154,44 +62,117 @@ class YlPriceFormatter extends StatelessWidget {
 
   /// 金额大小，取金额部分的字体大小
   final double size;
-  final double? height;
 
   final bool? bold;
 
-  final YlPriceFontFamily fontFamily;
-  const YlPriceFormatter({
+  const YlPrice({
     Key? key,
     required this.price,
-    this.heightStyle = YlPriceHeightStyle.camel,
+    this.camel = true,
     this.short = false,
     this.color,
     this.size = 18,
-    this.height,
-    this.fontFamily = YlPriceFontFamily.din,
     this.bold,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final regexp = RegExp(r'\d+(\.\d+)?');
-    final number = regexp.stringMatch(price);
-    if (number == null) {
-      return Text(price);
+    final wraps = _getWrapsFromText(price, short: true);
+    print(wraps.map((e) => e.toString()).join(' '));
+
+    final spans = wraps.map((e) {
+      return TextSpan(
+          text: e.text,
+          style: e.getStyle(
+            fontSize: size,
+            color: color,
+            ignoreScale: !camel,
+          ));
+    }).toList();
+
+    final style = TextStyle(
+      color: color ?? YlColors.amount,
+      fontWeight: bold == true ? YlFontWeight.bold : FontWeight.normal,
+    );
+    return RichText(
+      text: TextSpan(
+        style: style,
+        children: spans,
+      ),
+    );
+  }
+
+  List<_PriceTextWrap> _getWrapsFromPrice(
+    String price, {
+    bool short = false,
+  }) {
+    if (price.isEmpty) {
+      return [];
+    }
+    final num = double.tryParse(price) ?? 0.0;
+
+    final wraps = <_PriceTextWrap>[];
+
+    if (short && num > 999999) {
+      // 金额大于999999时，单位为万
+      final value = num / 10000;
+      final fmtter = NumberFormat("###.##");
+      final priceStr = fmtter.format(value);
+      wraps.addAll(
+        _getWrapsFromPrice(
+          priceStr,
+          short: false,
+        ),
+      );
+      wraps.add(_PriceTextWrap('万', _PriceTextTag.other));
+    } else {
+      final fmtter = NumberFormat("###.##");
+      final priceStr = fmtter.format(num);
+      final comps = priceStr.split('.');
+      final integer = comps[0];
+      wraps.add(
+        _PriceTextWrap(integer, _PriceTextTag.integer),
+      );
+      final decimal = comps.length > 1 ? comps[1] : null;
+      if (decimal != null) {
+        wraps.add(_PriceTextWrap('.', _PriceTextTag.other));
+        wraps.add(
+          _PriceTextWrap(decimal, _PriceTextTag.decimal),
+        );
+      }
     }
 
-    final prefix = price.substring(0, price.indexOf(number));
-    final suffix = price.substring(price.indexOf(number) + number.length);
-    return _YlPrice(
-      prefix: prefix,
-      price: number,
-      suffix: suffix,
-      short: short,
-      heightStyle: heightStyle,
-      color: color,
-      fontSize: size,
-      height: height,
-      fontFamily: fontFamily,
-      bold: bold,
-    );
+    return wraps;
+  }
+
+  List<_PriceTextWrap> _getWrapsFromText(
+    String text, {
+    bool short = false,
+  }) {
+    final regexp = RegExp(r'\d+(\.\d+)?');
+    final matchs = regexp.allMatches(price);
+    if (matchs.isEmpty) {
+      return [
+        _PriceTextWrap(text, _PriceTextTag.other),
+      ];
+    }
+    final tmp = <_PriceTextWrap>[];
+    int offset = 0;
+    for (var match in matchs) {
+      if (match.start > offset) {
+        final text = price.substring(offset, match.start);
+        tmp.add(_PriceTextWrap(text, _PriceTextTag.other));
+        offset = match.start;
+      }
+      final priceText = price.substring(match.start, match.end);
+      tmp.addAll(_getWrapsFromPrice(priceText, short: short));
+      offset = match.end;
+    }
+
+    if (offset < price.length) {
+      final text = price.substring(offset);
+      tmp.add(_PriceTextWrap(text, _PriceTextTag.other));
+    }
+    return tmp;
   }
 }
