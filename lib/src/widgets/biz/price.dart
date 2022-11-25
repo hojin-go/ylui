@@ -51,6 +51,8 @@ class _YlPrice extends StatelessWidget {
 
   final YlPriceFontFamily fontFamily;
 
+  final bool? bold;
+
   /// 行高
   final double? height;
   const _YlPrice({
@@ -59,7 +61,7 @@ class _YlPrice extends StatelessWidget {
     this.price,
     this.suffix,
     this.color,
-    this.short = true,
+    this.short = false,
     this.heightStyle = YlPriceHeightStyle.camel,
     this.prefixFontSize,
     this.fontSize = 16,
@@ -67,6 +69,7 @@ class _YlPrice extends StatelessWidget {
     this.suffixFontSize,
     this.height,
     this.fontFamily = YlPriceFontFamily.din,
+    this.bold = false,
   }) : super(key: key);
 
   @override
@@ -113,6 +116,7 @@ class _YlPrice extends StatelessWidget {
           style: TextStyle(
             color: color ?? YlColors.amount,
             height: height,
+            fontWeight: bold == true ? YlFontWeight.bold : FontWeight.normal,
           ),
           children: [
             TextSpan(text: prefix, style: prefixStyle),
@@ -152,16 +156,19 @@ class YlPriceFormatter extends StatelessWidget {
   final double size;
   final double? height;
 
+  final bool? bold;
+
   final YlPriceFontFamily fontFamily;
   const YlPriceFormatter({
     Key? key,
     required this.price,
     this.heightStyle = YlPriceHeightStyle.camel,
-    this.short = true,
+    this.short = false,
     this.color,
     this.size = 18,
     this.height,
     this.fontFamily = YlPriceFontFamily.din,
+    this.bold,
   }) : super(key: key);
 
   @override
@@ -184,6 +191,7 @@ class YlPriceFormatter extends StatelessWidget {
       fontSize: size,
       height: height,
       fontFamily: fontFamily,
+      bold: bold,
     );
   }
 }
