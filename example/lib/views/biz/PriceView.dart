@@ -84,6 +84,8 @@ class _PriceViewDemoState extends State<PriceViewDemo> {
                   size: _fontSize.toDouble(),
                   bold: true,
                   camel: _camel,
+                  debugColor: true,
+                  height: 1,
                 ),
               ),
               separatorBuilder: (ctx, index) => Divider(

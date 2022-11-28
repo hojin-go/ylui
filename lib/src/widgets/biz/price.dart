@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 import 'package:intl/intl.dart';
@@ -25,21 +23,40 @@ class _PriceTextWrap {
       case _PriceTextTag.integer:
         return 1.0;
       case _PriceTextTag.decimal:
-        return 0.65;
+        return 0.75;
       default:
-        return 0.5;
+        return 0.62;
     }
   }
 
-  TextStyle getStyle(
-      {double? fontSize, Color? color, bool ignoreScale = false}) {
+  TextStyle getStyle({
+    double? fontSize,
+    double? height,
+    Color? color,
+    bool ignoreScale = false,
+  }) {
+    fontSize ??= 16;
+    height ??= 1.2;
+
     if (ignoreScale) {
-      return TextStyle(fontSize: fontSize, color: color);
+      return TextStyle(
+        fontSize: fontSize,
+        color: color,
+        height: height,
+      );
     }
-    final size = max(11.0, (fontSize ?? 16) * heightScale);
+
+    final renderFontsize = fontSize * heightScale;
+
     final style = tag != _PriceTextTag.other
-        ? YlTextStyles.number(size, height: 1)
-        : TextStyle(fontSize: size);
+        ? YlTextStyles.number(
+            renderFontsize,
+            height: fontSize * height / renderFontsize,
+          )
+        : TextStyle(
+            fontSize: renderFontsize,
+            height: fontSize * height / renderFontsize,
+          );
 
     return style.copyWith(
       color: color ?? YlColors.amount,
@@ -68,6 +85,8 @@ class YlPrice extends StatelessWidget {
   /// 行高
   final double? height;
 
+  final bool debugColor;
+
   const YlPrice({
     Key? key,
     required this.price,
@@ -77,21 +96,30 @@ class YlPrice extends StatelessWidget {
     this.size = 18,
     this.bold,
     this.height,
+    this.debugColor = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final wraps = _getWrapsFromText(price, short: true);
-    print(wraps.map((e) => e.toString()).join(' '));
 
     final spans = wraps.map((e) {
-      return TextSpan(
-          text: e.text,
-          style: e.getStyle(
-            fontSize: size,
-            color: color,
-            ignoreScale: !camel,
-          ));
+      final style = e.getStyle(
+        fontSize: size,
+        height: height,
+        color: color,
+        ignoreScale: !camel,
+      );
+
+      final widget = Text(e.text, style: style);
+
+      if (debugColor == true) {
+        return Container(
+          color: Colors.blue[100],
+          child: widget,
+        );
+      }
+      return widget;
     }).toList();
 
     final style = TextStyle(
@@ -99,9 +127,11 @@ class YlPrice extends StatelessWidget {
       fontWeight: bold == true ? YlFontWeight.bold : FontWeight.normal,
       height: height,
     );
-    return RichText(
-      text: TextSpan(
-        style: style,
+    return DefaultTextStyle(
+      style: style,
+      child: Row(
+        // crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisSize: MainAxisSize.min,
         children: spans,
       ),
     );
