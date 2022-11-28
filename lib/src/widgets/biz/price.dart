@@ -65,6 +65,9 @@ class YlPrice extends StatelessWidget {
 
   final bool? bold;
 
+  /// 行高
+  final double? height;
+
   const YlPrice({
     Key? key,
     required this.price,
@@ -73,6 +76,7 @@ class YlPrice extends StatelessWidget {
     this.color,
     this.size = 18,
     this.bold,
+    this.height,
   }) : super(key: key);
 
   @override
@@ -93,6 +97,7 @@ class YlPrice extends StatelessWidget {
     final style = TextStyle(
       color: color ?? YlColors.amount,
       fontWeight: bold == true ? YlFontWeight.bold : FontWeight.normal,
+      height: height,
     );
     return RichText(
       text: TextSpan(
