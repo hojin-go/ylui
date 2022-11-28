@@ -101,7 +101,7 @@ class YlPrice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final wraps = _getWrapsFromText(price, short: true);
+    final wraps = _getWrapsFromText(price, short: short);
 
     final spans = wraps.map((e) {
       final style = e.getStyle(
