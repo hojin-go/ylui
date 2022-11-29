@@ -161,7 +161,7 @@ class YlPrice extends StatelessWidget {
       );
       wraps.add(_PriceTextWrap('万', _PriceTextTag.other));
     } else {
-      final value = (num / 100).floor() / 100.0;
+      final value = (num * 100).floor() / 100.0;
       final fmtter = NumberFormat("###.##");
       final priceStr = fmtter.format(value);
       final comps = priceStr.split('.');
