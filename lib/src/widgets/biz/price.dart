@@ -161,8 +161,9 @@ class YlPrice extends StatelessWidget {
       );
       wraps.add(_PriceTextWrap('万', _PriceTextTag.other));
     } else {
+      final value = (num / 100).floor() / 100.0;
       final fmtter = NumberFormat("###.##");
-      final priceStr = fmtter.format(num);
+      final priceStr = fmtter.format(value);
       final comps = priceStr.split('.');
       final integer = comps[0];
       wraps.add(
@@ -209,5 +210,22 @@ class YlPrice extends StatelessWidget {
       tmp.add(_PriceTextWrap(text, _PriceTextTag.other));
     }
     return tmp;
+  }
+
+  static String formatPrice(dynamic price, {bool short = false}) {
+    final num = double.tryParse(price) ?? 0.0;
+
+    if (short && num > 999999) {
+      // 金额大于999999时，单位为万
+      final value = (num / 100).floor() / 100.0;
+      final fmtter = NumberFormat("###.##");
+      final priceStr = fmtter.format(value);
+      return priceStr + '万';
+    } else {
+      final value = (num * 100).floor() / 100.0;
+      final fmtter = NumberFormat("###.##");
+      final priceStr = fmtter.format(value);
+      return priceStr;
+    }
   }
 }
