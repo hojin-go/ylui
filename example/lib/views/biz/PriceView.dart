@@ -23,7 +23,7 @@ class _PriceViewDemoState extends State<PriceViewDemo> {
       '¥1000.00/月',
       '¥19000.00/年',
       '¥108765.00/年',
-      '¥1000000.00/年',
+      '1999999.00/年',
       '¥10007467.00/年',
       '¥99.12-¥123.45/月',
     ];
@@ -86,6 +86,7 @@ class _PriceViewDemoState extends State<PriceViewDemo> {
                   camel: _camel,
                   debugColor: true,
                   height: 1,
+                  short: true,
                 ),
               ),
               separatorBuilder: (ctx, index) => Divider(

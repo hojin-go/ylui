@@ -150,7 +150,7 @@ class YlPrice extends StatelessWidget {
 
     if (short && num > 999999) {
       // 金额大于999999时，单位为万
-      final value = num / 10000;
+      final value = (num / 100).floor() / 100.0;
       final fmtter = NumberFormat("###.##");
       final priceStr = fmtter.format(value);
       wraps.addAll(
