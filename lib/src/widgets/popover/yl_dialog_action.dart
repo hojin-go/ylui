@@ -17,10 +17,15 @@ class YlDialogAction {
   /// 是否取消按钮， 70% 黑
   final bool isCancel;
 
-  YlDialogAction(
-      {required this.title,
-      this.isCancel = false,
-      required this.action,
-      this.highlight = false,
-      this.alert = false});
+  // ActionSheet 用，有则优先展示widget
+  final Widget? widget;
+
+  YlDialogAction({
+    required this.title,
+    this.isCancel = false,
+    required this.action,
+    this.highlight = false,
+    this.alert = false,
+    this.widget,
+  });
 }

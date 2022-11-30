@@ -37,20 +37,21 @@ class YlActionSheet extends StatelessWidget {
     var normalButtons = normalActions.map((e) {
       return YlTapEffect(
         onTap: e.action,
-        child: Container(
-          height: 56,
-          alignment: Alignment.center,
-          child: Text(
-            e.title,
-            style: YlTextStyles.header5.copyWith(
-                decoration: TextDecoration.none,
-                color: e.highlight
-                    ? YlColors.branding2
-                    : e.alert
-                        ? YlColors.alertRed
-                        : YlColors.black90),
-          ),
-        ),
+        child: e.widget ??
+            Container(
+              height: 56,
+              alignment: Alignment.center,
+              child: Text(
+                e.title,
+                style: YlTextStyles.header5.copyWith(
+                    decoration: TextDecoration.none,
+                    color: e.highlight
+                        ? YlColors.branding2
+                        : e.alert
+                            ? YlColors.alertRed
+                            : YlColors.black90),
+              ),
+            ),
       );
     }).toList();
 
