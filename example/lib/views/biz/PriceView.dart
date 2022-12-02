@@ -10,7 +10,7 @@ class PriceViewDemo extends StatefulWidget {
 }
 
 class _PriceViewDemoState extends State<PriceViewDemo> {
-  int _fontSize = 18;
+  YlPriceSize _size = YlPriceSize.small;
   bool _camel = true;
   @override
   Widget build(BuildContext context) {
@@ -19,13 +19,13 @@ class _PriceViewDemoState extends State<PriceViewDemo> {
       '¥0.50',
       '¥1.00',
       '¥10.50',
-      '¥100.00/周',
-      '¥1000.00/月',
-      '¥19000.00/年',
-      '¥108765.00/年',
-      '1999999.00/年',
-      '¥10007467.00/年',
-      '¥99.12-¥123.45/月',
+      '¥100.00万',
+      '¥1000.00万',
+      '¥19000.00元',
+      '¥108765.00元',
+      '¥1999999.0元',
+      '¥10007467.00元',
+      '¥99.12—¥123.45元/月',
     ];
     return Scaffold(
       appBar: YlAppBar(
@@ -39,19 +39,19 @@ class _PriceViewDemoState extends State<PriceViewDemo> {
             children: [
               Text('    字号'),
               Expanded(
-                child: CupertinoSegmentedControl<int>(
+                child: CupertinoSegmentedControl<YlPriceSize>(
                   children: {
-                    18: Text('18'),
-                    20: Text('20'),
-                    26: Text('26'),
-                    28: Text('28'),
+                    YlPriceSize.small: Text('small'),
+                    YlPriceSize.medium: Text('medium'),
+                    YlPriceSize.large: Text('large'),
+                    YlPriceSize.xLarge: Text('xLarge'),
                   },
-                  onValueChanged: (fontSize) {
+                  onValueChanged: (size) {
                     setState(() {
-                      _fontSize = fontSize;
+                      _size = size;
                     });
                   },
-                  groupValue: _fontSize,
+                  groupValue: _size,
                 ),
               ),
             ],
@@ -81,12 +81,11 @@ class _PriceViewDemoState extends State<PriceViewDemo> {
               itemBuilder: (ctx, index) => ListTile(
                 title: YlPrice(
                   price: priceList[index],
-                  size: _fontSize.toDouble(),
-                  bold: true,
+                  // bold: true,
                   camel: _camel,
-                  debugColor: true,
-                  height: 1,
+                  // debugColor: true,
                   short: true,
+                  size: _size,
                 ),
               ),
               separatorBuilder: (ctx, index) => Divider(

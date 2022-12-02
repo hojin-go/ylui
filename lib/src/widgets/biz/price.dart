@@ -3,9 +3,60 @@ import 'package:flutter_ylui/flutter_ylui.dart';
 import 'package:intl/intl.dart';
 
 enum _PriceTextTag {
-  other,
+  symbol,
+  unit,
+  point,
   integer,
   decimal,
+  other2,
+}
+
+enum YlPriceSize {
+  small,
+  medium,
+  large,
+  xLarge,
+}
+
+extension _Ext on YlPriceSize {
+  double get fontSize {
+    switch (this) {
+      case YlPriceSize.small:
+        return 18;
+      case YlPriceSize.medium:
+        return 22;
+      case YlPriceSize.large:
+        return 28;
+      case YlPriceSize.xLarge:
+        return 36;
+    }
+  }
+
+  double get unitFontSize {
+    switch (this) {
+      case YlPriceSize.small:
+        return 11;
+      case YlPriceSize.medium:
+        return 11;
+      case YlPriceSize.large:
+        return 12;
+      case YlPriceSize.xLarge:
+        return 14;
+    }
+  }
+
+  double get symbolFontSize {
+    switch (this) {
+      case YlPriceSize.small:
+        return 12;
+      case YlPriceSize.medium:
+        return 14;
+      case YlPriceSize.large:
+        return 16;
+      case YlPriceSize.xLarge:
+        return 20;
+    }
+  }
 }
 
 class _PriceTextWrap {
@@ -18,45 +69,54 @@ class _PriceTextWrap {
     return '$text (${tag.toString().split('.').last})';
   }
 
-  double get heightScale {
-    switch (tag) {
-      case _PriceTextTag.integer:
-        return 1.0;
-      case _PriceTextTag.decimal:
-        return 0.75;
-      default:
-        return 0.62;
-    }
-  }
-
   TextStyle getStyle({
-    double? fontSize,
-    double? height,
     Color? color,
     bool ignoreScale = false,
+    required YlPriceSize size,
   }) {
-    fontSize ??= 16;
-    height ??= 1.2;
-
     if (ignoreScale) {
       return TextStyle(
-        fontSize: fontSize,
+        fontSize: size.fontSize,
         color: color,
-        height: height,
+        height: 1.3,
       );
     }
 
-    final renderFontsize = fontSize * heightScale;
+    late TextStyle style;
 
-    final style = tag != _PriceTextTag.other
-        ? YlTextStyles.number(
-            renderFontsize,
-            height: fontSize * height / renderFontsize,
-          )
-        : TextStyle(
-            fontSize: renderFontsize,
-            height: fontSize * height / renderFontsize,
-          );
+    switch (tag) {
+      case _PriceTextTag.integer:
+        style = YlTextStyles.number(
+          size.fontSize,
+          height: 1.2,
+        );
+        break;
+      case _PriceTextTag.decimal:
+      case _PriceTextTag.point:
+        style = YlTextStyles.number(
+          size.unitFontSize * 1.3,
+          height: 1.2 * size.fontSize / size.unitFontSize / 1.4,
+        );
+        break;
+      case _PriceTextTag.symbol:
+        style = YlTextStyles.number(
+          size.symbolFontSize,
+          height: 1.2 * size.fontSize / size.symbolFontSize * 1,
+        );
+        break;
+      case _PriceTextTag.unit:
+        style = TextStyle(
+          fontSize: size.unitFontSize,
+          height: 1.2 * size.fontSize / size.unitFontSize / 1.1,
+        );
+        break;
+      default:
+        style = TextStyle(
+          fontSize: size.fontSize,
+          height: 1.2,
+        );
+        break;
+    }
 
     return style.copyWith(
       color: color ?? YlColors.amount,
@@ -78,12 +138,9 @@ class YlPrice extends StatelessWidget {
   final Color? color;
 
   /// 金额大小，取金额部分的字体大小
-  final double size;
+  final YlPriceSize size;
 
   final bool? bold;
-
-  /// 行高
-  final double? height;
 
   final bool debugColor;
 
@@ -93,11 +150,98 @@ class YlPrice extends StatelessWidget {
     this.camel = true,
     this.short = false,
     this.color,
-    this.size = 18,
+    this.size = YlPriceSize.small,
     this.bold,
-    this.height,
     this.debugColor = false,
   }) : super(key: key);
+
+  factory YlPrice.small({
+    Key? key,
+    required String price,
+    bool camel = true,
+    bool short = false,
+    Color? color,
+    bool? bold,
+    double? height,
+    bool debugColor = false,
+  }) {
+    return YlPrice(
+      key: key,
+      price: price,
+      camel: camel,
+      short: short,
+      color: color,
+      size: YlPriceSize.small,
+      bold: bold,
+      debugColor: debugColor,
+    );
+  }
+
+  factory YlPrice.medium({
+    Key? key,
+    required String price,
+    bool camel = true,
+    bool short = false,
+    Color? color,
+    bool? bold,
+    double? height,
+    bool debugColor = false,
+  }) {
+    return YlPrice(
+      key: key,
+      price: price,
+      camel: camel,
+      short: short,
+      color: color,
+      size: YlPriceSize.medium,
+      bold: bold,
+      debugColor: debugColor,
+    );
+  }
+
+  factory YlPrice.large({
+    Key? key,
+    required String price,
+    bool camel = true,
+    bool short = false,
+    Color? color,
+    bool? bold,
+    double? height,
+    bool debugColor = false,
+  }) {
+    return YlPrice(
+      key: key,
+      price: price,
+      camel: camel,
+      short: short,
+      color: color,
+      size: YlPriceSize.large,
+      bold: bold,
+      debugColor: debugColor,
+    );
+  }
+
+  factory YlPrice.xLarge({
+    Key? key,
+    required String price,
+    bool camel = true,
+    bool short = false,
+    Color? color,
+    bool? bold,
+    double? height,
+    bool debugColor = false,
+  }) {
+    return YlPrice(
+      key: key,
+      price: price,
+      camel: camel,
+      short: short,
+      color: color,
+      size: YlPriceSize.xLarge,
+      bold: bold,
+      debugColor: debugColor,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,27 +249,31 @@ class YlPrice extends StatelessWidget {
 
     final spans = wraps.map((e) {
       final style = e.getStyle(
-        fontSize: size,
-        height: height,
+        size: size,
         color: color,
         ignoreScale: !camel,
       );
 
-      final widget = Text(e.text, style: style);
+      final widget = Text(
+        e.text,
+        style: style,
+        strutStyle: e.tag == _PriceTextTag.unit
+            ? StrutStyle(
+                leading: 0.4,
+              )
+            : null,
+      );
 
-      if (debugColor == true) {
-        return Container(
-          color: Colors.blue[100],
-          child: widget,
-        );
-      }
-      return widget;
+      return Container(
+        color: debugColor == true ? Colors.blue[100] : null,
+        child: widget,
+        // margin: const EdgeInsets.only(right: 2),
+      );
     }).toList();
 
     final style = TextStyle(
       color: color ?? YlColors.amount,
       fontWeight: bold == true ? YlFontWeight.bold : FontWeight.normal,
-      height: height,
     );
     return DefaultTextStyle(
       style: style,
@@ -159,7 +307,7 @@ class YlPrice extends StatelessWidget {
           short: false,
         ),
       );
-      wraps.add(_PriceTextWrap('万', _PriceTextTag.other));
+      wraps.add(_PriceTextWrap('万', _PriceTextTag.unit));
     } else {
       final value = (num * 100).floor() / 100.0;
       final fmtter = NumberFormat("###.##");
@@ -171,7 +319,7 @@ class YlPrice extends StatelessWidget {
       );
       final decimal = comps.length > 1 ? comps[1] : null;
       if (decimal != null) {
-        wraps.add(_PriceTextWrap('.', _PriceTextTag.other));
+        wraps.add(_PriceTextWrap('.', _PriceTextTag.point));
         wraps.add(
           _PriceTextWrap(decimal, _PriceTextTag.decimal),
         );
@@ -189,7 +337,7 @@ class YlPrice extends StatelessWidget {
     final matchs = regexp.allMatches(price);
     if (matchs.isEmpty) {
       return [
-        _PriceTextWrap(text, _PriceTextTag.other),
+        _PriceTextWrap(text, _PriceTextTag.other2),
       ];
     }
     final tmp = <_PriceTextWrap>[];
@@ -197,7 +345,7 @@ class YlPrice extends StatelessWidget {
     for (var match in matchs) {
       if (match.start > offset) {
         final text = price.substring(offset, match.start);
-        tmp.add(_PriceTextWrap(text, _PriceTextTag.other));
+        tmp.add(_PriceTextWrap(text, _PriceTextTag.symbol));
         offset = match.start;
       }
       final priceText = price.substring(match.start, match.end);
@@ -207,7 +355,7 @@ class YlPrice extends StatelessWidget {
 
     if (offset < price.length) {
       final text = price.substring(offset);
-      tmp.add(_PriceTextWrap(text, _PriceTextTag.other));
+      tmp.add(_PriceTextWrap(text, _PriceTextTag.unit));
     }
     return tmp;
   }
