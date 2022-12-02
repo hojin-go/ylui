@@ -40,3 +40,6 @@ export 'src/widgets/progress_indicator/yl_line_progress_indicator.dart';
 export 'src/widgets/rating/yl_rating_bar.dart';
 
 export 'src/widgets/biz/price.dart';
+
+// text
+export 'src/widgets/text/expanded_rich_text.dart';
