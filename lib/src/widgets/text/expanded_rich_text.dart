@@ -4,11 +4,17 @@ import 'package:flutter_ylui/src/yl_text_style.dart';
 
 import '../yl_tap_detector.dart';
 
+enum Direction {
+  Horiztontal,
+  Vertical,
+}
+
 class ExpandedRichText extends StatefulWidget {
   final int maxLines;
   final InlineSpan textSpan;
   final String? foldText;
   final String? unfoldText;
+  final Direction? direction;
 
   const ExpandedRichText({
     Key? key,
@@ -16,6 +22,7 @@ class ExpandedRichText extends StatefulWidget {
     required this.textSpan,
     this.foldText,
     this.unfoldText,
+    this.direction = Direction.Vertical
   }) : super(key: key);
 
   @override
@@ -24,6 +31,7 @@ class ExpandedRichText extends StatefulWidget {
 
 class _ExpandedRichTextState extends State<ExpandedRichText> {
   bool _textFold = true;
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constrains) {
@@ -35,7 +43,34 @@ class _ExpandedRichTextState extends State<ExpandedRichText> {
       tp.layout(maxWidth: constrains.maxWidth);
 
       if (tp.didExceedMaxLines) {
-        return Column(
+        return widget.direction == Direction.Horiztontal ?
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            RichText(
+              text: widget.textSpan,
+              maxLines: _textFold ? widget.maxLines : null,
+              overflow: _textFold ? TextOverflow.ellipsis : TextOverflow.clip,
+            ),
+            YlTapDetector(
+              onTap: () {
+                setState(() {
+                  _textFold = !_textFold;
+                });
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: Text(
+                  _textFold
+                      ? (widget.unfoldText ?? '展开更多')
+                      : (widget.foldText ?? '收起'),
+                  style: YlTextStyles.n12(color: YlColors.lanehubBlue),
+                ),
+              ),
+            ),
+          ],
+        ) : Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             RichText(
@@ -69,4 +104,5 @@ class _ExpandedRichTextState extends State<ExpandedRichText> {
       }
     });
   }
+
 }
