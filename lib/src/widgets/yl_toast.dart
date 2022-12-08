@@ -135,7 +135,7 @@ class YlToast {
     if (_textToastCancelFunc != null) {
       _textToastCancelFunc!();
     }
-    int realLines = maxLines ?? 1;
+    int realLines = maxLines ?? 10;
     Widget widget = Text(
       content,
       maxLines: realLines,
