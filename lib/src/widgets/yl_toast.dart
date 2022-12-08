@@ -13,16 +13,16 @@ class YlToast {
 
   static const _defaultDuration = Duration(seconds: 2);
   static const _defaultPadding =
-      EdgeInsets.symmetric(horizontal: 16, vertical: 11);
+  EdgeInsets.symmetric(horizontal: 16, vertical: 11);
 
   static CancelFunc? _textToastCancelFunc;
 
   static void text(String content,
       {int? maxLines,
-      Duration? duration,
-      Color? bgColor,
-      Alignment? alignment,
-      BorderRadius? borderRadius}) {
+        Duration? duration,
+        Color? bgColor,
+        Alignment? alignment,
+        BorderRadius? borderRadius}) {
     _textToast(content,
         maxLines: maxLines,
         duration: duration,
@@ -41,7 +41,8 @@ class YlToast {
     BotToast.showCustomLoading(
         clickClose: true,
         onClose: onCancel,
-        toastBuilder: (_) => GestureDetector(
+        toastBuilder: (_) =>
+            GestureDetector(
               onTap: () {
                 BotToast.closeAllLoading();
                 if (onCancel != null) {
@@ -87,7 +88,8 @@ class YlToast {
     BotToast.showCustomLoading(
         clickClose: true,
         onClose: onCancel,
-        toastBuilder: (_) => Container(
+        toastBuilder: (_) =>
+            Container(
               padding: _defaultPadding,
               // constraints: BoxConstraints(minWidth: 128, maxWidth: 300),
               decoration: BoxDecoration(
@@ -127,11 +129,11 @@ class YlToast {
 
   static _textToast(String content,
       {Widget? prefix,
-      int? maxLines,
-      Duration? duration,
-      Color? bgColor,
-      Alignment? alignment,
-      BorderRadius? borderRadius}) {
+        int? maxLines,
+        Duration? duration,
+        Color? bgColor,
+        Alignment? alignment,
+        BorderRadius? borderRadius}) {
     if (_textToastCancelFunc != null) {
       _textToastCancelFunc!();
     }
@@ -153,10 +155,8 @@ class YlToast {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           prefix,
-          SizedBox(
-            width: 4,
-          ),
-          widget
+          SizedBox(width: 4),
+          Flexible(child: widget)
         ],
       );
     }
@@ -167,7 +167,7 @@ class YlToast {
 
     _textToastCancelFunc = BotToast.showCustomText(
         wrapAnimation: (AnimationController controller, CancelFunc cancelFunc,
-                Widget child) =>
+            Widget child) =>
             FadeAnimation(
               controller: controller,
               child: child,
@@ -175,7 +175,8 @@ class YlToast {
         wrapToastAnimation: null,
         duration: duration ?? _defaultDuration,
         align: const Alignment(0, _defaultOffsetY),
-        toastBuilder: (_) => Container(
+        toastBuilder: (_) =>
+            Container(
               constraints: BoxConstraints(minWidth: 128, maxWidth: 300),
               padding: _defaultPadding,
               decoration: BoxDecoration(
