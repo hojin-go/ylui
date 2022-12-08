@@ -18,6 +18,7 @@ class _YlOpacityTapEffectState extends State<YlOpacityTapEffect> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTapDown: (details) {
         setState(() {
           _taping = true;
