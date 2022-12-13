@@ -243,6 +243,7 @@ class YlAppBarButton extends StatelessWidget {
   final Color? backgroundColor;
   final Color? foregroundColor;
   final EdgeInsets? padding;
+  final double? minSize;
 
   const YlAppBarButton({
     Key? key,
@@ -251,14 +252,15 @@ class YlAppBarButton extends StatelessWidget {
     this.backgroundColor,
     this.padding,
     this.foregroundColor,
+    this.minSize,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Widget widget = Container(
       constraints: BoxConstraints(
-        minWidth: 44,
-        minHeight: 44,
+        minWidth: minSize ?? 44,
+        minHeight: minSize ?? 44,
       ),
       alignment: Alignment.center,
       padding: padding ?? const EdgeInsets.all(8),
