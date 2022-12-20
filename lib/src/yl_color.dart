@@ -20,9 +20,9 @@ class YlColors {
 
   /// 透明色
   static const transparent = Color(0x00000000);
-  
+
   ///金额颜色
-  static const amount=Color.fromRGBO(244, 109, 79, 1);
+  static const amount = Color.fromRGBO(244, 109, 79, 1);
 
   static const white = Color(0xFFFFFFFF);
 
@@ -75,6 +75,9 @@ class YlColors {
 
   /// 瓴里蓝色, #5C769D
   static const lanehubBlue = Color.fromRGBO(92, 118, 157, 1);
+
+  /// 蓝色，部分按钮文字颜色
+  static const blue = const Color(0xFF2A94F4);
 
   static const note = Color(0xFFC22CDB);
 

@@ -11,100 +11,147 @@ class ButtonView extends StatelessWidget {
       title: 'YlButton',
       child: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Wrap(
+          spacing: 8,
+          runSpacing: 8,
           children: [
-            ..._wrapButton(YlButtonType.primary, title: 'Primary'),
-            ..._wrapButton(YlButtonType.secondary, title: 'Secondary'),
-            ..._wrapButton(YlButtonType.subPrimary, title: 'Sub Primary'),
-            ..._wrapButton(YlButtonType.subSecondary, title: 'Sub Secondary'),
-            ..._wrapButton(YlButtonType.alert, title: 'Alert'),
-            ..._wrapButton(YlButtonType.plain, title: 'Plain'),
+            ..._wrapButton(
+              YlButtonType.primary,
+              title: 'Primary',
+              enabled: true,
+            ),
+            ..._wrapButton(
+              YlButtonType.primary,
+              title: 'Primary Disabled',
+            ),
+            ..._wrapButton(
+              YlButtonType.secondary,
+              title: 'Secondary',
+              enabled: true,
+            ),
+            ..._wrapButton(
+              YlButtonType.secondary,
+              title: 'Secondary Disabled',
+            ),
+            ..._wrapButton(
+              YlButtonType.subPrimary,
+              title: 'Sub Primary',
+              enabled: true,
+            ),
+            ..._wrapButton(
+              YlButtonType.subPrimary,
+              title: 'Sub Primary Disabled',
+            ),
+            ..._wrapButton(
+              YlButtonType.subSecondary,
+              title: 'Sub Secondary',
+              enabled: true,
+            ),
+            ..._wrapButton(
+              YlButtonType.subSecondary,
+              title: 'Sub Secondary Disabled',
+            ),
+            ..._wrapButton(
+              YlButtonType.alert,
+              title: 'Alert',
+              enabled: true,
+            ),
+            ..._wrapButton(
+              YlButtonType.alert,
+              title: 'Alert Disabled',
+            ),
+            ..._wrapButton(
+              YlButtonType.plain,
+              title: 'Plain',
+              enabled: true,
+            ),
+            ..._wrapButton(
+              YlButtonType.plain,
+              title: 'Plain Disabled',
+            ),
           ],
         ),
       ),
     );
   }
 
-  _wrapButton(YlButtonType type, {required String title}) {
+  _wrapButton(
+    YlButtonType type, {
+    required String title,
+    bool? enabled,
+  }) {
     return [
-      Text(
-        title,
-        style: YlTextStyles.header1,
-      ),
       Container(
-        margin: EdgeInsets.only(bottom: 10),
-        alignment: Alignment.center,
-        child: YlButton.fromType(
-          size: YlButtonSize.small,
-          type: type,
-          child: Text('小号'),
-          loading: true,
-          onPressed: () {},
+        width: double.infinity,
+        margin: const EdgeInsets.only(top: 20),
+        child: Text(
+          title,
+          style: YlTextStyles.n17(color: YlColors.black50),
         ),
       ),
-      Container(
-        margin: EdgeInsets.only(bottom: 10),
-        alignment: Alignment.center,
-        child: YlButton.fromType(
-          size: YlButtonSize.medium,
-          type: type,
-          child: Row(
-            children: [
-              Icon(YlIcons.scan),
-              SizedBox(
-                width: 8,
-              ),
-              Text('中号'),
-            ],
-          ),
-          // onPressed: () {},
-          onAsyncPressed: () => Future.delayed(
-            Duration(seconds: 2),
-          ),
-        ),
+      YlButton.fromType(
+        size: YlButtonSize.small,
+        type: type,
+        child: Text('小号'),
+        loading: true,
+        onPressed: enabled == true ? () {} : null,
       ),
-      Container(
-        margin: EdgeInsets.only(bottom: 10),
-        alignment: Alignment.center,
-        child: YlButton.fromType(
-          size: YlButtonSize.large,
-          type: type,
-          child: Row(
-            children: [
-              Icon(YlIcons.scan),
-              SizedBox(
-                width: 8,
-              ),
-              Text('大号'),
-            ],
-          ),
-          // onPressed: () {},
-          onAsyncPressed: () => Future.delayed(
-            Duration(seconds: 2),
-          ),
+      YlButton.fromType(
+        size: YlButtonSize.medium,
+        type: type,
+        child: Row(
+          children: [
+            Icon(YlIcons.scan),
+            SizedBox(
+              width: 8,
+            ),
+            Text('中号'),
+          ],
         ),
+        // onPressed: () {},
+        onAsyncPressed: enabled == true
+            ? () => Future.delayed(
+                  Duration(seconds: 2),
+                )
+            : null,
       ),
-      Container(
-        margin: EdgeInsets.only(bottom: 10),
-        alignment: Alignment.center,
-        child: YlButton.fromType(
-          size: YlButtonSize.max,
-          type: type,
-          child: Row(
-            children: [
-              Icon(YlIcons.scan),
-              SizedBox(
-                width: 8,
-              ),
-              Text('超大号'),
-            ],
-          ),
-          // onPressed: () {},
-          onAsyncPressed: () => Future.delayed(
-            Duration(seconds: 2),
-          ),
+      YlButton.fromType(
+        size: YlButtonSize.large,
+        type: type,
+        child: Row(
+          children: [
+            Icon(YlIcons.scan),
+            SizedBox(
+              width: 8,
+            ),
+            Text('大号'),
+          ],
         ),
+        // onPressed: () {},
+        onAsyncPressed: enabled == true
+            ? () => Future.delayed(
+                  Duration(seconds: 2),
+                )
+            : null,
+      ),
+      YlButton.fromType(
+        size: YlButtonSize.max,
+        type: type,
+        child: Row(
+          children: [
+            Icon(YlIcons.scan),
+            SizedBox(
+              width: 8,
+            ),
+            Text('超大号'),
+          ],
+        ),
+        // onPressed: () {},
+        onAsyncPressed: enabled == true
+            ? () => Future.delayed(
+                  Duration(seconds: 2),
+                )
+            : null,
       ),
     ];
   }

@@ -24,9 +24,11 @@ extension YlButtonSizeData on YlButtonSize {
   TextStyle get textStyle {
     switch (this) {
       case YlButtonSize.max:
-      case YlButtonSize.large:
-      case YlButtonSize.medium:
         return YlTextStyles.header5.copyWith(height: 1.3);
+      case YlButtonSize.large:
+        return YlTextStyles.n15(height: 1.3);
+      case YlButtonSize.medium:
+        return YlTextStyles.n14(height: 1.3);
       default:
         return YlTextStyles.subHeader2.copyWith(height: 1.3);
     }
@@ -104,7 +106,7 @@ extension YlButtonDataFromType on YlButtonType {
       case YlButtonType.alert:
         return YlColors.alertRed;
       case YlButtonType.subSecondary:
-        return YlColors.black90;
+        return YlColors.black30;
       default:
         return null;
     }
@@ -218,8 +220,10 @@ class YlButton extends StatefulWidget {
   })  : this.background = color ?? type.background,
         this.height = size.height,
         this.radius = size.radius,
-        this.textStyle =
-            size.textStyle.copyWith(color: textColor ?? type.textColor),
+        this.textStyle = size.textStyle.copyWith(
+          color: textColor ?? type.textColor,
+          fontWeight: type == YlButtonType.primary ? YlFontWeight.bold : null,
+        ),
         this.border = (borderColor ?? type.borderColor) != null
             ? BorderSide(width: 1, color: borderColor ?? type.borderColor!)
             : null,
