@@ -44,7 +44,7 @@ class YlRatingBar extends StatelessWidget {
           color: Colors.white,
         ),
         empty: Container(
-          child: getImageFromAssets('star_empty', color: color),
+          child: getImageFromAssets('star_empty'),
           color: Colors.white,
         ),
       ),
