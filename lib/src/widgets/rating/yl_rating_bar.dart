@@ -8,6 +8,7 @@ class YlRatingBar extends StatelessWidget {
   final double itemWidth;
   final double initialRating;
   final double minRating;
+  final Color? color;
   final void Function(double rating) onRatingUpdate;
   final VoidCallback? onRatingLess;
   final String Function(double rating)? getLabel;
@@ -19,10 +20,12 @@ class YlRatingBar extends StatelessWidget {
     this.getLabel,
     this.onRatingLess,
     this.minRating = 0,
+    this.color,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final color = this.color ?? YlColors.amount;
     final children = <Widget>[];
     children.add(CustomRatingBar(
       initialRating: initialRating,
@@ -33,15 +36,15 @@ class YlRatingBar extends StatelessWidget {
       glow: false,
       ratingWidget: CustomRatingWidget(
         full: Container(
-          child: getImageFromAssets('star'),
+          child: getImageFromAssets('star', color: color),
           color: Colors.white,
         ),
         half: Container(
-          child: getImageFromAssets('star'),
+          child: getImageFromAssets('star', color: color),
           color: Colors.white,
         ),
         empty: Container(
-          child: getImageFromAssets('star_empty'),
+          child: getImageFromAssets('star_empty', color: color),
           color: Colors.white,
         ),
       ),
