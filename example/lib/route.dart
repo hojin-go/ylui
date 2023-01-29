@@ -8,6 +8,7 @@ import 'package:example/views/font_view.dart';
 import 'package:example/views/form/form_view.dart';
 import 'package:example/views/loading_indicator_view.dart';
 import 'package:example/views/selector/selector_view.dart';
+import 'package:example/views/stepper_view.dart';
 import 'package:example/views/tabs/bottom_tabbar_view.dart';
 import 'package:example/views/tabs/tabs_view.dart';
 import 'package:example/views/yl_toast_demo.dart';
@@ -32,35 +33,13 @@ List<RouteObject> defineRouteObjects() {
     RouteObject('/floating_bottom', 'YlFloatingBottom',
         (context) => FloatingBottomView()),
     RouteObject(
-      '/loading_indicator',
-      '加载指示器',
-      (context) => LoadingIndicatorView(),
-    ),
-    RouteObject(
-      '/tabs',
-      'Tabs',
-      (context) => TabsView(),
-    ),
-    RouteObject(
-      '/appbar',
-      '导航栏',
-      (context) => AppBarView(),
-    ),
-    RouteObject(
-      '/bottom_tabbar',
-      '底部导航栏',
-      (context) => BottomTabbarView(),
-    ),
-    RouteObject(
-      '/form_view',
-      '表单',
-      (context) => FormView(),
-    ),
-    RouteObject(
-      '/biz/price',
-      '价格组件',
-      (context) => PriceViewDemo(),
-    ),
+        '/loading_indicator', '加载指示器', (context) => LoadingIndicatorView()),
+    RouteObject('/tabs', 'Tabs', (context) => TabsView()),
+    RouteObject('/appbar', '导航栏', (context) => AppBarView()),
+    RouteObject('/bottom_tabbar', '底部导航栏', (context) => BottomTabbarView()),
+    RouteObject('/form_view', '表单', (context) => FormView()),
+    RouteObject('/biz/price', '价格组件', (context) => PriceViewDemo()),
+    RouteObject('/widget/stepper', '步进器', (context) => StepperView())
   ];
 }
 
