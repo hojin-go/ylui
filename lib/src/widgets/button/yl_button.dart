@@ -217,9 +217,10 @@ class YlButton extends StatefulWidget {
     Color? disableBorderColor,
     EdgeInsets? padding,
     this.loading,
+    BorderRadius? radius,
   })  : this.background = color ?? type.background,
         this.height = size.height,
-        this.radius = size.radius,
+        this.radius = radius ?? size.radius,
         this.textStyle = size.textStyle.copyWith(
           color: textColor ?? type.textColor,
           fontWeight: type == YlButtonType.primary ? YlFontWeight.bold : null,
