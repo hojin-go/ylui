@@ -30,14 +30,17 @@ class YlLineProgressIndicator extends StatelessWidget {
               top: 0,
               bottom: 0,
               left: 0,
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 250),
-                width: constraints.maxWidth * value,
-                decoration: BoxDecoration(
-                  gradient: gradient ??
-                      const LinearGradient(
-                        colors: [Color(0x7300BF57), Color(0xFF00BF57)],
-                      ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(radius),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 250),
+                  width: constraints.maxWidth * value,
+                  decoration: BoxDecoration(
+                    gradient: gradient ??
+                        const LinearGradient(
+                          colors: [Color(0x7300BF57), Color(0xFF00BF57)],
+                        ),
+                  ),
                 ),
               ),
             )
