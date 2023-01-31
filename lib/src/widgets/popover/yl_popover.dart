@@ -191,9 +191,12 @@ Future<bool?> showYlPlainPopover(
   BuildContext context, {
   RouteSettings? routeSettings,
   required String title,
-  required String content,
+  String? content,
+  Widget? contentWidget,
   String? confirmText,
 }) {
+  assert(content != null || contentWidget != null);
+
   final maxHeight = MediaQuery.of(context).size.height * 0.75;
   return showYlPopover<bool>(
     context,
@@ -217,7 +220,7 @@ Future<bool?> showYlPlainPopover(
                     style: YlTextStyles.n16(
                       color: YlColors.black70,
                     ),
-                    child: Text(content)),
+                    child: contentWidget ?? Text(content!)),
                 Visibility(
                   visible: confirmText != null,
                   child: Container(
