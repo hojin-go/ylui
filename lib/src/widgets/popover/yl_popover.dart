@@ -206,7 +206,7 @@ Future<bool?> showYlPlainPopover(
         constraints: BoxConstraints.loose(Size.fromHeight(maxHeight)),
         child: Scrollbar(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(40, 0, 40, 28),
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 28),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -214,18 +214,25 @@ Future<bool?> showYlPlainPopover(
                     style: YlTextStyles.b20(
                       color: YlColors.black,
                     ),
-                    child: Text(title)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      child: Text(title),
+                    )),
                 SizedBox(height: 20),
                 DefaultTextStyle(
                     style: YlTextStyles.n16(
                       color: YlColors.black70,
                     ),
-                    child: contentWidget ?? Text(content!)),
+                    child: contentWidget ??
+                        Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 40),
+                            child: Text(content!))),
                 Visibility(
                   visible: confirmText != null,
                   child: Container(
                     alignment: Alignment.center,
                     margin: const EdgeInsets.only(top: 40),
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: YlButton.fromType(
                       width: 200,
                       size: YlButtonSize.large,
