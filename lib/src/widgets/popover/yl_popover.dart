@@ -92,7 +92,7 @@ class YlPopover extends StatelessWidget {
             children: [
               CupertinoButton(
                 minSize: 0,
-                padding: EdgeInsets.only(left: 20),
+                padding: EdgeInsets.only(left: 20, right: 10),
                 child: Text(
                   '取消',
                   style: YlTextStyles.body1.copyWith(color: YlColors.black70),
@@ -123,7 +123,7 @@ class YlPopover extends StatelessWidget {
               ),
               CupertinoButton(
                 minSize: 0,
-                padding: EdgeInsets.only(right: 20),
+                padding: EdgeInsets.only(left: 10, right: 20),
                 child: Text(
                   '完成',
                   style: YlTextStyles.body1.copyWith(color: YlColors.branding1),
