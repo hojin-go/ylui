@@ -13,26 +13,38 @@ class _StepperViewState extends State<StepperView> {
   int _value = 1;
   @override
   Widget build(BuildContext context) {
-    return DemoPage(
-      title: 'Stepper',
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('当前值: $_value'),
-            const SizedBox(height: 20),
-            YlStepper(
-              value: _value,
-              minimum: 1,
-              maximum: 3,
-              textBuilder: (value) => '$value周',
-              onChanged: (value) {
-                setState(() {
-                  _value = value;
-                });
-              },
-            ),
-          ],
+    return YlTapDetector(
+      onTap: () {
+        // hide keyboard
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: DemoPage(
+        title: 'Stepper',
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('当前值: $_value'),
+              const SizedBox(height: 20),
+              YlStepper(
+                value: _value,
+                minimum: 1,
+                maximum: 12,
+                height: 30,
+                onChanged: (value) {
+                  setState(() {
+                    _value = value;
+                  });
+                },
+                onSelectedLessThenMin: () {
+                  YlToast.text('不得少于1');
+                },
+                onSelectedMoreThenMax: () {
+                  YlToast.text('不得大于12');
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

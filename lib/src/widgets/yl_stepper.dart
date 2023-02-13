@@ -12,18 +12,28 @@ class YlStepper extends StatefulWidget {
   /// 最大值
   final int? maximum;
 
-  /// 文本构建器
-  final String Function(int value) textBuilder;
+  /// 组件高度定制
+  final double? height;
+
+  /// 组件宽度定制
+  final double? width;
+
+  /// 组件选择超出范围回调
+  final VoidCallback? onSelectedLessThenMin;
+  final VoidCallback? onSelectedMoreThenMax;
 
   /// 值改变回调
   final void Function(int value)? onChanged;
   const YlStepper({
     Key? key,
     required this.value,
-    required this.textBuilder,
     this.minimum,
     this.maximum,
     this.onChanged,
+    this.height,
+    this.width,
+    this.onSelectedLessThenMin,
+    this.onSelectedMoreThenMax,
   }) : super(key: key);
 
   @override
@@ -32,11 +42,26 @@ class YlStepper extends StatefulWidget {
 
 class _YlStepperState extends State<YlStepper> {
   late int _value;
+  late TextEditingController _textController;
+  final _focusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
     _value = widget.value;
+    _textController = TextEditingController(text: '$_value');
+    _focusNode.addListener(() {
+      if (!_focusNode.hasFocus) {
+        _onChanged(int.tryParse(_textController.text) ?? 0);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _textController.dispose();
+    _focusNode.dispose();
   }
 
   @override
@@ -44,6 +69,10 @@ class _YlStepperState extends State<YlStepper> {
     final min = widget.minimum ?? 0;
     final activeColor = const Color(0xFF7E7E7E);
     final inactiveColor = YlColors.grey5;
+    final height = widget.height ?? 40.0;
+    final controlWidth = 32.0;
+    final valueWidth =
+        widget.width != null ? (widget.width! - controlWidth * 2) : 31.0;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.min,
@@ -60,8 +89,8 @@ class _YlStepperState extends State<YlStepper> {
                   bottomLeft: Radius.circular(4),
                 ),
                 color: _value == min ? YlColors.grey2 : Colors.white),
-            width: 44,
-            height: 40,
+            width: controlWidth,
+            height: height,
             child: Icon(
               Icons.remove,
               color: _value == min ? inactiveColor : activeColor,
@@ -72,17 +101,13 @@ class _YlStepperState extends State<YlStepper> {
               return;
             }
 
-            setState(() {
-              _value--;
-            });
-
-            widget.onChanged?.call(_value);
+            _onChanged(_value - 1);
           },
         ),
         Container(
           alignment: Alignment.center,
-          width: 60,
-          height: 40,
+          width: valueWidth,
+          height: height,
           decoration: BoxDecoration(
             border: Border(
               top: BorderSide(
@@ -95,9 +120,23 @@ class _YlStepperState extends State<YlStepper> {
               ),
             ),
           ),
-          child: Text(
-            widget.textBuilder(_value),
-            style: YlTextStyles.n14(color: YlColors.black),
+          child: TextField(
+            controller: _textController,
+            textAlign: TextAlign.center,
+            style: YlTextStyles.n14(color: YlColors.black, height: 1.6),
+            focusNode: _focusNode,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              // contentPadding: EdgeInsets.zero,
+              // isDense: true,
+            ),
+            keyboardType: TextInputType.number,
+            onEditingComplete: () {
+              _onChanged(int.tryParse(_textController.text) ?? 0);
+            },
+            onSubmitted: (value) {
+              _onChanged(int.tryParse(value) ?? 0);
+            },
           ),
         ),
         YlTapDetector(
@@ -115,8 +154,8 @@ class _YlStepperState extends State<YlStepper> {
                   ? YlColors.grey2
                   : Colors.white,
             ),
-            width: 44,
-            height: 40,
+            width: controlWidth,
+            height: height,
             child: Icon(
               Icons.add,
               color: widget.maximum != null && _value == widget.maximum
@@ -129,14 +168,34 @@ class _YlStepperState extends State<YlStepper> {
               return;
             }
 
-            setState(() {
-              _value++;
-            });
-
-            widget.onChanged?.call(_value);
+            _onChanged(_value + 1);
           },
         ),
       ],
     );
+  }
+
+  _onChanged(int newValue) {
+    if (newValue < (widget.minimum ?? 0)) {
+      newValue = widget.minimum ?? 0;
+      widget.onSelectedLessThenMin?.call();
+    }
+
+    if (widget.maximum != null && newValue > widget.maximum!) {
+      newValue = widget.maximum!;
+      widget.onSelectedMoreThenMax?.call();
+    }
+
+    if (newValue == _value) {
+      _textController.text = '$_value';
+      return;
+    }
+
+    setState(() {
+      _value = newValue;
+      _textController.text = '$_value';
+    });
+
+    widget.onChanged?.call(_value);
   }
 }
