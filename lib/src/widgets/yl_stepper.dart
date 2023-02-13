@@ -53,6 +53,11 @@ class _YlStepperState extends State<YlStepper> {
     _focusNode.addListener(() {
       if (!_focusNode.hasFocus) {
         _onChanged(int.tryParse(_textController.text) ?? 0);
+      } else {
+        _textController.selection = TextSelection(
+          baseOffset: 0,
+          extentOffset: _textController.text.length,
+        );
       }
     });
   }
@@ -101,6 +106,7 @@ class _YlStepperState extends State<YlStepper> {
               return;
             }
 
+            _focusNode.unfocus();
             _onChanged(_value - 1);
           },
         ),
@@ -123,19 +129,21 @@ class _YlStepperState extends State<YlStepper> {
           child: TextField(
             controller: _textController,
             textAlign: TextAlign.center,
-            style: YlTextStyles.n14(color: YlColors.black, height: 1.6),
+            style: TextStyle(color: YlColors.black, fontSize: 14, height: 1.6),
             focusNode: _focusNode,
             decoration: InputDecoration(
               border: InputBorder.none,
-              // contentPadding: EdgeInsets.zero,
-              // isDense: true,
             ),
             keyboardType: TextInputType.number,
             onEditingComplete: () {
-              _onChanged(int.tryParse(_textController.text) ?? 0);
+              // _onChanged(int.tryParse(_textController.text) ?? 0);
+              debugPrint("stepper onEditingComplete");
+              _focusNode.unfocus();
             },
             onSubmitted: (value) {
-              _onChanged(int.tryParse(value) ?? 0);
+              // _onChanged(int.tryParse(value) ?? 0);
+              debugPrint("stepper onSubmitted");
+              _focusNode.unfocus();
             },
           ),
         ),
@@ -168,6 +176,7 @@ class _YlStepperState extends State<YlStepper> {
               return;
             }
 
+            _focusNode.unfocus();
             _onChanged(_value + 1);
           },
         ),
