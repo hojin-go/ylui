@@ -192,6 +192,7 @@ Future<bool?> showYlPlainPopover(
   RouteSettings? routeSettings,
   required String title,
   String? content,
+  TextAlign? contentTextAlign,
   Widget? contentWidget,
   String? confirmText,
 }) {
@@ -226,7 +227,10 @@ Future<bool?> showYlPlainPopover(
                     child: contentWidget ??
                         Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 40),
-                            child: Text(content!))),
+                            child: Text(
+                              content!,
+                              textAlign: contentTextAlign ?? TextAlign.left,
+                            ))),
                 Visibility(
                   visible: confirmText != null,
                   child: Container(
