@@ -70,6 +70,15 @@ class _YlStepperState extends State<YlStepper> {
   }
 
   @override
+  void didUpdateWidget(covariant YlStepper oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.value != widget.value) {
+      _value = widget.value;
+      _textController.text = '$_value';
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final min = widget.minimum ?? 0;
     final activeColor = const Color(0xFF7E7E7E);
