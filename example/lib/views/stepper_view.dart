@@ -31,6 +31,7 @@ class _StepperViewState extends State<StepperView> {
                 minimum: 1,
                 maximum: 12,
                 height: 30,
+                disable: true,
                 onChanged: (value) {
                   setState(() {
                     _value = value;

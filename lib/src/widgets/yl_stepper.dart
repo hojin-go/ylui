@@ -18,6 +18,8 @@ class YlStepper extends StatefulWidget {
   /// 组件宽度定制
   final double? width;
 
+  final bool? disable;
+
   /// 组件选择超出范围回调
   final VoidCallback? onSelectedLessThenMin;
   final VoidCallback? onSelectedMoreThenMax;
@@ -34,6 +36,7 @@ class YlStepper extends StatefulWidget {
     this.width,
     this.onSelectedLessThenMin,
     this.onSelectedMoreThenMax,
+    this.disable,
   }) : super(key: key);
 
   @override
@@ -76,6 +79,13 @@ class _YlStepperState extends State<YlStepper> {
       _value = widget.value;
       _textController.text = '$_value';
     }
+
+    // update disable
+    if (oldWidget.disable != widget.disable) {
+      if (widget.disable == true) {
+        _focusNode.unfocus();
+      }
+    }
   }
 
   @override
@@ -87,6 +97,10 @@ class _YlStepperState extends State<YlStepper> {
     final controlWidth = 32.0;
     final valueWidth =
         widget.width != null ? (widget.width! - controlWidth * 2) : 31.0;
+
+    final minusAble = widget.disable != true && _value > min;
+    final plusAble = widget.disable != true &&
+        (widget.maximum == null || _value < widget.maximum!);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.min,
@@ -102,15 +116,18 @@ class _YlStepperState extends State<YlStepper> {
                   topLeft: Radius.circular(4),
                   bottomLeft: Radius.circular(4),
                 ),
-                color: _value == min ? YlColors.grey2 : Colors.white),
+                color: !minusAble ? YlColors.grey2 : Colors.white),
             width: controlWidth,
             height: height,
             child: Icon(
               Icons.remove,
-              color: _value == min ? inactiveColor : activeColor,
+              color: !minusAble ? inactiveColor : activeColor,
             ),
           ),
           onTap: () async {
+            if (widget.disable == true) {
+              return;
+            }
             if (_value == min) {
               return;
             }
@@ -138,11 +155,17 @@ class _YlStepperState extends State<YlStepper> {
           child: TextField(
             controller: _textController,
             textAlign: TextAlign.center,
-            style: TextStyle(color: YlColors.black, fontSize: 14, height: 1.6),
+            style: TextStyle(
+                color:
+                    widget.disable == true ? YlColors.black30 : YlColors.black,
+                fontSize: 14,
+                height: 1.6),
             focusNode: _focusNode,
+            readOnly: widget.disable ?? false,
             decoration: InputDecoration(
               border: InputBorder.none,
             ),
+            toolbarOptions: ToolbarOptions(copy: false, selectAll: false),
             keyboardType: TextInputType.number,
             onEditingComplete: () {
               // _onChanged(int.tryParse(_textController.text) ?? 0);
@@ -167,20 +190,19 @@ class _YlStepperState extends State<YlStepper> {
                 topRight: Radius.circular(4),
                 bottomRight: Radius.circular(4),
               ),
-              color: widget.maximum != null && _value == widget.maximum
-                  ? YlColors.grey2
-                  : Colors.white,
+              color: !plusAble ? YlColors.grey2 : Colors.white,
             ),
             width: controlWidth,
             height: height,
             child: Icon(
               Icons.add,
-              color: widget.maximum != null && _value == widget.maximum
-                  ? inactiveColor
-                  : activeColor,
+              color: !plusAble ? inactiveColor : activeColor,
             ),
           ),
           onTap: () async {
+            if (!plusAble) {
+              return;
+            }
             if (widget.maximum != null && _value == widget.maximum) {
               return;
             }
