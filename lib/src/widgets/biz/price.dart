@@ -370,10 +370,12 @@ class YlPrice extends StatelessWidget {
       final priceStr = fmtter.format(value);
       return priceStr + '万';
     } else {
-      final value = (num * 100).floor() / 100.0;
-      final fmtter = NumberFormat("###.##");
-      final priceStr = fmtter.format(value);
-      return priceStr;
+      /// 不做计算，防止精度丢失
+      // final value = (num * 100).floor() / 100.0;
+      // final fmtter = NumberFormat("###.##");
+      // final priceStr = fmtter.format(value);
+      // return priceStr;
+      return price.toString();
     }
   }
 }
