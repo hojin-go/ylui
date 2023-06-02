@@ -1,13 +1,10 @@
-import 'package:example/views/dialog/action_sheet_demo.dart';
-import 'package:example/views/componnets/demo_button_group.dart';
-import 'package:example/views/componnets/demo_page.dart';
-import 'package:example/views/dialog/popover/popover_demo.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+import '../componnets/demo_button_group.dart';
+import '../componnets/demo_page.dart';
+import 'action_sheet_demo.dart';
 import 'dialog_demo.dart';
-import 'popover/ios_popover_demo.dart';
+import 'popover/popover_demo.dart';
 import 'rich_dialog_demo.dart';
 import 'sliding_up_panel_demo.dart';
 
@@ -44,13 +41,13 @@ class DialogView extends StatelessWidget {
               DemoButtonGroupItem(
                 'ModalBottomSheet',
                 () {
-                  Navigator.of(context).push(
-                    CupertinoPageRoute(
-                      builder: (context) => CupertinoScaffold(
-                        body: IosPopoverDemo(),
-                      ),
-                    ),
-                  );
+                  // Navigator.of(context).push(
+                  //   CupertinoPageRoute(
+                  //     builder: (context) => CupertinoScaffold(
+                  //       body: IosPopoverDemo(),
+                  //     ),
+                  //   ),
+                  // );
                 },
               ),
               DemoButtonGroupItem(

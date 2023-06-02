@@ -1,8 +1,9 @@
-import 'package:example/common/yl_iconfont.dart';
-import 'package:example/views/componnets/demo_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
+
+import '../../common/yl_iconfont.dart';
+import '../componnets/demo_page.dart';
 
 class ButtonView extends StatelessWidget {
   @override

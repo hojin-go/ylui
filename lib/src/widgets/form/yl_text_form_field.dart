@@ -136,7 +136,7 @@ class YlTextFormField extends FormField<String> {
       'behavior related to the maxLength limit. '
       'This feature was deprecated after v1.25.0-5.0.pre.',
     )
-        bool maxLengthEnforced = true,
+    bool maxLengthEnforced = true,
     MaxLengthEnforcement? maxLengthEnforcement,
     int? maxLines = 1,
     int? minLines,
@@ -287,7 +287,6 @@ class YlTextFormField extends FormField<String> {
                                 ? SmartQuotesType.disabled
                                 : SmartQuotesType.enabled),
                         enableSuggestions: enableSuggestions,
-                        maxLengthEnforced: maxLengthEnforced,
                         maxLengthEnforcement: maxLengthEnforcement,
                         maxLines: maxLines,
                         minLines: minLines,

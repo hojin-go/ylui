@@ -32,7 +32,7 @@ dependencies:
     path: "../"
   # widget_with_codeview: 2.0.1+2
   bot_toast: ^4.0.1
-  modal_bottom_sheet: ^2.0.1
+  # modal_bottom_sheet: ^2.0.1
   flutter_localizations:
     sdk: flutter
 
@@ -52,13 +52,13 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - lib/views/yl_toast_demo.dart
-    - lib/views/dialog_demo.dart
-    - lib/views/floating_bottom_view.dart
-    - lib/views/button_group_demo.dart
-    - lib/views/action_sheet_demo.dart
-    - lib/views/rich_dialog_demo.dart
-    - lib/views/sliding_up_panel_demo.dart
+    # - lib/views/yl_toast_demo.dart
+    # - lib/views/dialog_demo.dart
+    # - lib/views/floating_bottom_view.dart
+    # - lib/views/button_group_demo.dart
+    # - lib/views/action_sheet_demo.dart
+    # - lib/views/rich_dialog_demo.dart
+    # - lib/views/sliding_up_panel_demo.dart
     - images/chrome.png
     - images/flutter.jpg
     - images/js.png

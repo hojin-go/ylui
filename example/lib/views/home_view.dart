@@ -1,8 +1,8 @@
-import 'package:example/route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
+import '../route.dart';
 import 'componnets/demo_page.dart';
 
 class HomeView extends StatelessWidget {
@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
     return DemoPage(
       title: 'YLUI',
       contentPadding: EdgeInsets.zero,
-      child:  GridView.builder(
+      child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisSpacing: 1,
             mainAxisSpacing: 1,

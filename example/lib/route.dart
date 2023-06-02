@@ -1,18 +1,19 @@
-import 'package:example/views/biz/PriceView.dart';
-import 'package:example/views/button/button_demo.dart';
-import 'package:example/views/appbar/appbar_view.dart';
-import 'package:example/views/color_view.dart';
-import 'package:example/views/dialog/dialog_view.dart';
-import 'package:example/views/floating_bottom_view.dart';
-import 'package:example/views/font_view.dart';
-import 'package:example/views/form/form_view.dart';
-import 'package:example/views/loading_indicator_view.dart';
-import 'package:example/views/selector/selector_view.dart';
-import 'package:example/views/stepper_view.dart';
-import 'package:example/views/tabs/bottom_tabbar_view.dart';
-import 'package:example/views/tabs/tabs_view.dart';
-import 'package:example/views/yl_toast_demo.dart';
 import 'package:flutter/material.dart';
+
+import 'views/appbar/appbar_view.dart';
+import 'views/biz/PriceView.dart';
+import 'views/button/button_demo.dart';
+import 'views/color_view.dart';
+import 'views/dialog/dialog_view.dart';
+import 'views/floating_bottom_view.dart';
+import 'views/font_view.dart';
+import 'views/form/form_view.dart';
+import 'views/loading_indicator_view.dart';
+import 'views/selector/selector_view.dart';
+import 'views/stepper_view.dart';
+import 'views/tabs/bottom_tabbar_view.dart';
+import 'views/tabs/tabs_view.dart';
+import 'views/yl_toast_demo.dart';
 
 class RouteObject {
   final String route;

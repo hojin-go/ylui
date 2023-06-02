@@ -1,10 +1,11 @@
 import 'package:bot_toast/bot_toast.dart';
-import 'package:example/route.dart';
-import 'package:example/views/home_view.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
+
+import 'route.dart';
+import 'views/home_view.dart';
 
 void main() {
   YlTextStyles.setDefaultNumFontFamily('DIN Alternate');

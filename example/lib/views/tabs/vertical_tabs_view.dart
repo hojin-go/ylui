@@ -1,6 +1,7 @@
-import 'package:example/views/componnets/demo_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
+
+import '../componnets/demo_page.dart';
 
 class VerticalTabsView extends StatefulWidget {
   const VerticalTabsView({Key? key}) : super(key: key);

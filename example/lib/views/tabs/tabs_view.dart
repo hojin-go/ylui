@@ -1,7 +1,8 @@
-import 'package:example/views/componnets/demo_page.dart';
-import 'package:example/views/tabs/horizontal_tabs_view.dart';
-import 'package:example/views/tabs/vertical_tabs_view.dart';
 import 'package:flutter/material.dart';
+
+import '../componnets/demo_page.dart';
+import 'horizontal_tabs_view.dart';
+import 'vertical_tabs_view.dart';
 
 class TabsView extends StatelessWidget {
   const TabsView({Key? key}) : super(key: key);

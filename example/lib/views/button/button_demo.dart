@@ -1,8 +1,9 @@
-import 'package:example/views/button/button_group_demo.dart';
-import 'package:example/views/button/button_view.dart';
-import 'package:example/views/componnets/demo_button_group.dart';
-import 'package:example/views/componnets/demo_page.dart';
 import 'package:flutter/material.dart';
+
+import '../componnets/demo_button_group.dart';
+import '../componnets/demo_page.dart';
+import 'button_group_demo.dart';
+import 'button_view.dart';
 
 class ButtonDemo extends StatelessWidget {
   const ButtonDemo({Key? key}) : super(key: key);

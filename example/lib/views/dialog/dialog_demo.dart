@@ -1,7 +1,8 @@
-import 'package:example/views/componnets/demo_button_group.dart';
-import 'package:example/views/componnets/demo_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
+
+import '../componnets/demo_button_group.dart';
+import '../componnets/demo_page.dart';
 
 class DialogDemoPage extends StatelessWidget {
   @override

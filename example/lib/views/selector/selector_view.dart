@@ -1,8 +1,9 @@
-import 'package:example/views/checkbox_view.dart';
-import 'package:example/views/componnets/demo_button_group.dart';
-import 'package:example/views/componnets/demo_page.dart';
-import 'package:example/views/radiobox_view.dart';
 import 'package:flutter/material.dart';
+
+import '../checkbox_view.dart';
+import '../componnets/demo_button_group.dart';
+import '../componnets/demo_page.dart';
+import '../radiobox_view.dart';
 
 class SelectorView extends StatelessWidget {
   const SelectorView({Key? key}) : super(key: key);
