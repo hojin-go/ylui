@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_ylui/flutter_ylui.dart';
 
@@ -7,7 +8,7 @@ import 'yl_color.dart';
 
 class YlFontWeight {
   static FontWeight bold =
-      Platform.isAndroid ? FontWeight.w600 : FontWeight.w500;
+      !kIsWeb && Platform.isAndroid ? FontWeight.w600 : FontWeight.w500;
 }
 
 class YlTextStyles {
